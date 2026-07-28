@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5063b9e38ffe06d4dab5a030016e62ce, type: 3}
+  m_Name: GirlDialogue
+  m_EditorClassIdentifier: 
+  npcName: Girl
+  npcPortrait: {fileID: 21300000, guid: de869e7390fa8c0429a7c47d94a65322, type: 3}
+  dialogueLines:
+  - Hi!
+  - Do you need something?
+  - Well I'm too busy - bye!
+  - Are you sure?
+  - Ok! Bye!
+  autoProgressLines: 0101010101
+  endDialogueLines: 0000010001
+  autoProgressDelay: 0.5
+  typingSpeed: 0.025
+  voiceSound: {fileID: 8300000, guid: 2dbf635f9089af64786b7bc623118ed1, type: 3}
+  voicePitch: 1
+  choices:
+  - dialogueIndex: 1
+    choices:
+    - Yes
+    - No
+    nextDialogueIndexes: 0200000003000000
+  - dialogueIndex: 3
+    choices:
+    - Yes I'm sure!
+    - I don't know!
+    nextDialogueIndexes: 0400000002000000

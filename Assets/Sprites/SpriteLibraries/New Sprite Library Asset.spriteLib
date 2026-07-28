@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrarySourceAsset
+  m_Library:
+  - m_Name: Idle
+    m_Hash: 1008081451
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Idle (3)_0
+      m_Hash: 646281446
+      m_Sprite: {fileID: 1845081991133998016, guid: d17b40a2ea7a00d46af55e9f3cd25c61, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1845081991133998016, guid: d17b40a2ea7a00d46af55e9f3cd25c61, type: 3}
+    - m_Name: Idle (3)_1
+      m_Hash: 293750896
+      m_Sprite: {fileID: 6152974010431379203, guid: d17b40a2ea7a00d46af55e9f3cd25c61, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6152974010431379203, guid: d17b40a2ea7a00d46af55e9f3cd25c61, type: 3}
+    - m_Name: Idle (3)_2
+      m_Hash: 143333834
+      m_Sprite: {fileID: 1724432699, guid: d17b40a2ea7a00d46af55e9f3cd25c61, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1724432699, guid: d17b40a2ea7a00d46af55e9f3cd25c61, type: 3}
+    - m_Name: Idle (3)_3
+      m_Hash: 1066150236
+      m_Sprite: {fileID: -1198477059, guid: d17b40a2ea7a00d46af55e9f3cd25c61, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1198477059, guid: d17b40a2ea7a00d46af55e9f3cd25c61, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: Walk
+    m_Hash: 765711723
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_0
+      m_Hash: 1071230079
+      m_Sprite: {fileID: -3058124337531613434, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -3058124337531613434, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_1
+      m_Hash: 148806889
+      m_Sprite: {fileID: -5715088457849106911, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5715088457849106911, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_2
+      m_Hash: 299355475
+      m_Sprite: {fileID: -504637703, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -504637703, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_3
+      m_Hash: 651230661
+      m_Sprite: {fileID: -1043725403, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1043725403, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_4
+      m_Hash: 951347302
+      m_Sprite: {fileID: 296508844, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 296508844, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_5
+      m_Hash: 263411952
+      m_Sprite: {fileID: -1362697601, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1362697601, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_6
+      m_Hash: 381290826
+      m_Sprite: {fileID: 2101750009, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2101750009, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_7
+      m_Hash: 566049244
+      m_Sprite: {fileID: 1130719773, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1130719773, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_8
+      m_Hash: 822223949
+      m_Sprite: {fileID: -622983835, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -622983835, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_9
+      m_Hash: 100996315
+      m_Sprite: {fileID: 1094801476, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1094801476, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_10
+      m_Hash: 763714401
+      m_Sprite: {fileID: 2103472876, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2103472876, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_11
+      m_Hash: 444754935
+      m_Sprite: {fileID: 2056336642, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2056336642, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_12
+      m_Hash: 59456077
+      m_Sprite: {fileID: -1587761173, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1587761173, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_13
+      m_Hash: 881593051
+      m_Sprite: {fileID: 799374681, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 799374681, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_14
+      m_Hash: 719888248
+      m_Sprite: {fileID: 1517555457, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1517555457, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    - m_Name: pixil-frame-0(3) - Copy - Copy - Copy-imageonline.co-merged_15
+      m_Hash: 502247406
+      m_Sprite: {fileID: 483455441, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 483455441, guid: c543ff9b7e860ca45a713282e079e4b4, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 16
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 639125921644640291
+  m_Version: 1
