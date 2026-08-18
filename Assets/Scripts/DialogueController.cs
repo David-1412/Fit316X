@@ -20,6 +20,12 @@ public class DialogueController : MonoBehaviour
         else Destroy(gameObject); //Make sure only one instance
     }
 
+    void Start()
+    {
+        // Automatically hide on start so the user can leave the root object active in the Inspector
+        if (dialoguePanel != null) dialoguePanel.SetActive(false);
+    }
+
     public void ShowDialogueUI(bool show)
     {
         dialoguePanel.SetActive(show); //Toggle UI visability
@@ -27,22 +33,25 @@ public class DialogueController : MonoBehaviour
 
     public void SetNPCInfo(string npcName, Sprite portrait)
     {
-        nameText.text = npcName;
-        portraitImage.sprite = portrait;
+        if (nameText != null) nameText.text = npcName;
+        if (portraitImage != null) portraitImage.sprite = portrait;
     }
 
     public void SetDialogueText(string text)
     {
-        dialogueText.text = text;
+        if (dialogueText != null) dialogueText.text = text;
     }
 
     public void ClearChoices()
     {
+        if (choiceContainer == null) return;
         foreach (Transform child in choiceContainer) Destroy(child.gameObject);
     }
 
     public GameObject CreateChoiceButton(string choiceText, UnityEngine.Events.UnityAction onClick)
     {
+        if (choiceContainer == null || choiceButtonPrefab == null) return null;
+        
         GameObject choiceButton = Instantiate(choiceButtonPrefab, choiceContainer);
         choiceButton.GetComponentInChildren<TMP_Text>().text = choiceText;
         choiceButton.GetComponent<Button>().onClick.AddListener(onClick);

@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class NPC : MonoBehaviour, IInteractable
 {
@@ -11,9 +13,21 @@ public class NPC : MonoBehaviour, IInteractable
     private enum QuestState { NotStarted, InProgress, Completed }
     private QuestState questState = QuestState.NotStarted;
 
+    [Header("Events")]
+    public UnityEvent onDialogueEnd;
+
     private void Start()
     {
         dialogueUI = DialogueController.Instance;
+    }
+
+    private void Update()
+    {
+        // Allow the Enter key to progress dialogue while it's active
+        if (isDialogueActive && Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            NextLine();
+        }
     }
 
     public bool CanInteract()
@@ -39,6 +53,21 @@ public class NPC : MonoBehaviour, IInteractable
 
     void StartDialogue()
     {
+        // Fallback fetch if it was null in Start
+        if (dialogueUI == null) dialogueUI = DialogueController.Instance;
+        
+        // FindObjectsInactive.Include allows it to find the UI even if it is completely unchecked in the inspector!
+        if (dialogueUI == null) dialogueUI = FindAnyObjectByType<DialogueController>(FindObjectsInactive.Include);
+        
+        if (dialogueUI == null)
+        {
+            Debug.LogError("CRITICAL: Unity cannot find any DialogueController script in your entire scene! Please ensure the DialogueController (Script) is actually attached to your DialogueUI object.");
+            return;
+        }
+
+        // Force the root UI GameObject to turn on!
+        dialogueUI.gameObject.SetActive(true);
+
         //Sync with quest data
         SyncQuestState();
 
@@ -94,6 +123,7 @@ public class NPC : MonoBehaviour, IInteractable
             StopAllCoroutines();
             dialogueUI.SetDialogueText(dialogueData.dialogueLines[dialogueIndex]);
             isTyping = false;
+            return;
         }
 
         //Clear Choices
@@ -188,7 +218,14 @@ public class NPC : MonoBehaviour, IInteractable
         isDialogueActive = false;
         dialogueUI.SetDialogueText("");
         dialogueUI.ShowDialogueUI(false);
+        
+        // Force the root UI GameObject to turn back off when dialogue is done!
+        dialogueUI.gameObject.SetActive(false);
+        
         PauseController.SetPause(false);
+
+        // Trigger any cutscenes or events hooked up in the inspector!
+        onDialogueEnd?.Invoke();
     }
 
     void HandleQuestCompletion(Quest quest)
