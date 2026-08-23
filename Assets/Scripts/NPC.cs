@@ -23,8 +23,9 @@ public class NPC : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        // Allow the Enter key to progress dialogue while it's active
-        if (isDialogueActive && Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame)
+        // Allow the Enter or Space key to progress dialogue while it's active
+        if (isDialogueActive && Keyboard.current != null && 
+           (Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame))
         {
             NextLine();
         }
@@ -127,26 +128,29 @@ public class NPC : MonoBehaviour, IInteractable
         }
 
         //Clear Choices
-        dialogueUI.ClearChoices();
+        if (dialogueUI != null) dialogueUI.ClearChoices();
 
         //Check endDialogueLines
-        if(dialogueData.endDialogueLines.Length > dialogueIndex && dialogueData.endDialogueLines[dialogueIndex])
+        if(dialogueData.endDialogueLines != null && dialogueData.endDialogueLines.Length > dialogueIndex && dialogueData.endDialogueLines[dialogueIndex])
         {
             EndDialogue();
             return;
         }
 
         //Check if choices & display
-        foreach(DialogueChoice dialogueChoice in dialogueData.choices)
+        if (dialogueData.choices != null)
         {
-            if(dialogueChoice.dialogueIndex == dialogueIndex)
+            foreach(DialogueChoice dialogueChoice in dialogueData.choices)
             {
-                DisplayChoices(dialogueChoice);
-                return;
+                if(dialogueChoice != null && dialogueChoice.dialogueIndex == dialogueIndex)
+                {
+                    DisplayChoices(dialogueChoice);
+                    return;
+                }
             }
         }
 
-        if(++dialogueIndex < dialogueData.dialogueLines.Length)
+        if(dialogueData.dialogueLines != null && ++dialogueIndex < dialogueData.dialogueLines.Length)
         {
             //If another line, type next line
             DisplayCurrentLine();
@@ -209,7 +213,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void EndDialogue()
     {
-        if(questState == QuestState.Completed && !QuestController.Instance.IsQuestHandedIn(dialogueData.quest.questID))
+        if(questState == QuestState.Completed && dialogueData != null && dialogueData.quest != null && QuestController.Instance != null && !QuestController.Instance.IsQuestHandedIn(dialogueData.quest.questID))
         {
             HandleQuestCompletion(dialogueData.quest);
         }

@@ -79,12 +79,51 @@ public class InventoryController : MonoBehaviour
 
     public Dictionary<int, int> GetItemCounts() => itemsCountCache;
 
+    private void SetupUIItem(GameObject itemObj)
+    {
+        itemObj.layer = LayerMask.NameToLayer("UI");
+        RectTransform rt = itemObj.GetComponent<RectTransform>();
+        if (rt != null)
+        {
+            rt.anchoredPosition = Vector2.zero;
+            rt.localScale = Vector3.one;
+            rt.sizeDelta = new Vector2(100, 100); // Give it a visible, clickable size
+        }
+        
+        UnityEngine.UI.Image img = itemObj.GetComponent<UnityEngine.UI.Image>();
+        if (img != null) img.raycastTarget = true;
+
+        SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
+        if (sr != null) sr.enabled = false;
+
+        if (itemObj.GetComponent<CanvasGroup>() == null)
+        {
+            CanvasGroup cg = itemObj.AddComponent<CanvasGroup>();
+            cg.blocksRaycasts = true;
+            cg.interactable = true;
+        }
+        
+        if (itemObj.GetComponent<ItemDragHandler>() == null)
+        {
+            itemObj.AddComponent<ItemDragHandler>();
+        }
+    }
+
     public bool AddItem(GameObject itemPrefab)
     {
         Item itemToAdd = itemPrefab.GetComponent<Item>();
         if (itemToAdd == null) return false;
 
-        //Check if we have this item type in inventory
+        if (itemDictionary != null)
+        {
+            GameObject cleanPrefab = itemDictionary.GetItemPrefab(itemToAdd.ID);
+            if (cleanPrefab != null)
+            {
+                itemPrefab = cleanPrefab;
+                itemToAdd = itemPrefab.GetComponent<Item>();
+            }
+        }
+
         foreach (Transform slotTranform in inventoryPanel.transform)
         {
             Slot slot = slotTranform.GetComponent<Slot>();
@@ -93,7 +132,6 @@ public class InventoryController : MonoBehaviour
                 Item slotItem = slot.currentItem.GetComponent<Item>();
                 if(slotItem != null && slotItem.ID == itemToAdd.ID)
                 {
-                    //Same item, stack them
                     slotItem.AddToStack();
                     RebuildItemCounts();
                     return true;
@@ -101,14 +139,14 @@ public class InventoryController : MonoBehaviour
             }
         }
 
-        //Look for empty slot
         foreach (Transform slotTranform in inventoryPanel.transform)
         {
             Slot slot = slotTranform.GetComponent<Slot>();
             if (slot != null && slot.currentItem == null)
             {
                 GameObject newItem = Instantiate(itemPrefab, slotTranform);
-                newItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                SetupUIItem(newItem);
+
                 slot.currentItem = newItem;
                 RebuildItemCounts();
                 return true;
@@ -141,19 +179,16 @@ public class InventoryController : MonoBehaviour
 
     public void SetInventoryItems(List<InventorySaveData> inventorySaveData)
     {
-        //Clear inventory panel - avoid duplicates
         foreach (Transform child in inventoryPanel.transform)
         {
             Destroy(child.gameObject);
         }
 
-        //Create new slots
         for (int i = 0; i < slotCount; i++)
         {
             Instantiate(slotPrefab, inventoryPanel.transform);
         }
 
-        //Populate slots with saved items
         foreach (InventorySaveData data in inventorySaveData)
         {
             if (data.slotIndex < slotCount)
@@ -163,7 +198,7 @@ public class InventoryController : MonoBehaviour
                 if (itemPrefab != null)
                 {
                     GameObject item = Instantiate(itemPrefab, slot.transform);
-                    item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                    SetupUIItem(item);
 
                     Item itemComponent = item.GetComponent<Item>();
                     if(itemComponent != null && data.quantity > 1)
@@ -201,6 +236,48 @@ public class InventoryController : MonoBehaviour
             }
         }
 
+        RebuildItemCounts();
+    }
+
+    public bool HasItem(string itemName)
+    {
+        foreach (Transform slotTranform in inventoryPanel.transform)
+        {
+            Slot slot = slotTranform.GetComponent<Slot>();
+            if (slot != null && slot.currentItem != null)
+            {
+                Item item = slot.currentItem.GetComponent<Item>();
+                if (item != null && item.Name == itemName && item.quantity > 0)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void RemoveItemByName(string itemName, int amountToRemove = 1)
+    {
+        foreach (Transform slotTranform in inventoryPanel.transform)
+        {
+            if (amountToRemove <= 0) break;
+            Slot slot = slotTranform.GetComponent<Slot>();
+            if (slot != null && slot.currentItem != null)
+            {
+                Item item = slot.currentItem.GetComponent<Item>();
+                if (item != null && item.Name == itemName)
+                {
+                    int removed = Mathf.Min(amountToRemove, item.quantity);
+                    item.RemoveFromStack(removed);
+                    amountToRemove -= removed;
+                    if (item.quantity <= 0)
+                    {
+                        Destroy(slot.currentItem);
+                        slot.currentItem = null;
+                    }
+                }
+            }
+        }
         RebuildItemCounts();
     }
 }

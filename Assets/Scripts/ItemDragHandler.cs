@@ -64,7 +64,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 dropSlot = dropItem.GetComponentInParent<Slot>();
             }
         }
-        Slot originalSlot = originalParent.GetComponent<Slot>();
+        Slot originalSlot = originalParent != null ? originalParent.GetComponent<Slot>() : null;
 
         if (dropSlot == originalSlot)
         {
@@ -134,45 +134,78 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     void DropItem(Slot originalSlot)
     {
         Item item = GetComponent<Item>();
+        if (item == null) return;
+
         int quantity = item.quantity;
 
-        if(quantity > 1)
-        {
-            item.RemoveFromStack();
+        // Find the correct WORLD prefab from ItemDictionary (NOT the UI clone)
+        ItemDictionary dict = Object.FindAnyObjectByType<ItemDictionary>();
+        GameObject worldPrefab = dict != null ? dict.GetItemPrefab(item.ID) : null;
 
+        if (worldPrefab == null)
+        {
+            // Fallback: snap back rather than crash
+            Debug.LogWarning($"Could not find world prefab for item '{item.Name}' (ID {item.ID}). Snapping back.");
             transform.SetParent(originalParent);
             GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            return;
+        }
 
+        if (quantity > 1)
+        {
+            item.RemoveFromStack();
+            transform.SetParent(originalParent);
+            GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             quantity = 1;
         }
         else
         {
-            originalSlot.currentItem = null;
+            if (originalSlot != null) originalSlot.currentItem = null;
+            Destroy(gameObject); // Remove the UI item
         }
 
-        //Find player
+        // Find player
         Transform playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
-        if(playerTransform == null)
+        if (playerTransform == null)
         {
             Debug.LogError("Missing 'Player' tag");
             return;
         }
 
-        //Random drop position
+        // Spawn the world prefab near the player
         Vector2 dropOffset = Random.insideUnitCircle.normalized * Random.Range(minDropDistance, maxDropDistance);
         Vector2 dropPosition = (Vector2)playerTransform.position + dropOffset;
 
-        //Instantiate drop item and bounce
-        GameObject dropItem = Instantiate(gameObject, dropPosition, Quaternion.identity);
-        Item dropppedItem = dropItem.GetComponent<Item>();
-        dropppedItem.quantity = 1;
-        dropItem.GetComponent<BounceEffect>().StartBounce();
+        GameObject dropItem = Instantiate(worldPrefab, dropPosition, Quaternion.identity);
+        Item droppedItemComp = dropItem.GetComponent<Item>();
+        if (droppedItemComp != null) droppedItemComp.quantity = 1;
 
-        //Destory the UI one
-        if(quantity <= 1 && originalSlot.currentItem == null)
+        // Re-enable world visuals and fix sorting so it appears above the floor
+        SpriteRenderer sr = dropItem.GetComponent<SpriteRenderer>();
+        if (sr != null)
         {
-            Destroy(gameObject);
+            sr.enabled = true;
+            sr.sortingLayerName = "Collision"; // Same layer gems use in scene
+            sr.sortingOrder = 5;               // Above the ground tilemaps
+
+            // If SR has no sprite, sync from Image
+            if (sr.sprite == null)
+            {
+                UnityEngine.UI.Image img = dropItem.GetComponent<UnityEngine.UI.Image>();
+                if (img != null && img.sprite != null)
+                    sr.sprite = img.sprite;
+            }
         }
+
+        // Ensure it is on the Default layer (not UI)
+        dropItem.layer = LayerMask.NameToLayer("Default");
+
+        // Disable the Image component so it doesn't interfere with world rendering
+        UnityEngine.UI.Image imageComp = dropItem.GetComponent<UnityEngine.UI.Image>();
+        if (imageComp != null) imageComp.enabled = false;
+
+        BounceEffect bounce = dropItem.GetComponent<BounceEffect>();
+        if (bounce != null) bounce.StartBounce();
 
         InventoryController.Instance.RebuildItemCounts();
     }

@@ -35,4 +35,17 @@ public class ItemDictionary : MonoBehaviour
         }
         return prefab;
     }
+
+    public GameObject GetItemPrefabByName(string itemName)
+    {
+        foreach(Item item in itemPrefabs)
+        {
+            if (item != null && item.Name == itemName)
+            {
+                return item.gameObject;
+            }
+        }
+        Debug.LogWarning($"Item with name {itemName} not found in ItemDictionary list!");
+        return null;
+    }
 }

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IMultiInteractable
 {
     public int ID;
     public string Name;
@@ -80,6 +80,43 @@ public class Item : MonoBehaviour
         if(ItemPickupUIController.Instance != null)
         {
             ItemPickupUIController.Instance.ShowItemPickup(Name, itemIcon);
+        }
+    }
+
+    // Interaction System
+    public bool CanInteract()
+    {
+        // Only interactable if it is a scene object (not in UI inventory)
+        return gameObject.scene.name != null && gameObject.activeInHierarchy;
+    }
+
+    public void Interact()
+    {
+        // Legacy fallback
+        PickUp();
+    }
+
+    public List<InteractionOption> GetInteractionOptions()
+    {
+        return new List<InteractionOption>
+        {
+            new InteractionOption
+            {
+                Name = "Pick Up " + Name,
+                OnSelect = PickUp
+            }
+        };
+    }
+
+    private void PickUp()
+    {
+        if (InventoryController.Instance != null)
+        {
+            if (InventoryController.Instance.AddItem(gameObject))
+            {
+                ShowPopUp();
+                Destroy(gameObject);
+            }
         }
     }
 }
