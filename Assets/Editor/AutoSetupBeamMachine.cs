@@ -72,19 +72,9 @@ public class AutoSetupBeamMachine
 
         newScript.nozzleTransform = nozzleObj.transform;
 
-        // 5. Create Line Renderer
-        LineRenderer lr = pedestal.GetComponent<LineRenderer>();
-        if (lr == null) lr = pedestal.AddComponent<LineRenderer>();
-        
-        lr.startWidth = 0.2f;
-        lr.endWidth = 0.2f;
-        
-        // Try to assign a default unlit material so the color shows up brightly
-        Material defaultMat = new Material(Shader.Find("Sprites/Default"));
-        lr.material = defaultMat;
-        
-        lr.sortingOrder = 5; // Render above ground
-        newScript.lineRenderer = lr;
+        // Note: BeamMachine now manages its own LineRenderer pool internally.
+        // A default Sprites/Default material will be auto-assigned to the first segment.
+        // If you want a custom material, drag it onto the first BeamSegment_0 child at runtime.
 
         // 6. Ensure tag/layer are correct
         pedestal.layer = LayerMask.NameToLayer("Interactable") > -1 ? LayerMask.NameToLayer("Interactable") : 0;
