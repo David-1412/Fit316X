@@ -18,8 +18,8 @@ MonoBehaviour:
   - 'This is the world beneath. '
   - Decade has past since sun has collapsed.
   - Step lightly, chosen one. The Light God awaits.
-  autoProgressLines: 010101000000000000
-  endDialogueLines: 000000010001010001
+  autoProgressLines: 010100000000000000
+  endDialogueLines: 000100000101010001
   autoProgressDelay: 1.5
   typingSpeed: 0.05
   voiceSound: {fileID: 8300000, guid: e4f57534b6f873b44862920239432836, type: 3}
