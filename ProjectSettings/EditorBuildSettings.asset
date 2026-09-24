@@ -14,8 +14,20 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dungeon_Floor1.unity
     guid: ca07d399e0436a24290bc5df01230922
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dungeon_Floor2.unity
     guid: c79468f9d4afa14429d56e1e2804ec03
+  - enabled: 1
+    path: Assets/Scenes/Final Scenes/F1.unity
+    guid: c1debc65437d2bd458735358c7e46d1c
+  - enabled: 1
+    path: Assets/Scenes/Final Scenes/F4.unity
+    guid: 2329e6c2a33d2db4a935de015dbde7c0
+  - enabled: 1
+    path: Assets/Scenes/Final Scenes/F3.unity
+    guid: e4e4df53c4be6ae469ec4e0a6c623373
+  - enabled: 1
+    path: Assets/Scenes/Final Scenes/F5.unity
+    guid: 87f889c0d30e9de46b3b310dc88e9445
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
