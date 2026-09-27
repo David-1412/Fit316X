@@ -13,9 +13,13 @@ using UnityEngine;
 [RequireComponent(typeof(Item))]
 public class GemItem : MonoBehaviour
 {
-    [Tooltip("The colour this gem produces when placed in a BeamMachine.")]
+    [Tooltip("The colour this gem produces")]
     public Color gemColor = Color.red;
+
+
+    public bool isCore = false;
 
     /// <summary>Convenience accessor for the sibling Item component.</summary>
     public Item Item => GetComponent<Item>();
+   
 }

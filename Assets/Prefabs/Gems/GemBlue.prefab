@@ -9,13 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1342654690883142831}
+  - component: {fileID: -7255558475028443716}
   - component: {fileID: 9146860995207481587}
   - component: {fileID: 8006683873772579519}
   - component: {fileID: 2518462500220982449}
-  - component: {fileID: 8461699687566833352}
   - component: {fileID: 1206000062891174352}
+  - component: {fileID: 8461699687566833352}
   m_Layer: 0
-  m_Name: BlueGem
+  m_Name: GemBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,6 +41,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10.24, y: 10.24}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-7255558475028443716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056235831369455263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb0242c0ad1f414c896e14fb7fb0bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GemItem
+  gemColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!212 &9146860995207481587
 SpriteRenderer:
   serializedVersion: 2
@@ -89,7 +103,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4100465979464573075, guid: a6fdd0b5628c23a4d9c9ee03de76ec5c, type: 3}
+  m_Sprite: {fileID: -3690084496328417868, guid: 26eec5318d8c7de47ab7a6ec70d11dfa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -137,7 +151,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.024, y: 1.024}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 10.24, y: 10.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -163,14 +177,6 @@ MonoBehaviour:
   quantity: 1
   buyPrice: 10
   sellPriceMultiplier: 0.5
---- !u!222 &8461699687566833352
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5056235831369455263}
-  m_CullTransparentMesh: 1
 --- !u!114 &1206000062891174352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +197,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4100465979464573075, guid: a6fdd0b5628c23a4d9c9ee03de76ec5c, type: 3}
+  m_Sprite: {fileID: -3690084496328417868, guid: 26eec5318d8c7de47ab7a6ec70d11dfa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -201,3 +207,11 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!222 &8461699687566833352
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056235831369455263}
+  m_CullTransparentMesh: 1
