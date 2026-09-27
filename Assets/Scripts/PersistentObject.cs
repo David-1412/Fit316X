@@ -8,7 +8,7 @@ public class PersistentObject : MonoBehaviour
     void Awake()
     {
         // Find all objects of this type
-        PersistentObject[] objects = FindObjectsByType<PersistentObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        PersistentObject[] objects = FindObjectsByType<PersistentObject>(FindObjectsInactive.Exclude);
         foreach (PersistentObject obj in objects)
         {
             if (obj != this && obj.uniqueId == this.uniqueId)

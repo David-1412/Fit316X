@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     private static Vector2 s_PendingPosition;
     private static bool s_HasPendingPosition;
     private static bool s_UseSpawnMarker;
+    public static ElevatorTransition Instance { get; private set; }
 
     // Floor details
     private struct FloorDetails
@@ -41,14 +43,20 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
 
 
     // Internal state
-    private List<GemEntry> currentGems = new List<GemEntry>(5) {};
-
-    private List<Color> currentColours = new List<Color>(5) {};
+    public List<Color> currentColours = new List<Color>(5) {};
+    public bool blue = false;
 
     private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         GetComponent<Collider2D>().isTrigger = true;
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 
     private void OnDestroy()
@@ -101,9 +109,9 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     /// Returns all gem-like items in the player inventory.
     /// Priority: GemItem component ? name-based color inference.
     /// </summary>
-    private List<GemEntry> GetGemsInInventory()
+    private List<Color> GetGemsInInventory()
     {
-        var result = new List<GemEntry>();
+        var result = new List<Color>();
         var inv = InventoryController.Instance;
         if (inv == null || inv.inventoryPanel == null)
         {
@@ -124,42 +132,25 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
 
             // ?? Option A: GemItem component (explicit, preferred) ?????????
             var gemComp = slot.currentItem.GetComponent<GemItem>();
-            if (gemComp != null)
+            if (gemComp != null && gemComp.isCore)
             {
-                result.Add(new GemEntry { name = item.Name, color = gemComp.gemColor, sprite = sr?.sprite });
+                result.Add(gemComp.gemColor);
                 continue;
-            }
-
-            // ?? Option B: Name-based detection (works without any setup) ??
-            string lower = item.Name.ToLower();
-            if (lower.Contains("gem") || lower.Contains("crystal") || lower.Contains("orb"))
-            {
-                result.Add(new GemEntry
-                {
-                    name = item.Name,
-                    color = ColorFromItemName(item.Name),
-                    sprite = sr?.sprite
-                });
             }
         }
 
-        Debug.Log($"[BeamMachine] Found {result.Count} gem(s) in inventory.");
+        Debug.Log($"[BeamMachine] Found {result.Count} core(s) in inventory.");
         return result;
     }
 
-    /// <summary>Infers beam colour from an item's name. Extend freely.</summary>
-    private static Color ColorFromItemName(string name)
+    private string colourName(Color colour)
     {
-        string n = name.ToLower();
-        if (n.Contains("red")) return Color.red;
-        if (n.Contains("blue")) return Color.cyan;
-        if (n.Contains("green")) return Color.green;
-        if (n.Contains("yellow")) return Color.yellow;
-        if (n.Contains("purple") || n.Contains("violet")) return new Color(0.6f, 0f, 1f);
-        if (n.Contains("orange")) return new Color(1f, 0.5f, 0f);
-        if (n.Contains("white")) return Color.white;
-        if (n.Contains("pink")) return new Color(1f, 0.4f, 0.7f);
-        return Color.grey; // unknown gem 
+        if (colour == Color.red) { return "Red"; }
+        if (colour == Color.green) { return "Green"; }
+        if (colour == Color.blue) { return "Blue"; }
+        if (colour == Color.white) { return "White"; }
+        if (colour == Color.black) { return "Black";  }
+        else { return "Unknown"; }
     }
 
     // ?? IMultiInteractable ????????????????????????????????????????????????
@@ -173,20 +164,20 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
 
     public List<InteractionOption> GetInteractionOptions()
     {
-        
 
         var options = new List<InteractionOption>();
 
         // Place gems
-        var gems = GetGemsInInventory();
-        foreach (var gem in gems)
+        var invColours = GetGemsInInventory();
+        foreach (var coreColour in invColours)
         {
-            if (!currentColours.Contains(gem.color))
+            if (!currentColours.Any((c) => c == coreColour))
             {
+                Debug.LogWarning($"{currentColours} {coreColour}");
                 options.Add(new InteractionOption
                 {
-                    Name = $"Place {gem.color} core",
-                    OnSelect = () => PlaceGem(gem)
+                    Name = $"Place {colourName(coreColour)} core",
+                    OnSelect = () => PlaceGem(coreColour)
                 });
             }
         }
@@ -194,7 +185,7 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
         // Travel
         foreach (var floor in floorDetails)
         {
-            if (currentColours.Contains(floor.colour))
+            if (currentColours.Any((c) => c == floor.colour))
             {
                 options.Add(new InteractionOption
                 {
@@ -203,7 +194,7 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
                 });
             }
         }
-        if (currentColours.Contains(Color.blue) && currentColours.Contains(Color.green) && currentColours.Contains(Color.red))
+        if (currentColours.Any((c) => c == Color.blue) && currentColours.Any((c) => c == Color.green) && currentColours.Any((c) => c == Color.red))
         {
             options.Add(new InteractionOption
             {
@@ -212,13 +203,14 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
             });
         }
 
+
         // Take gem back
-        foreach (var gem in currentGems)
+        foreach (var colour in currentColours)
         {
             options.Add(new InteractionOption
             {
-                Name = $"Take Back {gem.color} core",
-                OnSelect = () => TakeGem(gem)
+                Name = $"Take Back {colourName(colour)} core",
+                OnSelect = () => TakeGem(colour)
             });
         }
 
@@ -229,25 +221,24 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
 
     // ?? Machine Actions ???????????????????????????????????????????????????
 
-    private void PlaceGem(GemEntry gem)
+    private void PlaceGem(Color colour)
     {
-        if (currentColours.Contains(gem.color)){ShowPopup("Gem already in machine"); return; }
+        if (currentColours.Any((c) => c == colour)){ShowPopup("Gem already in machine"); return; }
 
-        InventoryController.Instance?.RemoveItemByName(gem.name, 1);
-        currentGems.Add(gem);
-        currentColours.Add(gem.color);
+        InventoryController.Instance?.RemoveItemByName("CoreGem" + colourName(colour), 1);;
+        currentColours.Add(colour);
 
         SoundEffectManager.Play("PickUp");
-        Debug.Log($"[Elevator] Placed '{gem.name}', '{gem.color}'");
+        Debug.Log($"[Elevator] Placed '{"CoreGem" + colourName(colour)}'");
     }
 
 
-    private void TakeGem(GemEntry gem)
+    private void TakeGem(Color colour)
     {
         var dict = FindAnyObjectByType<ItemDictionary>();
         if (dict == null) return;
 
-        var prefab = dict.GetItemPrefabByName(gem.name);
+        var prefab = dict.GetItemPrefabByName(colourName(colour) + " Core");
         if (prefab != null && InventoryController.Instance != null)
         {
             if (InventoryController.Instance.AddItem(prefab))
@@ -256,25 +247,132 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
                     prefab.GetComponent<Item>().Name,
                     prefab.GetComponent<SpriteRenderer>()?.sprite);
             }
-            currentColours.Remove(gem.color);
-            currentGems.Remove(gem);
+            currentColours.Remove(colour);
         }
-        Debug.Log($"[Elevator] Took '{gem.name}', '{gem.color}'");
+        Debug.Log($"[Elevator] Took '{colourName(colour)} Core'");
     }
 
 
 
     private void TravelTo(string floorName){
 
+
+        // Check it is 'safe' to travel
+
+
         // Store where to spawn in the new scene
         s_PendingPosition = targetPosition;
         s_HasPendingPosition = true;
         s_UseSpawnMarker = useSpawnMarker;
 
+
+        // Update gem locations
+        
+
         // Ensure pause state is cleared before switching scenes
         PauseController.SetPause(false);
-
         SceneManager.LoadScene(floorName);
+    }
+
+
+
+
+
+
+
+
+    // Preventing Softlocks
+
+    private List<HashSet<Color>> coreTracker = new(7)
+    {
+        new(5) { Color.white}, // floor0
+        new(5) { Color.green }, // floor1
+        new(5) { Color.blue }, // floor2
+        new(5) { Color.red }, // floor3
+        new(5) { }, // floor4
+        new(5) { Color.black }, // floor5
+    };
+
+
+    private int currentFloor = 1;
+
+    private void UpdateCoreTracker(List<Color> movingColours, int destination)
+    {
+        coreTracker[currentFloor].ExceptWith(movingColours);
+        coreTracker[destination].Union(movingColours);
+    }
+
+
+    private int toFloor(Color c)
+    {
+        if (c == Color.red) { return 4; }
+        if (c == Color.green) { return 2; }
+        if (c == Color.blue) { return 3; }
+        if (c == Color.white) { return 5; }
+        if (c == Color.black) { return 0; }
+        else { return 10; }
+    }
+
+    private bool CheckAccess(List<Color> movingColours)
+    {
+        List<Color> access = new();
+        List<Color> check = new();
+        check.Union(movingColours);
+
+        while (check.Count() > 0)
+        {
+            Color floor = check[0];
+            check.Union(coreTracker[toFloor(floor)]);
+            
+            check.RemoveAt(0);
+            access.Add(floor);
+
+            if (access.Any((c) => c == Color.blue) && access.Any((c) => c == Color.green) && access.Any((c) => c == Color.red))
+            {
+                check.Add(Color.white);
+            }
+        }
+        return access.Count() == 5;
+    }
+
+    private List<Color> FindMissing(List<Color> movingColours)
+    {
+        List<Color> test = new();
+        test.Union(movingColours);
+
+
+        foreach (Color c in coreTracker[currentFloor])
+        {
+            if (test.Any((a) => a == c)) { continue; }
+            test.Add(c);
+            if (CheckAccess(movingColours)) { return new() { c }; }
+            test.Remove(c);
+        }
+
+        List<Color> missing = new();
+
+        foreach (Color c in coreTracker[currentFloor])
+        {
+            if (test.Any((a) => a == c)) { continue; }
+            test.Add(c);
+            missing.Add(c);
+
+            foreach (Color c2 in coreTracker[currentFloor])
+            {
+                if (test.Any((a) => a == c2)) { continue; }
+                test.Add(c2);
+                if (CheckAccess(movingColours))
+                {
+                    missing.Add(c2);
+                    return missing;
+                }
+                missing.Remove(c2);
+            }
+        }
+
+        Debug.LogError("Softlock");
+        return test;
+
     }
 
 }

@@ -16,6 +16,7 @@ public class GemItem : MonoBehaviour
     [Tooltip("The colour this gem produces")]
     public Color gemColor = Color.red;
 
+    public int rgb = 100;
 
     public bool isCore = false;
 
