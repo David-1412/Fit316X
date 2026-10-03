@@ -46,7 +46,7 @@ public class BasicCollectible : MonoBehaviour, IMultiInteractable, ICollectible
             Debug.Log(CollectableManager.Instance.GetFlag(collectableID));
         }
 
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     
