@@ -12,6 +12,7 @@ using TMPro;
 ///   • Assign all LightGoal objects in the goals array.
 ///   • Wire OnPuzzleSolved to open a door, play a cutscene, etc.
 /// </summary>
+[DefaultExecutionOrder(100)]
 public class LightPuzzleController : MonoBehaviour
 {
     public static LightPuzzleController Instance { get; private set; }
@@ -24,6 +25,7 @@ public class LightPuzzleController : MonoBehaviour
     public UnityEvent OnPuzzleSolved;
 
     private bool solved = false;
+    private bool goalsDirty = true;
 
     // ── Unity ─────────────────────────────────────────────────────────────
     private void Awake()
@@ -39,7 +41,15 @@ public class LightPuzzleController : MonoBehaviour
     // ── Called by LightGoal whenever any goal state changes ───────────────
     public void OnGoalStateChanged()
     {
-        if (solved) return;
+        if (!solved) goalsDirty = true;
+    }
+
+    // LightGoal evaluates beams in LateUpdate. Wait until every receiver has
+    // finished before checking, so old and new frame states cannot unlock a door.
+    private void LateUpdate()
+    {
+        if (solved || !goalsDirty) return;
+        goalsDirty = false;
 
         // Auto-populate if designer forgot to assign goals
         if (goals == null || goals.Length == 0)

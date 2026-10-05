@@ -14,7 +14,8 @@ using System.Collections.Generic;
 ///
 /// Setup:
 ///   • Add a Collider2D (isTrigger = false) so BeamMachine raycasts hit it.
-///   • Optionally assign bodyRenderer — it will change colour per type for easy identification.
+///   • Assign bodyRenderer and the three optional signs to show outgoing directions.
+///     Splitters without signs keep their original colour feedback.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class BeamSplitter : MonoBehaviour, IInteractable
@@ -30,8 +31,17 @@ public class BeamSplitter : MonoBehaviour, IInteractable
     public SplitterType splitterType = SplitterType.LeftRight;
 
     [Header("Visuals")]
-    [Tooltip("Main body SpriteRenderer — tinted per type so players can tell them apart.")]
+    [Tooltip("Renderer for the directional signs. Uses the original mode tint when no sign is assigned.")]
     public SpriteRenderer bodyRenderer;
+
+    [Header("Directional Signs")]
+    [Tooltip("Optional signs drawn for a beam travelling upward. They rotate to match the incoming beam.")]
+    public Sprite leftRightSign;
+    public Sprite leftStraightSign;
+    public Sprite rightStraightSign;
+    [Tooltip("Direction used to preview the sign before a beam reaches the splitter.")]
+    public Vector2 previewIncomingDirection = Vector2.up;
+    private Vector2 visualIncomingDirection = Vector2.up;
 
     // Colours per type
     private static readonly Color ColorLeftRight    = new Color(0.7f, 0.3f, 1.0f); // purple
@@ -41,6 +51,8 @@ public class BeamSplitter : MonoBehaviour, IInteractable
     // ── Unity ─────────────────────────────────────────────────────────────
     private void Awake()
     {
+        visualIncomingDirection = previewIncomingDirection.sqrMagnitude > 0f
+            ? previewIncomingDirection.normalized : Vector2.up;
         if (bodyRenderer == null)
             bodyRenderer = GetComponent<SpriteRenderer>();
 
@@ -55,6 +67,11 @@ public class BeamSplitter : MonoBehaviour, IInteractable
     public List<Vector2> GetOutputDirections(Vector2 incomingDir)
     {
         incomingDir.Normalize();
+        if (incomingDir.sqrMagnitude > 0f && incomingDir != visualIncomingDirection)
+        {
+            visualIncomingDirection = incomingDir;
+            RefreshVisual();
+        }
 
         // Relative to travel direction:
         //   Left  = rotate 90° counter-clockwise = (-y,  x)
@@ -95,6 +112,22 @@ public class BeamSplitter : MonoBehaviour, IInteractable
     {
         if (bodyRenderer == null) return;
 
+        Sprite sign = splitterType switch
+        {
+            SplitterType.LeftRight => leftRightSign,
+            SplitterType.LeftStraight => leftStraightSign,
+            SplitterType.RightStraight => rightStraightSign,
+            _ => null
+        };
+        if (sign != null)
+        {
+            bodyRenderer.sprite = sign;
+            bodyRenderer.color = Color.white;
+            float angle = Mathf.Atan2(visualIncomingDirection.y, visualIncomingDirection.x) * Mathf.Rad2Deg - 90f;
+            bodyRenderer.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            return;
+        }
+
         bodyRenderer.color = splitterType switch
         {
             SplitterType.LeftRight     => ColorLeftRight,
@@ -115,7 +148,11 @@ public class BeamSplitter : MonoBehaviour, IInteractable
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        // Update colour immediately when changed in Inspector
+        if (bodyRenderer == null) bodyRenderer = GetComponent<SpriteRenderer>();
+        if (!Application.isPlaying)
+            visualIncomingDirection = previewIncomingDirection.sqrMagnitude > 0f
+                ? previewIncomingDirection.normalized : Vector2.up;
+        // Preview both the mode and its outgoing arrows in the Inspector.
         RefreshVisual();
     }
 #endif
