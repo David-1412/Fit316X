@@ -1,0 +1,365 @@
+fileFormatVersion: 2
+guid: 32082288549f40c58f1ec47fc2b99d4c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300001
+    second: Archive_WideBookcase_Green
+  - first:
+      213: 21300002
+    second: Archive_NarrowBookcase_Green
+  - first:
+      213: 21300003
+    second: Archive_FreestandingShelf_Green
+  - first:
+      213: 21300004
+    second: Archive_RecordsCabinet_Green
+  - first:
+      213: 21300005
+    second: Archive_ReadingDesk_Green
+  - first:
+      213: 21300006
+    second: Archive_WritingDesk_Green
+  - first:
+      213: 21300007
+    second: Archive_ReadingChair_Green
+  - first:
+      213: 21300008
+    second: Archive_RoundReadingTable_Green
+  - first:
+      213: 21300009
+    second: Archive_ArchiveCrates_Green
+  - first:
+      213: 21300010
+    second: Archive_CardCatalogue_Green
+  - first:
+      213: 21300011
+    second: Archive_BotanicalLectern_Green
+  - first:
+      213: 21300012
+    second: Archive_SpecimenDisplay_Green
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    enableMipMap: 0
+  isReadable: 0
+  textureType: 8
+  textureShape: 1
+  spriteMode: 2
+  spritePixelsToUnits: 160
+  spriteMeshType: 0
+  spritePivot: {x: 0.5, y: 0}
+  spriteAlignment: 9
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  maxTextureSize: 2048
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Archive_WideBookcase_Green
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 775
+        width: 351
+        height: 329
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6465533cff0849a1962070f04d62019a
+      internalID: 21300001
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_NarrowBookcase_Green
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 775
+        width: 161
+        height: 333
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0863eed34c6407d8b4a98663cff6a8c
+      internalID: 21300002
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_FreestandingShelf_Green
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 754
+        width: 335
+        height: 345
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8c8fb6477754f0d8022e8a20d233876
+      internalID: 21300003
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_RecordsCabinet_Green
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 760
+        width: 201
+        height: 348
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c830c38c559744c9a5c1dd78ff377e64
+      internalID: 21300004
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_ReadingDesk_Green
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 426
+        width: 355
+        height: 281
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bf6aa5d5552429c83a6ede775e477d9
+      internalID: 21300005
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_WritingDesk_Green
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 436
+        width: 250
+        height: 241
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5bf51c56cd448ae874f0277c375a737
+      internalID: 21300006
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_ReadingChair_Green
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 448
+        width: 161
+        height: 209
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48932ed3f88c4fb490deda34804bbd07
+      internalID: 21300007
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_RoundReadingTable_Green
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 440
+        width: 251
+        height: 248
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98b144daf86a453698187618aa3e5cf8
+      internalID: 21300008
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_ArchiveCrates_Green
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 106
+        width: 304
+        height: 250
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ba983cef4b5425a9a0c771beb60271f
+      internalID: 21300009
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_CardCatalogue_Green
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 98
+        width: 302
+        height: 271
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db684413a8f740b3b706c754e6f6fb1c
+      internalID: 21300010
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_BotanicalLectern_Green
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 92
+        width: 218
+        height: 307
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dddfbfd77c74e20a0e50815e3040a0a
+      internalID: 21300011
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_SpecimenDisplay_Green
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 95
+        width: 254
+        height: 257
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dad45fa54f648f39d3068a6f15b5804
+      internalID: 21300012
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 2b5fbe1e4414443c90940bcf0abe50b4
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Archive_WideBookcase_Green: 21300001
+      Archive_NarrowBookcase_Green: 21300002
+      Archive_FreestandingShelf_Green: 21300003
+      Archive_RecordsCabinet_Green: 21300004
+      Archive_ReadingDesk_Green: 21300005
+      Archive_WritingDesk_Green: 21300006
+      Archive_ReadingChair_Green: 21300007
+      Archive_RoundReadingTable_Green: 21300008
+      Archive_ArchiveCrates_Green: 21300009
+      Archive_CardCatalogue_Green: 21300010
+      Archive_BotanicalLectern_Green: 21300011
+      Archive_SpecimenDisplay_Green: 21300012
+  userData:
+  assetBundleName:
+  assetBundleVariant:

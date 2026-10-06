@@ -1,0 +1,365 @@
+fileFormatVersion: 2
+guid: 3e0a0dcd933f49d38e4364fb6ba8dc72
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300001
+    second: Archive_WideBookcase
+  - first:
+      213: 21300002
+    second: Archive_NarrowBookcase
+  - first:
+      213: 21300003
+    second: Archive_FreestandingShelf
+  - first:
+      213: 21300004
+    second: Archive_RecordsCabinet
+  - first:
+      213: 21300005
+    second: Archive_ReadingDesk
+  - first:
+      213: 21300006
+    second: Archive_WritingDesk
+  - first:
+      213: 21300007
+    second: Archive_ReadingChair
+  - first:
+      213: 21300008
+    second: Archive_RoundReadingTable
+  - first:
+      213: 21300009
+    second: Archive_ArchiveCrates
+  - first:
+      213: 21300010
+    second: Archive_CardCatalogue
+  - first:
+      213: 21300011
+    second: Archive_BotanicalLectern
+  - first:
+      213: 21300012
+    second: Archive_SpecimenDisplay
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    enableMipMap: 0
+  isReadable: 0
+  textureType: 8
+  textureShape: 1
+  spriteMode: 2
+  spritePixelsToUnits: 160
+  spriteMeshType: 0
+  spritePivot: {x: 0.5, y: 0}
+  spriteAlignment: 9
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  maxTextureSize: 2048
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Archive_WideBookcase
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 792
+        width: 346
+        height: 322
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2c58f7d23ad4481a65b6e870a3a09e9
+      internalID: 21300001
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_NarrowBookcase
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 792
+        width: 156
+        height: 326
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bad481c9e804e399d000b2be9d19472
+      internalID: 21300002
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_FreestandingShelf
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 772
+        width: 329
+        height: 338
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49a602d9910b418f835e5ee2a2ba7544
+      internalID: 21300003
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_RecordsCabinet
+      rect:
+        serializedVersion: 2
+        x: 1015
+        y: 779
+        width: 196
+        height: 339
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 387e2f5352054178a8bfd01e1067d954
+      internalID: 21300004
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_ReadingDesk
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 447
+        width: 351
+        height: 281
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c4494087bb44bb0861c7c1ebc8c98b2
+      internalID: 21300005
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_WritingDesk
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 458
+        width: 246
+        height: 238
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41e58aa4aa984590a92030da3c9b3f25
+      internalID: 21300006
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_ReadingChair
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 471
+        width: 157
+        height: 206
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec2d9ecc012f46788f72526d35b7d131
+      internalID: 21300007
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_RoundReadingTable
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 462
+        width: 247
+        height: 245
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 926d056867dc46588c9973726d9ee658
+      internalID: 21300008
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_ArchiveCrates
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 118
+        width: 299
+        height: 245
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4e87324b0b84d3b8b44b2d72a3d8b61
+      internalID: 21300009
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_CardCatalogue
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 110
+        width: 295
+        height: 268
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43abaf98e01d4a1f85d229d60e93d9d8
+      internalID: 21300010
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_BotanicalLectern
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 106
+        width: 211
+        height: 302
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9897850ddbf54adb94bff831ff850e3a
+      internalID: 21300011
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Archive_SpecimenDisplay
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 106
+        width: 252
+        height: 255
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38431e6c5f10465ca7428dedb8e2b0ca
+      internalID: 21300012
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 2b5fbe1e4414443c90940bcf0abe50b4
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Archive_WideBookcase: 21300001
+      Archive_NarrowBookcase: 21300002
+      Archive_FreestandingShelf: 21300003
+      Archive_RecordsCabinet: 21300004
+      Archive_ReadingDesk: 21300005
+      Archive_WritingDesk: 21300006
+      Archive_ReadingChair: 21300007
+      Archive_RoundReadingTable: 21300008
+      Archive_ArchiveCrates: 21300009
+      Archive_CardCatalogue: 21300010
+      Archive_BotanicalLectern: 21300011
+      Archive_SpecimenDisplay: 21300012
+  userData:
+  assetBundleName:
+  assetBundleVariant:

@@ -1,0 +1,365 @@
+fileFormatVersion: 2
+guid: 7f8f60af9715412aa0688c1d7bafe275
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300001
+    second: Garden_HedgeHorizontal
+  - first:
+      213: 21300002
+    second: Garden_HedgeVertical
+  - first:
+      213: 21300003
+    second: Garden_HedgeNW
+  - first:
+      213: 21300004
+    second: Garden_HedgeNE
+  - first:
+      213: 21300005
+    second: Garden_HedgeSW
+  - first:
+      213: 21300006
+    second: Garden_HedgeSE
+  - first:
+      213: 21300007
+    second: Garden_StoneEdgingHorizontal
+  - first:
+      213: 21300008
+    second: Garden_StoneEdgingVertical
+  - first:
+      213: 21300009
+    second: Garden_IvyTrellis
+  - first:
+      213: 21300010
+    second: Garden_BareTrellis
+  - first:
+      213: 21300011
+    second: Garden_ClosedGreenhouseGate
+  - first:
+      213: 21300012
+    second: Garden_SteppingStones
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    enableMipMap: 0
+  isReadable: 0
+  textureType: 8
+  textureShape: 1
+  spriteMode: 2
+  spritePixelsToUnits: 160
+  spriteMeshType: 0
+  spritePivot: {x: 0.5, y: 0}
+  spriteAlignment: 9
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  maxTextureSize: 4096
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Garden_HedgeHorizontal
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 875
+        width: 334
+        height: 136
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e71e6798d424a0898473c98b321b73f
+      internalID: 21300001
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_HedgeVertical
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 875
+        width: 102
+        height: 263
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28b9cf216603499d9f6c606803714565
+      internalID: 21300002
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_HedgeNW
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 875
+        width: 260
+        height: 267
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bc6af1cb3da413294d9903200432b38
+      internalID: 21300003
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_HedgeNE
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 875
+        width: 258
+        height: 267
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53a375b620a9483c922385703d4f9020
+      internalID: 21300004
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_HedgeSW
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 515
+        width: 242
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19a344339dc84236b506074ba6252b16
+      internalID: 21300005
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_HedgeSE
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 515
+        width: 248
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8507007fbf7b4e4bb39acbf6a2f8f514
+      internalID: 21300006
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_StoneEdgingHorizontal
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 515
+        width: 322
+        height: 126
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 732d45eec1e44fdb86c9842be8ceb36e
+      internalID: 21300007
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_StoneEdgingVertical
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 519
+        width: 108
+        height: 217
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e45550def62442b5860de9474ba15e85
+      internalID: 21300008
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_IvyTrellis
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 112
+        width: 294
+        height: 333
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfb51f804d8047d2a62a605cefa18826
+      internalID: 21300009
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_BareTrellis
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 112
+        width: 219
+        height: 327
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 065deab09e584367af0d8ccb7b780f88
+      internalID: 21300010
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_ClosedGreenhouseGate
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 112
+        width: 291
+        height: 221
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74d2cb4e680c4761a0b756256ea6559c
+      internalID: 21300011
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garden_SteppingStones
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 105
+        width: 252
+        height: 201
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e26394b8c5e4d6b807ad2bbf39251ca
+      internalID: 21300012
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 0879964af0ae4e13bf3ca508512de187
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Garden_HedgeHorizontal: 21300001
+      Garden_HedgeVertical: 21300002
+      Garden_HedgeNW: 21300003
+      Garden_HedgeNE: 21300004
+      Garden_HedgeSW: 21300005
+      Garden_HedgeSE: 21300006
+      Garden_StoneEdgingHorizontal: 21300007
+      Garden_StoneEdgingVertical: 21300008
+      Garden_IvyTrellis: 21300009
+      Garden_BareTrellis: 21300010
+      Garden_ClosedGreenhouseGate: 21300011
+      Garden_SteppingStones: 21300012
+  userData:
+  assetBundleName:
+  assetBundleVariant:

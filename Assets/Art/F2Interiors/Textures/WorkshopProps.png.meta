@@ -1,0 +1,365 @@
+fileFormatVersion: 2
+guid: 8a0401e8315b4c6781c27ac85449e72d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300001
+    second: Workshop_RepairBench
+  - first:
+      213: 21300002
+    second: Workshop_OpticsBench
+  - first:
+      213: 21300003
+    second: Workshop_ToolPegboard
+  - first:
+      213: 21300004
+    second: Workshop_ToolLocker
+  - first:
+      213: 21300005
+    second: Workshop_RepairTable
+  - first:
+      213: 21300006
+    second: Workshop_PartsTrolley
+  - first:
+      213: 21300007
+    second: Workshop_PartsCrates
+  - first:
+      213: 21300008
+    second: Workshop_AssemblyBench
+  - first:
+      213: 21300009
+    second: Workshop_Stool
+  - first:
+      213: 21300010
+    second: Workshop_DrawerCabinet
+  - first:
+      213: 21300011
+    second: Workshop_CalibrationStand
+  - first:
+      213: 21300012
+    second: Workshop_LensRack
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    enableMipMap: 0
+  isReadable: 0
+  textureType: 8
+  textureShape: 1
+  spriteMode: 2
+  spritePixelsToUnits: 160
+  spriteMeshType: 0
+  spritePivot: {x: 0.5, y: 0}
+  spriteAlignment: 9
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  maxTextureSize: 2048
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Workshop_RepairBench
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 832
+        width: 337
+        height: 252
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ba95de423f34180bffd55cb24d3e8c0
+      internalID: 21300001
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_OpticsBench
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 827
+        width: 373
+        height: 269
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13a217936020467fb3a6a7adb1e64152
+      internalID: 21300002
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_ToolPegboard
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 830
+        width: 184
+        height: 353
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d82556720abd47d8b35b0b7ed732e1df
+      internalID: 21300003
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_ToolLocker
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 835
+        width: 179
+        height: 336
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdfd764d17fd47e9b3ee91c3b7655f9e
+      internalID: 21300004
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_RepairTable
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 428
+        width: 361
+        height: 298
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8bb471f64084ec2a8683daab2b03d13
+      internalID: 21300005
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_PartsTrolley
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 440
+        width: 218
+        height: 266
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bffb790618054285840353579a4abcac
+      internalID: 21300006
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_PartsCrates
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 440
+        width: 284
+        height: 271
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9201d28e5aad43a78c08d2e06fef26e7
+      internalID: 21300007
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_AssemblyBench
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 439
+        width: 266
+        height: 254
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 353606edb5f6417193c0dd19b5d53ec1
+      internalID: 21300008
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_Stool
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 87
+        width: 130
+        height: 169
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40cfb8c5e7144cfa83950161be8428ab
+      internalID: 21300009
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_DrawerCabinet
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 83
+        width: 299
+        height: 227
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cde832a9553c4f508d4e848493a007e1
+      internalID: 21300010
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_CalibrationStand
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 79
+        width: 148
+        height: 292
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8e4e02c1f5f432bae3c4ecbba8b9406
+      internalID: 21300011
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Workshop_LensRack
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 78
+        width: 227
+        height: 225
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7240ee3ee5d40e7b1a0a711d7a4e9b8
+      internalID: 21300012
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 0879964af0ae4e13bf3ca508512de187
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Workshop_RepairBench: 21300001
+      Workshop_OpticsBench: 21300002
+      Workshop_ToolPegboard: 21300003
+      Workshop_ToolLocker: 21300004
+      Workshop_RepairTable: 21300005
+      Workshop_PartsTrolley: 21300006
+      Workshop_PartsCrates: 21300007
+      Workshop_AssemblyBench: 21300008
+      Workshop_Stool: 21300009
+      Workshop_DrawerCabinet: 21300010
+      Workshop_CalibrationStand: 21300011
+      Workshop_LensRack: 21300012
+  userData:
+  assetBundleName:
+  assetBundleVariant:
