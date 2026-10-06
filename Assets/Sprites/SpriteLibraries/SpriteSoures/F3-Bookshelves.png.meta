@@ -1,0 +1,1053 @@
+fileFormatVersion: 2
+guid: 1e3a1a7ea050b21458be37218c027bff
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5441840765470439061
+    second: F3-Bookshelves_0
+  - first:
+      213: 7189516347719285208
+    second: F3-Bookshelves_1
+  - first:
+      213: -1639938272219217543
+    second: F3-Bookshelves_2
+  - first:
+      213: 5323903066425042624
+    second: F3-Bookshelves_3
+  - first:
+      213: 434425107217785426
+    second: F3-Bookshelves_4
+  - first:
+      213: -5379676159580899773
+    second: F3-Bookshelves_5
+  - first:
+      213: 4850051957365967710
+    second: F3-Bookshelves_6
+  - first:
+      213: 1356589755771101851
+    second: F3-Bookshelves_7
+  - first:
+      213: 3991421347605762602
+    second: F3-Bookshelves_8
+  - first:
+      213: -5105947109339680218
+    second: F3-Bookshelves_9
+  - first:
+      213: 5675666339101334786
+    second: F3-Bookshelves_10
+  - first:
+      213: -6274893112528051705
+    second: F3-Bookshelves_11
+  - first:
+      213: -6896208644564717256
+    second: F3-Bookshelves_12
+  - first:
+      213: 5261316027690500045
+    second: F3-Bookshelves_13
+  - first:
+      213: -822700698311645291
+    second: F3-Bookshelves_14
+  - first:
+      213: -2959323990596350253
+    second: F3-Bookshelves_15
+  - first:
+      213: -1153136052957103936
+    second: F3-Bookshelves_16
+  - first:
+      213: 7140626989300886827
+    second: F3-Bookshelves_17
+  - first:
+      213: -7735794172871894745
+    second: F3-Bookshelves_18
+  - first:
+      213: -7437260272078122880
+    second: F3-Bookshelves_19
+  - first:
+      213: -473017608218261429
+    second: F3-Bookshelves_20
+  - first:
+      213: 1968858821403503317
+    second: F3-Bookshelves_21
+  - first:
+      213: -2781339872526165036
+    second: F3-Bookshelves_22
+  - first:
+      213: -7318984044080665493
+    second: F3-Bookshelves_23
+  - first:
+      213: -7325222888801649911
+    second: F3-Bookshelves_24
+  - first:
+      213: 8152842430674725415
+    second: F3-Bookshelves_25
+  - first:
+      213: -4193409437516372215
+    second: F3-Bookshelves_26
+  - first:
+      213: -2896519176720932535
+    second: F3-Bookshelves_27
+  - first:
+      213: 7237001460618098557
+    second: F3-Bookshelves_28
+  - first:
+      213: -8846194675503507327
+    second: F3-Bookshelves_29
+  - first:
+      213: -3045671600653105942
+    second: F3-Bookshelves_30
+  - first:
+      213: 4746600749555540039
+    second: F3-Bookshelves_31
+  - first:
+      213: -8329039233699701605
+    second: F3-Bookshelves_32
+  - first:
+      213: -8609762274531506299
+    second: F3-Bookshelves_33
+  - first:
+      213: 2995018086503664433
+    second: F3-Bookshelves_34
+  - first:
+      213: 5852319244307609284
+    second: F3-Bookshelves_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: F3-Bookshelves_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 983
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6905e9e7a2ba74b0800000000000000
+      internalID: -5441840765470439061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 959
+        width: 8
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d9fbacc60b46c360800000000000000
+      internalID: 7189516347719285208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 971
+        width: 73
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9714ec684d4cd39e0800000000000000
+      internalID: -1639938272219217543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_3
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 983
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c6a0e4b1ad42e940800000000000000
+      internalID: 5323903066425042624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_4
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 959
+        width: 8
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2522a355553670600800000000000000
+      internalID: 434425107217785426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_5
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 971
+        width: 73
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 346fa8d190d8755b0800000000000000
+      internalID: -5379676159580899773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_6
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 983
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5b8cfcfe88de4340800000000000000
+      internalID: 4850051957365967710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_7
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 959
+        width: 8
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b92aba2023393d210800000000000000
+      internalID: 1356589755771101851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_8
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 971
+        width: 73
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a22d3f47190646730800000000000000
+      internalID: 3991421347605762602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_9
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 951
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62230e118280429b0800000000000000
+      internalID: -5105947109339680218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_10
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 943
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20dd6c5e67404ce40800000000000000
+      internalID: 5675666339101334786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_11
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 962
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7026830c5f91be8a0800000000000000
+      internalID: -6274893112528051705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_12
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 943
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 831fdb386cebb40a0800000000000000
+      internalID: -6896208644564717256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_13
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 943
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcfbf813d03f30940800000000000000
+      internalID: 5261316027690500045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_14
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 951
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5972ba0e21e2594f0800000000000000
+      internalID: -822700698311645291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_15
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 943
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3de863d728e5ee6d0800000000000000
+      internalID: -2959323990596350253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_16
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 962
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8bbc19edc3fffe0800000000000000
+      internalID: -1153136052957103936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_17
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 943
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2da8d20a6a981360800000000000000
+      internalID: 7140626989300886827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_18
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 943
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7291f6e8f20f4a490800000000000000
+      internalID: -7735794172871894745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_19
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 951
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08098a4df2b89c890800000000000000
+      internalID: -7437260272078122880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_20
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 943
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4845a1ddf08f69f0800000000000000
+      internalID: -473017608218261429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_21
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 962
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da66a6aaaac25b10800000000000000
+      internalID: 1968858821403503317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_22
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 943
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4db92724f12b669d0800000000000000
+      internalID: -2781339872526165036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_23
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 943
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6ce1df1acebd6a90800000000000000
+      internalID: -7318984044080665493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_24
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 910
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90bba64e794975a90800000000000000
+      internalID: -7325222888801649911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_25
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 911
+        width: 13
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72a691ebef6b42170800000000000000
+      internalID: 8152842430674725415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_26
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 911
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 907e01f85540ec5c0800000000000000
+      internalID: -4193409437516372215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_27
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 911
+        width: 13
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 941217ab72f7dc7d0800000000000000
+      internalID: -2896519176720932535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_28
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 910
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d77ff133c7efe6460800000000000000
+      internalID: 7237001460618098557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_29
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 911
+        width: 13
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18859a0dfc00c3580800000000000000
+      internalID: -8846194675503507327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_30
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 911
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae4839cd0d99bb5d0800000000000000
+      internalID: -3045671600653105942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_31
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 911
+        width: 13
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7406cdfab305fd140800000000000000
+      internalID: 4746600749555540039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_32
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 910
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9c990332fe496c80800000000000000
+      internalID: -8329039233699701605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_33
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 911
+        width: 13
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5878df9e3daf38880800000000000000
+      internalID: -8609762274531506299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_34
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 911
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13bcbe5d411709920800000000000000
+      internalID: 2995018086503664433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F3-Bookshelves_35
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 342
+        width: 687
+        height: 603
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c63325885d973150800000000000000
+      internalID: 5852319244307609284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      F3-Bookshelves_0: -5441840765470439061
+      F3-Bookshelves_1: 7189516347719285208
+      F3-Bookshelves_10: 5675666339101334786
+      F3-Bookshelves_11: -6274893112528051705
+      F3-Bookshelves_12: -6896208644564717256
+      F3-Bookshelves_13: 5261316027690500045
+      F3-Bookshelves_14: -822700698311645291
+      F3-Bookshelves_15: -2959323990596350253
+      F3-Bookshelves_16: -1153136052957103936
+      F3-Bookshelves_17: 7140626989300886827
+      F3-Bookshelves_18: -7735794172871894745
+      F3-Bookshelves_19: -7437260272078122880
+      F3-Bookshelves_2: -1639938272219217543
+      F3-Bookshelves_20: -473017608218261429
+      F3-Bookshelves_21: 1968858821403503317
+      F3-Bookshelves_22: -2781339872526165036
+      F3-Bookshelves_23: -7318984044080665493
+      F3-Bookshelves_24: -7325222888801649911
+      F3-Bookshelves_25: 8152842430674725415
+      F3-Bookshelves_26: -4193409437516372215
+      F3-Bookshelves_27: -2896519176720932535
+      F3-Bookshelves_28: 7237001460618098557
+      F3-Bookshelves_29: -8846194675503507327
+      F3-Bookshelves_3: 5323903066425042624
+      F3-Bookshelves_30: -3045671600653105942
+      F3-Bookshelves_31: 4746600749555540039
+      F3-Bookshelves_32: -8329039233699701605
+      F3-Bookshelves_33: -8609762274531506299
+      F3-Bookshelves_34: 2995018086503664433
+      F3-Bookshelves_35: 5852319244307609284
+      F3-Bookshelves_4: 434425107217785426
+      F3-Bookshelves_5: -5379676159580899773
+      F3-Bookshelves_6: 4850051957365967710
+      F3-Bookshelves_7: 1356589755771101851
+      F3-Bookshelves_8: 3991421347605762602
+      F3-Bookshelves_9: -5105947109339680218
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

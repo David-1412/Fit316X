@@ -83,15 +83,15 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: af2a5824dba796942806ee75ba32ba5f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5ead296da8e488e9f460d6da5532eaf, type: 3}
   m_Color: {r: 0.2, g: 0.9, b: 0.4, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8125, y: 0.8125}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!61 &277542491024175193
 BoxCollider2D:
@@ -131,8 +131,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8125, y: 0.8125}
-    newSize: {x: 0.8125, y: 0.8125}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -153,3 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeamSplitter
   splitterType: 2
   bodyRenderer: {fileID: 4364420170749330491}
+  leftRightSign: {fileID: 0}
+  leftStraightSign: {fileID: 0}
+  rightStraightSign: {fileID: 0}
+  previewIncomingDirection: {x: 0, y: 1}
