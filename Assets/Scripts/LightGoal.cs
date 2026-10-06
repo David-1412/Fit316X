@@ -76,7 +76,6 @@ public class LightGoal : MonoBehaviour
         if (goalRenderer == null)
             goalRenderer = GetComponent<SpriteRenderer>();
 
-        activeColor = requiredColor;
         Refresh();
     }
 
