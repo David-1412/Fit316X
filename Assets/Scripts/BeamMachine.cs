@@ -18,6 +18,11 @@ public class BeamMachine : MonoBehaviour, IMultiInteractable
     public LayerMask obstacleLayer;
     public float beamWidth = 0.1f;
 
+    [Header("Starting Direction")]
+    [Tooltip("0 = Up, 1 = Right, 2 = Down, 3 = Left")]
+    [Range(0, 3)]
+    public int startRotationState = 0;
+
     // Internal state
     private string currentGemName = "";
     private Color  currentColor   = Color.white;
@@ -32,6 +37,16 @@ public class BeamMachine : MonoBehaviour, IMultiInteractable
     {
         GetComponent<Collider2D>().isTrigger = true;
         if (placedItemSprite != null) placedItemSprite.sprite = null;
+
+        rotationState = startRotationState;
+        if (nozzleTransform != null)
+            nozzleTransform.rotation = Quaternion.Euler(0, 0, -rotationState * 90f);
+    }
+
+    private void OnValidate()
+    {
+        if (nozzleTransform != null && !Application.isPlaying)
+            nozzleTransform.rotation = Quaternion.Euler(0, 0, -startRotationState * 90f);
     }
 
     private void Update()
