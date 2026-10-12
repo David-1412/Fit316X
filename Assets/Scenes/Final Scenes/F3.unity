@@ -75935,7 +75935,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Name:\t\t\t\tV\nStory:\t\t\t\tV\n\n"
+  m_text: "Name:\t\t\t\tV\nStory:\t\t\t\tV\n\n<size=55%>Controls\nWASD\t\tMove\nE\t\tInteract</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2abf2c9feb7d39b4aa6010c212cb1ff1, type: 2}
   m_sharedMaterial: {fileID: 3912228376523283368, guid: 2abf2c9feb7d39b4aa6010c212cb1ff1, type: 2}

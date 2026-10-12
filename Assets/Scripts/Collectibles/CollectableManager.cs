@@ -15,10 +15,10 @@ public class CollectableManager : MonoBehaviour
     private string collectablesFlagsFile;
     private string collectablesStacksFile;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Awake (not Start) so Instance exists before other objects' OnEnable runs
+    void Awake()
     {
-        if (Instance == null) { 
+        if (Instance == null) {
             Instance = this;
         }
 
