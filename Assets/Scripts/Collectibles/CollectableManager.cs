@@ -15,21 +15,21 @@ public class CollectableManager : MonoBehaviour
     private string collectablesFlagsFile;
     private string collectablesStacksFile;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Register in Awake so other scripts can use Instance from their OnEnable/Start
+    void Awake()
     {
-        if (Instance == null) { 
-            Instance = this;
-        }
-
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        Debug.Assert(Instance != null);
+        Instance = this;
+    }
 
+    void Start()
+    {
+        if (Instance != this) return;
 
         collectablesFlagsFile = Application.persistentDataPath + "/collectablesFlags.json";
 
