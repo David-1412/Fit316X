@@ -153,3 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeamSplitter
   splitterType: 0
   bodyRenderer: {fileID: 209204303413280964}
+  leftRightSign: {fileID: 21300000, guid: 20bb76d72da1486baaeba7f60996919d, type: 3}
+  leftStraightSign: {fileID: 21300000, guid: cd4f2e112011455c87dc0e99b6ea6a3f, type: 3}
+  rightStraightSign: {fileID: 21300000, guid: 4e6353af6dd34eeba49ad797b3da43cc, type: 3}
+  previewIncomingDirection: {x: 0, y: 1}
