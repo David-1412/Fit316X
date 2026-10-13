@@ -27,6 +27,13 @@ public class MainMenuManager : MonoBehaviour
 
     private Texture2D previewTexture;
 
+    void Awake()
+    {
+        // Coming back from the game (e.g. after an ending): remove the Player, HUD,
+        // camera and other objects carried between floors so they don't sit on the menu
+        FinalRooftopSceneManager.DestroyCarriedOverObjects();
+    }
+
     void Start()
     {
         // Returning to the menu (e.g. after an ending) must not leave the game paused

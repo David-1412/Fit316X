@@ -899,42 +899,48 @@ public class FinalRooftopSceneManager : MonoBehaviour
 
     private void PrepareToLeaveFloor()
     {
-        // AudioListener.volume is global, so restore it once the next scene is up
-        SceneManager.sceneLoaded -= RestoreVolumeOnLoad;
-        SceneManager.sceneLoaded += RestoreVolumeOnLoad;
+        // Nothing is torn down here: the next scene loads first, then the carried-over
+        // objects (Player, HUD, camera...) are removed once it is up (OnLeftFloor)
+        s_CleanUpPersistentOnLoad = destroyPersistentObjectsOnEnding;
+        SceneManager.sceneLoaded -= OnLeftFloor;
+        SceneManager.sceneLoaded += OnLeftFloor;
 
         PauseController.SetPause(false);
+        Debug.Log("[FinalRooftop] Leaving the floor.");
+    }
 
-        // A failure while cleaning up must never stop the next scene from loading
-        if (destroyPersistentObjectsOnEnding)
+    private static bool s_CleanUpPersistentOnLoad;
+
+    /// <summary>Runs once the menu / ending scene has loaded.</summary>
+    private static void OnLeftFloor(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnLeftFloor;
+
+        // AudioListener.volume is global, so restore it for the new scene
+        AudioListener.volume = s_VolumeToRestore;
+
+        if (s_CleanUpPersistentOnLoad) DestroyCarriedOverObjects();
+        s_CleanUpPersistentOnLoad = false;
+    }
+
+    /// <summary>
+    /// Removes the gameplay objects carried between floors (Player, HUD, camera, Elevator...).
+    /// Only objects in DontDestroyOnLoad are touched, never the newly loaded scene.
+    /// </summary>
+    public static void DestroyCarriedOverObjects()
+    {
+        foreach (PersistentObject obj in FindObjectsByType<PersistentObject>(FindObjectsInactive.Include))
         {
+            if (obj == null || obj.gameObject.scene.name != "DontDestroyOnLoad") continue;
             try
             {
-                DestroyPersistentObjects();
+                obj.gameObject.SetActive(false);
+                Destroy(obj.gameObject);
             }
             catch (System.Exception e)
             {
                 Debug.LogException(e);
             }
-        }
-    }
-
-    private static void RestoreVolumeOnLoad(Scene scene, LoadSceneMode mode)
-    {
-        SceneManager.sceneLoaded -= RestoreVolumeOnLoad;
-        AudioListener.volume = s_VolumeToRestore;
-    }
-
-    /// <summary>Removes the carried-over gameplay objects (Player, HUD, Elevator...).</summary>
-    private void DestroyPersistentObjects()
-    {
-        PersistentObject[] persistent = FindObjectsByType<PersistentObject>(FindObjectsInactive.Include);
-        foreach (PersistentObject obj in persistent)
-        {
-            if (obj == null || transform.IsChildOf(obj.transform)) continue;
-            // Switch off first so their Update/coroutines can't run against a half-torn-down scene
-            obj.gameObject.SetActive(false);
-            Destroy(obj.gameObject);
         }
     }
 
