@@ -36,9 +36,9 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     private List<FloorDetails> floorDetails = new List<FloorDetails> { 
         new FloorDetails("F4", Color.red),
         new FloorDetails("F2", Color.green),
-        new FloorDetails("F3", Color.blue),
+        new FloorDetails("F3", Color.white),
         new FloorDetails("F0", Color.black),
-        new FloorDetails("F5", Color.white)
+        new FloorDetails("F5", Color.blue)
     };
 
 
@@ -194,14 +194,6 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
                 });
             }
         }
-        if (currentColours.Any((c) => c == Color.blue) && currentColours.Any((c) => c == Color.green) && currentColours.Any((c) => c == Color.red))
-        {
-            options.Add(new InteractionOption
-            {
-                Name = $"Travel to F5",
-                OnSelect = () => TravelTo("F5")
-            });
-        }
 
 
         // Take gem back
@@ -307,8 +299,8 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     {
         if (c == Color.red) { return 4; }
         if (c == Color.green) { return 2; }
-        if (c == Color.blue) { return 3; }
-        if (c == Color.white) { return 5; }
+        if (c == Color.blue) { return 5; }
+        if (c == Color.white) { return 3; }
         if (c == Color.black) { return 0; }
         else { return 10; }
     }
