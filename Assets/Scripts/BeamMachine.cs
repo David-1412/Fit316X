@@ -65,16 +65,16 @@ public class BeamMachine : MonoBehaviour, IMultiInteractable
         foreach (var lr in segmentRenderers) lr.gameObject.SetActive(false);
 
         int segIndex = 0;
-        Queue<(Vector2 start, Vector2 dir)> beamsToProcess = new Queue<(Vector2, Vector2)>();
+        Queue<(Vector2 start, Vector2 dir, Color color)> beamsToProcess = new Queue<(Vector2, Vector2, Color)>();
 
         Vector2 nozzleDir   = NozzleDirection();
         Vector2 nozzleStart = (Vector2)nozzleTransform.position + nozzleDir * 0.5f;
-        beamsToProcess.Enqueue((nozzleStart, nozzleDir));
+        beamsToProcess.Enqueue((nozzleStart, nozzleDir, currentColor));
 
         int safetyLimit = 20;
         while (beamsToProcess.Count > 0 && safetyLimit-- > 0)
         {
-            var (start, dir) = beamsToProcess.Dequeue();
+            var (start, dir, color) = beamsToProcess.Dequeue();
 
             // Cast against ALL layers — component checks decide what to do
             RaycastHit2D[] hits = Physics2D.RaycastAll(start, dir, maxBeamDistance);
@@ -93,8 +93,8 @@ public class BeamMachine : MonoBehaviour, IMultiInteractable
             }
 
             LineRenderer seg = GetOrCreateSegment(segIndex++);
-            seg.startColor = currentColor;
-            seg.endColor   = new Color(currentColor.r, currentColor.g, currentColor.b, 0.4f);
+            seg.startColor = color;
+            seg.endColor = new Color(color.r, color.g, color.b, 0.4f);
             seg.startWidth = beamWidth;
             seg.endWidth   = beamWidth;
             seg.SetPosition(0, start);
@@ -109,7 +109,7 @@ public class BeamMachine : MonoBehaviour, IMultiInteractable
                 {
                     Vector2 nextDir   = redirector.GetOutputDirection();
                     Vector2 nextStart = (Vector2)redirector.transform.position + nextDir * 0.6f;
-                    beamsToProcess.Enqueue((nextStart, nextDir));
+                    beamsToProcess.Enqueue((nextStart, nextDir, color));
                     Debug.Log($"[Beam] Hit redirector '{redirector.name}', continuing {nextDir}");
                 }
 
@@ -121,16 +121,29 @@ public class BeamMachine : MonoBehaviour, IMultiInteractable
                     foreach (Vector2 splitDir in splitDirs)
                     {
                         Vector2 splitStart = (Vector2)splitter.transform.position + splitDir * 0.6f;
-                        beamsToProcess.Enqueue((splitStart, splitDir));
+                        beamsToProcess.Enqueue((splitStart, splitDir, color));
                     }
                     Debug.Log($"[Beam] Hit splitter '{splitter.name}' ({splitter.splitterType}), emitting {splitDirs.Count} beams");
+                }
+
+                // ── Colour Filter ─────────────────────────────────────────
+                ColorFilter filter = bestHit.collider.GetComponent<ColorFilter>();
+                if (filter != null)
+                {
+                    Color filtered = filter.Apply(color);
+                    if (!ColorFilter.IsBlocked(filtered))
+                    {
+                        // Continue in the same direction, starting just past the glass
+                        Vector2 nextStart = (Vector2)filter.transform.position + dir * 0.6f;
+                        beamsToProcess.Enqueue((nextStart, dir, filtered));
+                    }
                 }
 
                 // ── Goal ──────────────────────────────────────────────────
                 LightGoal goal = bestHit.collider.GetComponent<LightGoal>();
                 if (goal != null)
                 {
-                    goal.ReceiveBeam(currentColor);
+                    goal.ReceiveBeam(color);
                     Debug.Log($"[Beam] Hit goal '{goal.name}' with color {currentColor}");
                 }
             }
