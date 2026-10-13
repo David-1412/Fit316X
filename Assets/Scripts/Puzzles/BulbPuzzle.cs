@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 
 public class BulbPuzzle : MonoBehaviour, IMultiInteractable
 {
 
     public bool removeable = false;
-  
+
+
+    public Light2D lightSource;
+    public SpriteRenderer background;
 
 
     public UnityEvent OnLightOn;
@@ -17,7 +21,7 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
     public UnityEvent OnLightBlue;
     public UnityEvent OnLightRed;
 
-
+   
 
 
 
@@ -149,7 +153,7 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
             }
 
         }
-
+        
         return options;
     }
 
@@ -172,21 +176,30 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
         }
 
         OnLightOn.Invoke();
+        lightSource.gameObject.SetActive(true);
         switch (colourName(((GemEntry) currentGem).color))
         {
             case "Blue":
                 OnLightBlue.Invoke();
+                background.color = Color.blue;
+                lightSource.color = Color.blue;
                 break;
 
             case "Green":
                 OnLightGreen.Invoke();
+                background.color = Color.green;
+                lightSource.color = Color.green;
                 break ;
 
             case "Red":
                 OnLightRed.Invoke();
+                background.color = Color.red;
+                lightSource.color = Color.red;
                 break ;
 
             default:
+                background.color = Color.white;
+                lightSource.color = Color.white;
                 break;
         }
     }
@@ -213,6 +226,8 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
             }
             currentGem = null;
             OnLightOff.Invoke();
+            background.color = Color.darkGray;
+            lightSource.gameObject.SetActive(false);
         }
         Debug.Log($"[BULB] Returned gem");
     }
