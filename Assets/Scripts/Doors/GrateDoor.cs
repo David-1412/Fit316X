@@ -10,36 +10,55 @@ public class GrateDoor : MonoBehaviour
 
     private Transform transformComp;
     public GameObject wall;
-    private bool open = false;
+    private bool opening = false;
+    private bool closeing = false;
     private float movement = 0;
  
 
     private void Start()
     {
         transformComp = gameObject.GetComponent<Transform>();
-        distance += transformComp.position.y;
     }
 
 
 
     private void Update()
     {
-        if (open)
+        if (opening)
         {
             
             transformComp.Translate(direction * Time.deltaTime * speed);
             movement += speed * Time.deltaTime;
 
             if(movement >= distance) { 
-                gameObject.SetActive(false);
-                Destroy(wall);
+                wall.SetActive(false);
+                opening = false;
             }
         } 
+        if (closeing)
+        {
+            transformComp.Translate(-1 * direction * Time.deltaTime * speed);
+            movement -= speed * Time.deltaTime;
+
+            if (movement <= 0)
+            {
+                wall.SetActive(true);
+                closeing = false;
+            }
+        }
     }
 
     public void OpenGrateDoor()
     {
-        open = true;
+        opening = true;
+        closeing = false;
         
+    }
+
+
+    public void CloseGrateDoor()
+    {
+        opening = false;
+        closeing = true;
     }
 }

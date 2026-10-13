@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<!-- saved from url=(0024)https://spritepaint.com/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="description" content="Free online pixel art maker and animation tool. Draw sprites, animate frame by frame, and export sprite sheets, GIFs, and PNGs. No download required.">
+		<link rel="canonical" href="https://spritepaint.com/">
+		<link rel="alternate" hreflang="en" href="https://spritepaint.com/">
+		<link rel="alternate" hreflang="ru" href="https://spritepaint.com/ru/">
+		<link rel="alternate" hreflang="es" href="https://spritepaint.com/es/">
+		<link rel="alternate" hreflang="pt-BR" href="https://spritepaint.com/pt-br/">
+		<link rel="alternate" hreflang="ja" href="https://spritepaint.com/ja/">
+		<link rel="alternate" hreflang="zh-CN" href="https://spritepaint.com/zh-cn/">
+		<link rel="alternate" hreflang="ko" href="https://spritepaint.com/ko/">
+		<link rel="alternate" hreflang="de" href="https://spritepaint.com/de/">
+		<link rel="alternate" hreflang="fr" href="https://spritepaint.com/fr/">
+		<link rel="alternate" hreflang="x-default" href="https://spritepaint.com/">
+		<meta property="og:type" content="website">
+		<meta property="og:locale" content="en_US">
+		<meta property="og:locale:alternate" content="ru_RU">
+		<meta property="og:locale:alternate" content="es_ES">
+		<meta property="og:locale:alternate" content="pt_BR">
+		<meta property="og:locale:alternate" content="ja_JP">
+		<meta property="og:locale:alternate" content="zh_CN">
+		<meta property="og:locale:alternate" content="ko_KR">
+		<meta property="og:locale:alternate" content="de_DE">
+		<meta property="og:locale:alternate" content="fr_FR">
+		<meta property="og:url" content="https://spritepaint.com/">
+		<meta property="og:title" content="SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor">
+		<meta property="og:description" content="Free online pixel art maker and animation tool. Draw sprites, animate frame by frame, and export sprite sheets, GIFs, and PNGs.">
+		<meta property="og:image" content="https://spritepaint.com/favicon.png">
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor">
+		<meta name="twitter:description" content="Free online pixel art maker and animation tool. Draw sprites, animate frame by frame, and export sprite sheets, GIFs, and PNGs.">
+		<meta name="twitter:image" content="https://spritepaint.com/favicon.png">
+		<meta name="yandex-verification" content="e89084447e0c762b">
+		<link rel="icon" type="image/png" href="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/favicon.png">
+		<link rel="icon" type="image/x-icon" href="https://spritepaint.com/favicon.ico">
+		<link rel="stylesheet" href="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/stylesheet.css">
+		<link rel="stylesheet" href="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/landing.css">
+		<!-- Google tag (gtag.js) -->
+		<!-- Load the Google Analytics script asynchronously -->
+		<script type="text/javascript" async="" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/js"></script><script type="text/javascript" async="" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/js(1)"></script><script async="" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/js(2)"></script>
+
+		<!-- Initialize the dataLayer only if on the production URL -->
+		<script>
+			if (window.location.hostname === "spritepaint.com") {
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag("js", new Date());
+				gtag("config", "G-3XNZHXQSKW");
+			}
+
+			// Stamped by the production build; the bundle also identifies itself.
+			window.spReleaseId = 'd01e28ebb3d3acccf16507217194541bc2';
+			window.spEditorPhase = 'landing';
+			// Keep each value within GA's 100-character limit. Stack frames contain
+			// code locations only, never URL queries, fragments, or project contents.
+			(function() {
+				var reported = 0;
+				function filename(value) {
+					return String(value || '').split(/[?#]/)[0].split('/').pop().slice(0, 50);
+				}
+				window.spReportError = function(kind, message, file, line, column, stack, error) {
+					if (reported >= 3) return;
+					reported++;
+					var frames = [];
+					String(stack || '').split('\n').forEach(function(frame) {
+						var location = frame.match(/(?:https?:\/\/|\/)[^\s()]+:\d+:\d+/);
+						var parts = location && location[0].match(/^(.*):(\d+):(\d+)$/);
+						if (parts && frames.length < 5) frames.push({ file: filename(parts[1]), line: +parts[2], column: +parts[3] });
+					});
+					var first = frames[0] || {};
+					var params = {
+						error_kind: kind,
+						error_message: String(message || '').slice(0, 100),
+						error_file: filename(file) || first.file || '',
+						error_line: line || first.line || 0,
+						error_column: column || first.column || 0,
+						release_id: window.spBundleRelease || window.spReleaseId,
+						page_release_id: window.spReleaseId,
+						editor_phase: document.body && document.body.classList.contains('landing-mode') ? 'landing' : window.spEditorPhase
+					};
+					frames.forEach(function(frame, index) {
+						params['error_frame_' + (index + 1)] = (frame.file + ':' + frame.line + ':' + frame.column).slice(0, 100);
+					});
+					try {
+						if (window.spGetActiveTool) params.active_tool = String(window.spGetActiveTool() || '').slice(0, 40);
+					} catch (ignored) { /* Diagnostics must not interrupt error reporting. */ }
+					try {
+						var context = window.spGetErrorContext ? window.spGetErrorContext(error) : {};
+						['canvas_size', 'operation', 'export_format'].forEach(function(key) {
+							if (typeof context[key] === 'string') params[key] = context[key].slice(0, 100);
+						});
+						['drawing_count', 'frame_count', 'layer_count', 'undo_depth', 'export_scale'].forEach(function(key) {
+							if (typeof context[key] === 'number' && isFinite(context[key]) && context[key] >= 0) params[key] = context[key];
+						});
+					} catch (ignored) { /* Partial startup or diagnostic failure must not hide the original error. */ }
+					if (window.location.hostname !== 'spritepaint.com') {
+						console.log('[GA]', 'js_error', params);
+						return;
+					}
+					if (typeof gtag === 'function') gtag('event', 'js_error', params);
+				};
+				window.addEventListener('error', function(e) {
+					if (e.target && e.target !== window) return; // Script tags report their own resource failures.
+					window.spReportError('error', e.message, e.filename, e.lineno, e.colno, e.error && e.error.stack, e.error);
+				}, true);
+				window.addEventListener('unhandledrejection', function(e) {
+					var reason = e.reason;
+					window.spReportError('promise', reason && reason.message ? reason.message : reason, '', 0, 0, reason && reason.stack, reason);
+				});
+			})();
+		</script>
+
+		<!-- Structured data for rich search results -->
+		<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SpritePaint",
+  "url": "https://spritepaint.com/",
+  "inLanguage": "en",
+  "description": "Free online pixel art maker and animation tool. Draw sprites, animate frame by frame, and export sprite sheets, GIFs, and PNGs. No download required.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+		</script>
+
+	</head>
+	<body class="bg-dark app-mode">
+
+		<!-- Landing page (hidden for returning users) -->
+		<div id="landing" style="display: none;">
+			<header class="landing-header">
+				<div class="landing-logo">
+					<img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/favicon.png" alt="" class="logo-icon">
+					SpritePaint
+				</div>
+				<nav class="landing-nav">
+					<a href="https://spritepaint.com/#features" class="nav-link">Features</a>
+					<a href="https://spritepaint.com/#how" class="nav-link">How It Works</a>
+					<a href="https://spritepaint.com/#faq" class="nav-link">FAQ</a>
+				</nav>
+				<a href="https://spritepaint.com/#" id="header-start-btn" class="landing-header-cta" data-i18n="landing.startDrawing">Start Drawing</a>
+			</header>
+
+			<section class="landing-hero">
+				<div class="hero-text">
+<h1 data-i18n-html="landing.heroTitle">Online <span>Pixel Art</span> Maker &amp; Sprite Editor</h1>
+					<p class="landing-subtitle" data-i18n="landing.heroSubtitle">Draw sprites, animate them frame by frame, and export PNGs, GIFs, or sprite sheets — right in your browser.</p>
+					<div class="hero-actions">
+						<a href="https://spritepaint.com/#" id="hero-start-btn" class="landing-cta" data-i18n="landing.startDrawing">Start Drawing</a>
+					</div>
+				</div>
+				<div class="hero-product-shot">
+					<div class="product-shot-frame">
+						<video autoplay="" loop="" muted="" playsinline="" aria-label="SpritePaint pixel art editor — drawing and animating a sprite in the browser">
+							<source src="/img/sp-demo-1.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
+			</section>
+
+			<section class="landing-features" id="features">
+				<h2 data-i18n="landing.featuresHeading">Everything you need, nothing you don't</h2>
+				<div class="features-list">
+					<div class="feature-row">
+						<div class="feature-icon feature-icon-draw"></div>
+						<div>
+							<h3 data-i18n="landing.drawingTools">Drawing Tools</h3>
+							<p data-i18n="landing.drawingToolsDesc">Pencil, eraser, line, circle, rectangle, fill bucket, eye dropper, and lasso selection. Adjustable brush sizes from 1 to 64 pixels. Mirror drawing on X and Y axes for symmetrical sprites.</p>
+						</div>
+					</div>
+					<div class="feature-row">
+						<div class="feature-icon feature-icon-animate"></div>
+						<div>
+							<h3 data-i18n="landing.animation">Frame-by-Frame Animation</h3>
+							<p data-i18n="landing.animationDesc">Create animated sprites with up to 100 frames. Onion skinning shows previous and next frames as guides. Set custom frame rates and preview your animation in real time.</p>
+						</div>
+					</div>
+					<div class="feature-row">
+						<div class="feature-icon feature-icon-layers"></div>
+						<div>
+							<h3 data-i18n="landing.layers">Layers</h3>
+							<p data-i18n="landing.layersDesc">Organize your artwork in layers and nested groups. Duplicate, reorder, rename, and show or hide layers. Each layer has its own frame clips for complex animations.</p>
+						</div>
+					</div>
+					<div class="feature-row">
+						<div class="feature-icon feature-icon-export"></div>
+						<div>
+							<h3 data-i18n="landing.export">Export Anywhere</h3>
+							<p data-i18n="landing.exportDesc">Export your work as PNG images, animated GIFs, sprite sheets, or MP4 video in supported browsers. Scale exports from 1x up to 64x. Ready for game engines like Unity, Godot, or GameMaker.</p>
+						</div>
+					</div>
+					<div class="feature-row">
+						<div class="feature-icon feature-icon-palette"></div>
+						<div>
+							<h3 data-i18n="landing.palettes">Color Palettes</h3>
+							<p data-i18n="landing.palettesDesc">Built-in palettes including NES colors, plus palettes you save and edit yourself. Pick colors with RGB or HSL sliders. Eye dropper tool to sample any color on your canvas.</p>
+						</div>
+					</div>
+					<div class="feature-row">
+						<div class="feature-icon feature-icon-share"></div>
+						<div>
+							<h3 data-i18n="landing.share">Share Instantly</h3>
+							<p data-i18n="landing.shareDesc">Generate a shareable link to your animation with one click. No account needed. Recipients can view and play your sprite animation directly in the browser.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="landing-guide" id="guide">
+				<h2 data-i18n="landing.guideHeading">How to draw pixel art</h2>
+				<ol>
+					<li><strong data-i18n="landing.guideStep1Title">Pick a small canvas.</strong> <span data-i18n="landing.guideStep1Desc">16x16 or 32x32 is a classic size for characters, items, and icons.</span></li>
+					<li><strong data-i18n="landing.guideStep2Title">Draw the silhouette.</strong> <span data-i18n="landing.guideStep2Desc">Outline the shape with a 1-pixel pencil and a single dark color.</span></li>
+					<li><strong data-i18n="landing.guideStep3Title">Block in the base colors.</strong> <span data-i18n="landing.guideStep3Desc">Use the fill tool and a limited palette — 4–8 colors is plenty to start.</span></li>
+					<li><strong data-i18n="landing.guideStep4Title">Add light and shadow.</strong> <span data-i18n="landing.guideStep4Desc">Choose a light direction: use a darker shade on the shadow side and a lighter one on the lit side.</span></li>
+					<li><strong data-i18n="landing.guideStep5Title">Export.</strong> <span data-i18n="landing.guideStep5Desc">Save a PNG at 4x or 8x so every pixel stays crisp.</span></li>
+				</ol>
+				<h3 data-i18n="landing.guideAnimationHeading">Pixel animation</h3>
+				<p data-i18n="landing.guideAnimationDesc">Add frames, turn on onion skinning, and draw the motion one step at a time. An idle animation needs only 2–4 frames; a walk cycle usually takes 4–8. Around 8–12 frames per second usually looks natural. Download the finished animation as a GIF, sprite sheet, or MP4 video.</p>
+				<h3 data-i18n="landing.guideSchoolsHeading">For schools and Chromebooks</h3>
+				<p data-i18n="landing.guideSchoolsDesc">SpritePaint runs entirely in the browser, so it works on school computers and Chromebooks with nothing to install and no accounts.</p>
+			</section>
+
+			<section class="landing-how" id="how">
+				<h2 data-i18n="landing.howItWorks">How it works</h2>
+				<div class="how-steps">
+					<div class="how-step">
+						<div class="step-number">1</div>
+						<div>
+							<h3 data-i18n="landing.step1Title">Pick a canvas size</h3>
+							<p data-i18n="landing.step1Desc">From 2x2 up to 500x500. Common sizes: 16x16, 32x32, 64x64.</p>
+						</div>
+					</div>
+					<div class="how-step">
+						<div class="step-number">2</div>
+						<div>
+							<h3 data-i18n="landing.step2Title">Draw your sprite</h3>
+							<p data-i18n="landing.step2Desc">Use pencil, shapes, and fill. Add layers for characters, backgrounds, and effects.</p>
+						</div>
+					</div>
+					<div class="how-step">
+						<div class="step-number">3</div>
+						<div>
+							<h3 data-i18n="landing.step3Title">Animate it</h3>
+							<p data-i18n="landing.step3Desc">Add frames, use onion skinning, preview at any speed.</p>
+						</div>
+					</div>
+					<div class="how-step">
+						<div class="step-number">4</div>
+						<div>
+							<h3 data-i18n="landing.step4Title">Export &amp; share</h3>
+							<p data-i18n="landing.step4Desc">Download as PNG, GIF, or sprite sheet — or share with a link.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="landing-faq" id="faq">
+				<h2 data-i18n="landing.faqHeading">Frequently Asked Questions</h2>
+				<div class="faq-list">
+					<details class="faq-item">
+						<summary data-i18n="landing.faq1Q">Is SpritePaint really free?</summary>
+						<p data-i18n="landing.faq1A">Yes, completely free. No hidden fees, no watermarks on exports, no account required.</p>
+					</details>
+					<details class="faq-item">
+						<summary data-i18n="landing.faq2Q">Do I need to download anything?</summary>
+						<p data-i18n="landing.faq2A">No. SpritePaint runs entirely in your browser — Chrome, Firefox, Safari, and Edge on Windows, Mac, Linux, and Chromebook.</p>
+					</details>
+					<details class="faq-item">
+						<summary data-i18n="landing.faq3Q">What export formats are supported?</summary>
+						<p data-i18n="landing.faq3A">PNG images, animated GIFs, sprite sheets, and MP4 video in supported browsers. Every export can be scaled from 1x up to 64x.</p>
+					</details>
+					<details class="faq-item">
+						<summary data-i18n="landing.faq4Q">Can I make animated sprites?</summary>
+						<p data-i18n="landing.faq4A">Yes! Up to 100 frames with onion skinning. Export as GIF or sprite sheet for game engines like Unity, Godot, or GameMaker.</p>
+					</details>
+					<details class="faq-item">
+						<summary data-i18n="landing.faq5Q">Will my work be saved?</summary>
+						<p data-i18n="landing.faq5A">Your work auto-saves to your browser. You can also save as a .spritepaint file to back up or transfer between computers.</p>
+					</details>
+					<details class="faq-item">
+						<summary data-i18n="landing.faq6Q">What canvas sizes can I use?</summary>
+						<p data-i18n="landing.faq6A">From 2x2 up to 500x500 pixels. Popular game sprite sizes: 8x8, 16x16, 32x32, 64x64. Resize anytime, and choose whether to scale your artwork to fit the new size.</p>
+					</details>
+				</div>
+			</section>
+
+			<section class="landing-final-cta">
+				<h2 data-i18n="landing.readyToCreate">Ready to create?</h2>
+				<p data-i18n="landing.joinArtists">Join thousands of pixel artists. Start drawing in seconds.</p>
+				<a href="https://spritepaint.com/#" id="final-start-btn" class="landing-cta" data-i18n="landing.openApp">Open SpritePaint</a>
+			</section>
+
+			<footer class="landing-footer">
+				<p data-i18n="landing.footer">SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor</p>
+				<nav class="landing-footer-links">
+					<a href="https://spritepaint.com/pixel-art-maker/">Pixel Art Maker</a>
+					<a href="https://spritepaint.com/pixel-art-editor/">Pixel Art Editor</a>
+					<a href="https://spritepaint.com/pixel-art-online/">Draw Pixel Art Online</a>
+					<a href="https://spritepaint.com/pixel-animation-maker/">Pixel Animation Maker</a>
+					<!-- language-links:start -->
+					<a href="https://spritepaint.com/?lang=en" hreflang="en" lang="en">English</a>
+					<a href="https://spritepaint.com/ru/" hreflang="ru" lang="ru">Русский</a>
+					<a href="https://spritepaint.com/es/" hreflang="es" lang="es">Español</a>
+					<a href="https://spritepaint.com/pt-br/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+					<a href="https://spritepaint.com/ja/" hreflang="ja" lang="ja">日本語</a>
+					<a href="https://spritepaint.com/zh-cn/" hreflang="zh-CN" lang="zh-CN">简体中文</a>
+					<a href="https://spritepaint.com/ko/" hreflang="ko" lang="ko">한국어</a>
+					<a href="https://spritepaint.com/de/" hreflang="de" lang="de">Deutsch</a>
+					<a href="https://spritepaint.com/fr/" hreflang="fr" lang="fr">Français</a>
+					<!-- language-links:end -->
+				</nav>
+			</footer>
+		</div>
+
+		<!-- The app (hidden until user clicks Start or is a returning user) -->
+		<div id="app" class=""><div class="h-full relative"><div class="h-40 bg-light bord-dark-b fl" inert=""><div class="fl w-full"><div class="fl-1 fl"><div data-file-menu="true" class="fl bord-dark-r rel w-40"><button class="fl fl-center m-0 p-0 w-40" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/bars.svg"></button><div class="bg-light fl-column bord-dark abs z-5" style="visibility: hidden; top: 10px; left: 10px;"><button class="m-0 p-h-15 h-40 fl fl-center-y" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/new.svg"><small class="bold p-h-10" style="width: max-content;">New Project</small></button><button class="m-0 p-h-15 h-40 fl fl-center-y" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/load-project.svg"><small class="bold p-h-10" style="width: max-content;">Open Project</small></button><button class="m-0 p-h-15 h-40 fl fl-center-y" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/save-project.svg"><small class="bold p-h-10" style="width: max-content;">Save Project</small></button><button class="m-0 p-h-15 h-40 fl fl-center-y" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/download.svg"><small class="bold p-h-10" style="width: max-content;">Download / Export</small></button><div role="separator" style="height: 1px; margin: 0px 15px; background: rgb(33, 33, 33);"></div><button class="m-0 p-h-15 h-40 fl fl-center-y" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/import-image.svg"><small class="bold p-h-10" style="width: max-content;">Import Image</small></button><button class="m-0 p-h-15 h-40 fl fl-center-y" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/resize.svg"><small class="bold p-h-10" style="width: max-content;">Resize Canvas</small></button><div role="separator" style="height: 1px; margin: 0px 15px; background: rgb(33, 33, 33);"></div><button class="m-0 p-h-15 h-40 fl fl-center-y" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/link.svg"><small class="bold p-h-10" style="width: max-content;">Share Project</small></button></div></div><div class="fl" style="justify-content: flex-start; flex: 2 1 0%;"><div class="fl" style="padding: 6px; gap: 8px;"><div class="fl"><div data-brush-menu="true" class="fl" tabindex="-1" style="position: relative; outline: none;"><div title="Brush Size" class="fl" style="overflow: hidden;"><div class="fl fl-center" style="padding: 6px; width: 30px;"><img class="ptr-none" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/brush-size.svg" style="width: 17px;"></div><input min="1" max="64" type="number" style="width: 35px; padding: 0px; text-align: center;"></div></div><div data-stabilizer-menu="true" class="fl" tabindex="-1" style="position: relative; outline: none;"><div title="Smooth Stabilizer" class="fl" style="overflow: hidden;"><div class="fl fl-center" style="padding: 6px; width: 30px;"><img class="ptr-none" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/smoothing.svg" style="width: 17px;"></div><input min="0" max="100" type="number" style="width: 35px; padding: 0px; text-align: center;"></div></div></div><div class="fl hide-mobile" style="gap: 8px;"><div style="width: 1px; align-self: stretch; margin: 4px 0px; background: rgba(255, 255, 255, 0.25);"></div><button title="Mirror X" class="bg-dark button fl fl-center bord-dark b-r-2" data-pointer-button="true" style="padding: 8px; width: 30px;"><img class="ptr-none" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/mirror-left.svg"></button><button title="Mirror Y" class="bg-dark button fl fl-center bord-dark b-r-2" data-pointer-button="true" style="padding: 8px; width: 30px;"><img class="ptr-none" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/mirror-left.svg" style="transform: rotate(90deg);"></button></div><div class="fl hide-mobile" style="gap: 8px;"><div style="width: 1px; align-self: stretch; margin: 4px 0px; background: rgba(255, 255, 255, 0.25);"></div><button title="Pixel Perfect (1px pencil, mirror off)" class="bg-dark button fl fl-center bord-dark b-r-2" data-pointer-button="true" style="padding: 8px; width: 30px; flex-shrink: 0; opacity: 1; cursor: pointer;"><img class="ptr-none" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pixel-perfect.svg"></button></div></div></div><div class="fl-1 fl fl-justify-center"></div><div class="fl-1 fl" style="justify-content: flex-end;"><div class="fl"><button title="Copy" class="fl fl-center m-0 p-0 w-40 bord-dark-l bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/copy.svg"></button><button title="Paste" class="fl fl-center m-0 p-0 w-40" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/paste.svg"></button></div><div class="fl"><button title="Undo" class="fl fl-center m-0 p-0 w-40 bord-dark-l bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/undo.svg"></button><button title="Redo" class="fl fl-center m-0 p-0 w-40" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/redo.svg"></button></div><div data-settings-menu="true" class="fl bord-dark-l relative"><button class="button w-full h-full fl fl-center" data-pointer-button="true"><img class="ptr-none" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/settings.svg"></button></div></div></div><div class="fl fl-center m-0 p-0 w-40 bord-dark-l hide-at-850" style="max-width: 241px; min-width: 241px;"><a class="h-full fl fl-center fl-1 bord-dark-r hover-button" target="_blank" href="https://www.youtube.com/@spritepaintapp" style="padding: 0px 12px;"><img class="mr-1" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/youtube.svg" style="margin-right: 8px; width: 24px; height: 24px;"><small class="bold">Tutorials</small></a><button class="h-full fl fl-center fl-1 bord-dark-r" data-pointer-button="true" style="padding: 0px 12px;"><img class="mr-1" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/mail.svg" style="margin-right: 8px; width: 24px; height: 24px;"><small class="bold">Feedback</small></button></div></div></div><div id="center-column" class="fl" style="height: calc(100% - 40px);" inert=""><div data-color-menu="true" class="w-40 bg-light bord-dark-r relative fl fl-column"><div class="fl-1 overflow hide-scroll" style="padding-bottom: 50px;"><button title="Pencil (B)" class="fl fl-center m-0 p-0 w-40 h-40 bord-dark-r" data-pointer-button="true" style="background: rgb(52, 152, 219);"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg"></button><button title="Eraser (E)" class="fl fl-center m-0 p-0 w-40 h-40 bord-dark-r" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/eraser.svg"></button><button title="Line (U)" class="fl fl-center m-0 p-0 w-40 h-40 bord-dark-r" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/line.svg"></button><button title="Circle" class="fl fl-center m-0 p-0 w-40 h-40 bord-dark-r" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/circle.svg"></button><button title="Square" class="fl fl-center m-0 p-0 w-40 h-40 bord-dark-r" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/square.svg"></button><button title="Fill (G)" class="fl fl-center m-0 p-0 w-40 h-40 bord-dark-r" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/fill.svg"></button><button title="Eye Dropper (L)" class="fl fl-center m-0 p-0 w-40 h-40 bord-dark-r" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/eye-dropper.svg"></button><button title="Move (V)" class="fl fl-center m-0 p-0 w-40 h-40 bord-dark-r" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/move.svg"></button><div role="separator" style="height: 1px; margin: 5px 8px; background: rgba(255, 255, 255, 0.25);"></div><button title="Freeform Lasso" class="fl fl-center m-0 p-0 w-40 h-40 bord-dark-r" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/lasso.svg"></button><button class="w-40 h-40 relative show-at-850" data-pointer-button="true"><div class="w-full no-ptr" style="border-radius: 4px; height: 30px; background: rgb(23, 22, 22);"></div></button></div><div class="bord-dark-t w-full bg-light" style="position: absolute; bottom: 0px;"><a class="show-at-850 w-full" target="_blank" href="https://www.youtube.com/@spritepaintapp" style="padding: 8px;"><div class="fl fl-center"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/youtube.svg" style="width: 20px;"></div></a></div></div><div id="center" class="fl-column"><div id="workspace" tabindex="-1" class="overflow-none fl-1 cursor-pencil" style="position: relative;" data-request="paintCanvas" data-hover="paintCanvas"><div style="color: white; position: absolute; left: 0px; top: 0px;"><p></p></div><div id="canvas-container" class="origin-top-left touch-none flex justify-center items-center" style="position: relative; transform: translate(-96.4773px, 383.974px) rotate(0deg); width: 1422.43px; height: 1422.43px;" data-request="paintCanvas" data-hover="paintCanvas"><canvas id="canvas-background" width="64" height="64" style="position: absolute; top: 0px; left: 0px; z-index: -1; pointer-events: none; width: 100%;"></canvas><canvas id="canvas-view" width="64" height="64" style="width: 1422.43px; height: 1422.43px; pointer-events: none;"></canvas><div id="grid-overlay" class="hide-at-850" style="position: absolute; top: 0px; left: 0px; z-index: 10; pointer-events: none; width: 1422.43px; height: 1422.43px; background-image: linear-gradient(to right, black 1px, transparent 1px), linear-gradient(black 1px, transparent 1px); background-size: 133.353px 133.353px; background-repeat: repeat;"></div></div><div><div></div></div></div><div class="bg-light bord-dark-t fl-column relative" style="height: 200px;"><div class="bg-light fl w-full bord-dark-b h-30 show-at-850"><div class="fl fl-1 bord-dark-r"><div title="Frames Per Second" class="fl fl-center" style="padding: 2px; height: 100%; gap: 6px;"><div class="select" style="height: 100%;"><select class="h-full" style="padding: 0px 16px 0px 5px;"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option></select></div><small>FPS</small></div></div><div class="fl"><div class="fl"><button id="anim-left" title="Onion Skin" class="fl fl-center m-0 p-0 w-30 bord-dark-r" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/onion.svg"></button><button title="Last Frame (A)" class="fl fl-center m-0 p-0 w-30 bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/lastframe.svg"></button><button id="play-button" title="Play Animation (Space)" aria-keyshortcuts="Space" class="fl fl-center m-0 p-0 w-30 bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/play.svg"></button><button id="anim-right" title="Next Frame (D)" class="fl fl-center m-0 p-0 w-30" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/nextframe.svg"></button></div></div></div><div class="fl w-full bord-dark-b h-30"><div class="fl" style="width: 150px; flex-shrink: 0;"><div class="fl"><div class="layer-add-control relative fl"><button title="Add layer or group" aria-label="Add layer or group" aria-haspopup="menu" aria-expanded="false" class="w-30 fl fl-center bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/insert.svg"></button></div><button title="Move Layer Up" class="w-30 fl fl-center bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/up.svg"></button><button title="Move Layer Down" class="w-30 fl fl-center bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/down.svg"></button><button title="Delete Layer" class="w-30 fl fl-center bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/delete.svg"></button><div class="w-30 bord-dark-r" aria-hidden="true"></div></div></div><div class="fl fl-1"><div class="fl hide-at-850"><div title="Frames Per Second" class="fl fl-center" style="padding: 2px; height: 100%; gap: 6px;"><div class="select" style="height: 100%;"><select class="h-full" style="padding: 0px 16px 0px 5px;"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option></select></div><small>FPS</small></div></div><div class="fl-1 fl fl-justify-center  hide-at-850"><div class="fl"><button id="anim-left" title="Onion Skin" class="fl fl-center m-0 p-0 w-30 bord-dark-r" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/onion.svg"></button><button title="Last Frame (A)" class="fl fl-center m-0 p-0 w-30 bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/lastframe.svg"></button><button id="play-button" title="Play Animation (Space)" aria-keyshortcuts="Space" class="fl fl-center m-0 p-0 w-30 bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/play.svg"></button><button id="anim-right" title="Next Frame (D)" class="fl fl-center m-0 p-0 w-30" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/nextframe.svg"></button></div></div><div class="fl-1 show-at-850"></div><div class="fl"><div class="fl"><button title="Insert Frame" class="w-30 fl fl-center bord-dark-r bord-dark-l" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/insert.svg"></button><button title="Move Frame Backward" class="w-30 fl fl-center bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/up.svg" style="transform: rotate(-90deg);"></button><button title="Move Frame Forward" class="w-30 fl fl-center bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/down.svg" style="transform: rotate(-90deg);"></button><button title="Trim Frame Length" class="w-30 fl fl-center bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/trim.svg"></button><button title="Extend Frame Length" class="w-30 fl fl-center bord-dark-r" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/extend.svg"></button><button title="Delete Frame" class="w-30 fl fl-center" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/delete.svg"></button><button title="Split Clip" class="fl fl-center m-0 p-0 w-30 bord-dark-l hidden" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/split.svg"></button></div></div></div></div><div id="layers-height" class="fl bg-mid hide-scroll"><div id="layers" style="padding-bottom: 30px;"><div class="timeline-ruler-corner bg-light bord-dark-r bord-dark-b" aria-hidden="true"></div><div class="layer-tree bord-dark-r" role="tree" aria-label="Layers" aria-multiselectable="true"><div role="treeitem" aria-level="1" aria-selected="false" tabindex="0" data-layer-id="node-mv6in6qb-3te1xrvn6q7" class="layer-row fl h-30 bord-dark-b  " draggable="true" style="padding-left: 30px; --drop-indent: 0px;"><button class="layer-eye w-30 fl fl-center" aria-label="Show Layer 3" title="Show" data-pointer-button="true" style="background: rgb(52, 152, 219);"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/eye-active.svg"></button><span class="layer-name fl-1 txt-left" title="Layer 3" style="padding-left: 8px;"><small style="font-size: 11px;"><b>Layer 3</b></small></span></div><div role="treeitem" aria-level="1" aria-selected="false" tabindex="0" data-layer-id="node-mv6a05dp-9zumcsrkegl" class="layer-row fl h-30 bord-dark-b  " draggable="true" style="padding-left: 30px; --drop-indent: 0px;"><button class="layer-eye w-30 fl fl-center" aria-label="Show pallette" title="Show" data-pointer-button="true" style="background: rgb(52, 152, 219);"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/eye-active.svg"></button><span class="layer-name fl-1 txt-left" title="pallette" style="padding-left: 8px;"><small style="font-size: 11px;"><b>pallette</b></small></span></div><div role="treeitem" aria-level="1" aria-selected="true" tabindex="0" data-layer-id="node-mv6jste4-78ygxp9gg9k" class="layer-row fl h-30 bord-dark-b selected " draggable="true" style="padding-left: 30px; --drop-indent: 0px;"><button class="layer-eye w-30 fl fl-center" aria-label="Hide Layer 4" title="Hide" data-pointer-button="true" style=""><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/eye.svg"></button><span class="layer-name fl-1 txt-left" title="Layer 4" style="padding-left: 8px;"><small style="font-size: 11px;"><b>Layer 4</b></small></span></div><div role="treeitem" aria-level="1" aria-selected="false" tabindex="0" data-layer-id="layer-1" class="layer-row fl h-30 bord-dark-b  " draggable="true" style="padding-left: 30px; --drop-indent: 0px;"><button class="layer-eye w-30 fl fl-center" aria-label="Show Layer 1" title="Show" data-pointer-button="true" style="background: rgb(52, 152, 219);"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/eye-active.svg"></button><span class="layer-name fl-1 txt-left" title="Layer 1" style="padding-left: 8px;"><small style="font-size: 11px;"><b>Layer 1</b></small></span></div></div></div><div id="frames" style="padding-bottom: 30px;"><div class="timeline-ruler bg-mid bord-dark-b" role="slider" aria-label="Current frame" aria-valuemin="1" aria-valuemax="100" aria-valuenow="1" aria-disabled="false" tabindex="0" style="width: 3000px;"><div class="timeline-ruler-cell is-active" aria-hidden="true"><span>1</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>5</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>10</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>15</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>20</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>25</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>30</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>35</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>40</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>45</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>50</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>55</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>60</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>65</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>70</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>75</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>80</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>85</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>90</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>95</span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span></span></div><div class="timeline-ruler-cell" aria-hidden="true"><span>100</span></div></div><div id="timeline-surface" style="position: relative; width: 3000px; height: 120px; cursor: pointer;"><canvas id="timeline-canvas" width="2460" height="240" style="position: absolute; pointer-events: none; width: 1230px; height: 120px; left: 0px; top: 0px;"></canvas></div></div></div></div></div><div id="right-bar" class="bg-light bord-dark-l fl-column" style="max-width: 241px; min-width: 241px;"><div class="bord-dark-b fl-1 overflow hide-scroll fl fl-column"><div class="h-30 bg-mid bord-dark-b fl fl-center-y p-h-10"><small><b>Color</b></small></div><div class="fl-1 fl-column overflow-none p-10"><div class="b-r-2 overflow-none fl-column"><input id="color-hue-range" type="range" min="0" max="360" class="fl-1 m-0" style="min-height: 26px; background: linear-gradient(to right, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0) 100%);"><input id="color-saturation-range" type="range" min="0" max="100" class="fl-1 m-0" style="min-height: 26px; background: linear-gradient(to right, rgb(128, 128, 128) 0%, rgb(255, 0, 0) 100%);"><input id="color-lightness-range" type="range" min="0" max="100" class="fl-1 m-0" style="min-height: 26px; background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgb(255, 0, 0) 50%, rgb(255, 255, 255) 100%);"></div><div class="p-v-10"><div class="fl fl-center-y" style="margin-bottom: 2px;"><small style="width: 50px; font-size: 11px;">HSL</small><input id="color-hue-text" class="fl-1" type="number" style="margin-right: 2px;"><input id="color-saturation-text" class="fl-1" type="number" style="margin-right: 2px;"><input id="color-lightness-text" class="fl-1" type="number" style="margin-right: 0px;"></div><div class="fl fl-center-y" style="margin-bottom: 2px;"><small style="width: 50px; font-size: 11px;">RGB</small><input id="color-red-text" class="fl-1" type="number" style="margin-right: 2px;"><input id="color-green-text" class="fl-1" type="number" style="margin-right: 2px;"><input id="color-blue-text" class="fl-1" type="number" style="margin-right: 0px;"></div></div><div class="fl" style="gap: 10px; margin-bottom: 10px;"><div class="fl-1 fl" style="gap: 5px;"><div class="fl-1 fl" style="gap: 5px; align-items: center;"><button title="Restore Previous Color" class="m-0 p-0 bord-dark b-r-2" data-pointer-button="true" style="width: 18px; height: 18px; min-width: 0px; flex-shrink: 0; background: rgb(55, 55, 43);"></button><div title="Current Color" class="fl-1 no-ptr h-25 b-r-2 bord-dark" style="background: rgb(23, 22, 22);"></div></div><button title="Add Color" class="w-30 h-25 fl fl-center bg-dark bord-dark b-r-2" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/insert.svg"></button></div><div class="fl-1 fl" style="align-items: center; justify-content: space-between;"><div id="palette-list" class="fl-1 fl" style="gap: 5px; justify-content: flex-end;"><button title="New Palette" class="w-30 h-25 fl fl-center bg-dark bord-dark b-r-2" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/insert.svg"></button><button title="Delete Palette" class="w-30 h-25 fl fl-center bg-dark bord-dark b-r-2" data-pointer-button="true"><img src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/delete.svg"></button></div></div></div><div class="fl-1 fl overflow palette-rows" style="gap: 10px;"><div id="color-list" class="fl-1 fl fl-wrap overflow hide-scroll b-r-2 bord-dark bg-mid" style="align-content: baseline; display: grid; grid-template-columns: repeat(3, 1fr);"><button class="m-0" data-pointer-button="true" style="min-height: 25px; background: rgb(255, 255, 255); border: 2px solid rgba(61, 61, 61, 0); box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 1px inset;"></button><button class="m-0" data-pointer-button="true" style="min-height: 25px; background: rgb(236, 236, 236); border: 2px solid rgba(61, 61, 61, 0); box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 1px inset;"></button><button class="m-0" data-pointer-button="true" style="min-height: 25px; background: rgb(183, 182, 182); border: 2px solid rgba(61, 61, 61, 0); box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 1px inset;"></button></div><div class="fl-1 fl-column overflow hide-scroll bord-dark b-r-2 bg-mid" style="gap: 10px;"><div class="fl-1 w-full fl fl-column"><button class="fl " data-pointer-button="true" style="min-height: 25px; padding: 0px; overflow: hidden;"><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 0, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(26, 188, 156);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(46, 204, 113);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(52, 152, 219);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(155, 89, 182);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(52, 73, 94);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(22, 160, 133);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(39, 174, 96);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(41, 128, 185);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(142, 68, 173);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(44, 62, 80);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(241, 196, 15);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(230, 126, 34);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(231, 76, 60);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(236, 240, 241);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(149, 165, 166);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(243, 156, 18);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(211, 84, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(192, 57, 43);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(189, 195, 199);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(127, 140, 141);"></div></button><button class="fl " data-pointer-button="true" style="min-height: 25px; padding: 0px; overflow: hidden;"><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 0, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(252, 252, 252);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(248, 248, 248);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(188, 188, 188);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(124, 124, 124);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(164, 228, 252);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(60, 188, 252);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 120, 248);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 0, 252);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(184, 184, 248);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(104, 136, 252);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 88, 248);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 0, 188);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(216, 184, 248);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(152, 120, 248);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(104, 68, 252);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(68, 40, 188);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(248, 184, 248);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(248, 120, 248);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(216, 0, 204);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(148, 0, 132);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(248, 164, 192);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(248, 88, 152);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(228, 0, 88);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(168, 0, 32);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(240, 208, 176);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(248, 120, 88);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(248, 56, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(168, 16, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(252, 224, 168);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(252, 160, 68);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(228, 92, 16);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(136, 20, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(248, 216, 120);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(248, 184, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(172, 124, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(80, 48, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(216, 248, 120);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(184, 248, 24);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 184, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 120, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(184, 248, 184);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(88, 216, 84);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 168, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 104, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(184, 248, 216);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(88, 248, 152);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 168, 68);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 88, 0);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 252, 252);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 232, 216);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 136, 136);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(0, 64, 88);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(248, 216, 248);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(120, 120, 120);"></div></button><button class="fl bord-blue" data-pointer-button="true" style="min-height: 25px; padding: 0px; overflow: hidden;"><div style="flex: 1 1 0%; height: 100%; background: rgb(255, 255, 255);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(236, 236, 236);"></div><div style="flex: 1 1 0%; height: 100%; background: rgb(183, 182, 182);"></div></button></div></div></div></div></div><div class="bord-dark-b fl-column overflow" style="min-height: 199px; max-height: 199px;"><div class="h-30 bg-mid bord-dark-b fl fl-center-y p-h-10"><small><b>History</b></small></div><div class="fl-1 overflow"><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr bg-xlight"><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/insert(1).svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>Insert New Drawing</b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/insert(1).svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>Insert Layer</b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/delete(1).svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>Delete Layer</b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button><button class="p-h-10 h-30 w-full txt-left fl fl-center-y no-ptr "><img width="10" height="10" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/pencil.svg" style="margin-right: 10px;"><small style="text-transform: capitalize; font-size: 11px;"><b>pencil </b></small></button></div></div></div></div><div aria-label="Download" class="abs top left w-full h-full fl fl-center-x" data-modal-focus="true" role="dialog" aria-modal="true" tabindex="-1" style="z-index: 10;"><div class="w-full" style="max-width: 300px; overflow: hidden; margin-top: 175px;"><div class="fl fl-center bg-mid bord-dark p-v-5" style="border-top-right-radius: 5px; border-top-left-radius: 5px;"><small class="bold">Download</small></div><div class="p-10 bg-light bord-dark-l bord-dark-r bord-dark-b" style="border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;"><div class="m-5 p-v-5"><div class="fl fl-center"><small class="bold" style="width: 100px;">Type</small><div class="fl-1 select"><select id="config-download-type" class="w-full"><option value="gif">GIF</option><option value="frame">Frame</option><option value="spritesheet">Spritesheet</option><option value="mp4">MP4</option></select></div></div></div><div class="m-5 p-v-5"><div class="fl fl-center"><small class="bold" style="width: 100px;">Size</small><div class="fl-1 select"><select id="config-download-size" class="w-full"><option value="1">1x</option><option value="2">2x</option><option value="4">4x</option><option value="8">8x</option><option value="16">16x</option><option value="32">32x</option><option value="64">64x</option></select></div></div></div><div class="fl" style="padding-top: 5px;"><button class="b-r-2 bold p-5 w-full bg-red m-5">Cancel</button><button class="b-r-2 bold p-5 w-full m-5 bg-green">Download</button></div><div class="export-resolution" role="status" aria-live="polite" aria-atomic="true"><small>Output: <strong>64 × 64 px</strong> · 1×</small><small>1 Frame · 64 × 64 px per frame</small></div></div></div></div></div></div>
+
+		<script src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/localforage.min.js.download" onerror="window.spReportError('storage_load', 'Browser storage library failed to load', 'localforage.min.js', 0)"></script>
+
+		<!-- Landing page localization -->
+		<script>
+			(function() {
+				var ru = {
+					'landing.title': "SpritePaint — Бесплатный онлайн-редактор пиксель-арта и спрайтов",
+					'landing.metaDescription': "Бесплатный онлайн-редактор пиксель-арта и инструмент для анимации. Рисуйте спрайты, создавайте покадровую анимацию, экспортируйте спрайт-листы, GIF и PNG. Без скачивания.",
+					'landing.ogDescription': "Бесплатный онлайн-редактор пиксель-арта и инструмент для анимации. Рисуйте спрайты, создавайте покадровую анимацию, экспортируйте спрайт-листы, GIF и PNG.",
+					'landing.startDrawing': "Начать рисовать",
+					'landing.heroTitle': "Онлайн-редактор <span>пиксель-арта<\/span> и спрайтов",
+					'landing.heroSubtitle': "Рисуйте спрайты, анимируйте их покадрово и экспортируйте в PNG, GIF или спрайт-листы — прямо в браузере.",
+					'landing.noAccount': "Без регистрации",
+					'landing.featuresHeading': "Всё необходимое и ничего лишнего",
+					'landing.drawingTools': "Инструменты рисования",
+					'landing.drawingToolsDesc': "Карандаш, ластик, линия, круг, прямоугольник, заливка, пипетка и выделение лассо. Регулируемые размеры кисти от 1 до 64 пикселей. Зеркальное рисование по осям X и Y для симметричных спрайтов.",
+					'landing.animation': "Покадровая анимация",
+					'landing.animationDesc': "Создавайте анимированные спрайты длиной до 100 кадров. Калька показывает предыдущие и следующие кадры в качестве ориентира. Настраивайте частоту кадров и просматривайте анимацию в реальном времени.",
+					'landing.layers': "Слои",
+					'landing.layersDesc': "Организуйте работу по слоям и вложенным группам. Дублируйте, меняйте порядок, переименовывайте, скрывайте и показывайте слои. У каждого слоя свои клипы кадров для сложных анимаций.",
+					'landing.export': "Гибкий экспорт",
+					'landing.exportDesc': "Экспортируйте работу в PNG, анимированные GIF, спрайт-листы или видео MP4 в поддерживаемых браузерах. Масштаб экспорта — от 1x до 64x. Подходит для игровых движков Unity, Godot или GameMaker.",
+					'landing.palettes': "Цветовые палитры",
+					'landing.palettesDesc': "Встроенные палитры, включая цвета NES, а также собственные палитры, которые можно сохранять и редактировать. Выбирайте цвета с помощью ползунков RGB или HSL. Пипетка для выбора любого цвета на холсте.",
+					'landing.guideHeading': "Как нарисовать пиксель-арт",
+					'landing.guideStep1Title': "Выберите небольшой холст.",
+					'landing.guideStep1Desc': "16x16 или 32x32 — классический размер для персонажей, предметов и иконок.",
+					'landing.guideStep2Title': "Нарисуйте силуэт.",
+					'landing.guideStep2Desc': "Обведите контур карандашом в 1 пиксель одним тёмным цветом.",
+					'landing.guideStep3Title': "Залейте основные цвета.",
+					'landing.guideStep3Desc': "Используйте заливку и ограниченную палитру — для начала достаточно 4–8 цветов.",
+					'landing.guideStep4Title': "Добавьте свет и тень.",
+					'landing.guideStep4Desc': "Выберите направление света: более тёмный оттенок — с теневой стороны, более светлый — с освещённой.",
+					'landing.guideStep5Title': "Экспортируйте.",
+					'landing.guideStep5Desc': "Сохраните PNG в масштабе 4x или 8x, чтобы каждый пиксель оставался чётким.",
+					'landing.guideAnimationHeading': "Пиксельная анимация",
+					'landing.guideAnimationDesc': "Добавьте кадры, включите кальку и рисуйте движение шаг за шагом. Для анимации ожидания хватает 2–4 кадров, для цикла ходьбы обычно нужно 4–8. Частота 8–12 кадров в секунду обычно выглядит естественно. Готовую анимацию можно скачать как GIF, спрайт-лист или видео MP4.",
+					'landing.guideSchoolsHeading': "Для школ и Chromebook",
+					'landing.guideSchoolsDesc': "SpritePaint работает полностью в браузере, поэтому его можно использовать на школьных компьютерах и Chromebook без установки и без учётных записей.",
+					'landing.share': "Делитесь мгновенно",
+					'landing.shareDesc': "Создайте ссылку для общего доступа к анимации одним нажатием. Без регистрации. Получатели могут просматривать и воспроизводить анимацию спрайта прямо в браузере.",
+					'landing.howItWorks': "Как это работает",
+					'landing.step1Title': "Выберите размер холста",
+					'landing.step1Desc': "От 2x2 до 500x500. Популярные размеры: 16x16, 32x32, 64x64.",
+					'landing.step2Title': "Нарисуйте спрайт",
+					'landing.step2Desc': "Используйте карандаш, фигуры и заливку. Добавляйте слои для персонажей, фонов и эффектов.",
+					'landing.step3Title': "Анимируйте",
+					'landing.step3Desc': "Добавляйте кадры, используйте кальку, просматривайте на любой скорости.",
+					'landing.step4Title': "Экспортируйте и делитесь",
+					'landing.step4Desc': "Скачайте в формате PNG, GIF или спрайт-лист — или поделитесь ссылкой.",
+					'landing.faqHeading': "Часто задаваемые вопросы",
+					'landing.faq1Q': "SpritePaint действительно бесплатный?",
+					'landing.faq1A': "Да, полностью бесплатный. Никаких скрытых платежей, водяных знаков на экспорте или обязательной регистрации.",
+					'landing.faq2Q': "Нужно ли что-то скачивать?",
+					'landing.faq2A': "Нет. SpritePaint полностью работает в вашем браузере — Chrome, Firefox, Safari и Edge на Windows, Mac, Linux и Chromebook.",
+					'landing.faq3Q': "Какие форматы экспорта поддерживаются?",
+					'landing.faq3A': "PNG, анимированные GIF, спрайт-листы и видео MP4 в поддерживаемых браузерах. Любой экспорт можно масштабировать от 1x до 64x.",
+					'landing.faq4Q': "Можно ли создавать анимированные спрайты?",
+					'landing.faq4A': "Да! До 100 кадров с калькой. Экспорт в GIF или спрайт-лист для игровых движков Unity, Godot или GameMaker.",
+					'landing.faq5Q': "Моя работа будет сохранена?",
+					'landing.faq5A': "Ваша работа автоматически сохраняется в браузере. Вы также можете сохранить её в файл .spritepaint для резервного копирования или переноса на другой компьютер.",
+					'landing.faq6Q': "Какие размеры холста доступны?",
+					'landing.faq6A': "От 2x2 до 500x500 пикселей. Популярные размеры спрайтов: 8x8, 16x16, 32x32, 64x64. Размер можно изменить в любой момент и при желании масштабировать рисунок под новый размер.",
+					'landing.readyToCreate': "Готовы творить?",
+					'landing.joinArtists': "Присоединяйтесь к тысячам пиксель-художников. Начните рисовать за считанные секунды.",
+					'landing.openApp': "Открыть SpritePaint",
+					'landing.footer': "SpritePaint — Бесплатный онлайн-редактор пиксель-арта и спрайтов"
+				};
+
+				function detectLang() {
+					var params = new URLSearchParams(window.location.search);
+					var langParam = params.get('lang');
+					if (langParam === 'ru') return 'ru';
+					if (langParam === 'en') return 'en';
+					var browserLang = navigator.language || navigator.userLanguage || 'en';
+					if (browserLang.indexOf('ru') === 0) return 'ru';
+					return 'en';
+				}
+
+				var lang = detectLang();
+				var langSource = new URLSearchParams(window.location.search).get('lang') ? 'url_param' : 'browser';
+				if (typeof gtag === 'function') {
+					gtag('event', 'language_detected', { detected_lang: lang, lang_source: langSource, page: 'landing' });
+				}
+				if (lang === 'ru') {
+					document.documentElement.lang = 'ru';
+					document.title = ru['landing.title'];
+
+					// Update meta tags
+					var metaDesc = document.querySelector('meta[name="description"]');
+					if (metaDesc) metaDesc.content = ru['landing.metaDescription'];
+
+					// Translate all data-i18n elements (textContent)
+					var els = document.querySelectorAll('[data-i18n]');
+					for (var i = 0; i < els.length; i++) {
+						var key = els[i].getAttribute('data-i18n');
+						if (ru[key]) els[i].textContent = ru[key];
+					}
+
+					// Translate all data-i18n-html elements (innerHTML, for tags like <span>)
+					var htmlEls = document.querySelectorAll('[data-i18n-html]');
+					for (var j = 0; j < htmlEls.length; j++) {
+						var htmlKey = htmlEls[j].getAttribute('data-i18n-html');
+						if (ru[htmlKey]) htmlEls[j].innerHTML = ru[htmlKey];
+					}
+				}
+			})();
+		</script>
+
+		<!-- Check if returning user before loading app -->
+		<script>
+			(function() {
+				var appLaunched = false;
+				var initialEntryTracked = false;
+				var landingEl = document.getElementById('landing');
+				var appEl = document.getElementById('app');
+
+				function trackPageView(eventName, params) {
+					try {
+						var context = window.spGetErrorContext ? window.spGetErrorContext(error) : {};
+						['canvas_size', 'operation', 'export_format'].forEach(function(key) {
+							if (typeof context[key] === 'string') params[key] = context[key].slice(0, 100);
+						});
+						['drawing_count', 'frame_count', 'layer_count', 'undo_depth', 'export_scale'].forEach(function(key) {
+							if (typeof context[key] === 'number' && isFinite(context[key]) && context[key] >= 0) params[key] = context[key];
+						});
+					} catch (ignored) { /* Partial startup or diagnostic failure must not hide the original error. */ }
+					if (window.location.hostname !== 'spritepaint.com') {
+						console.log('[GA]', eventName, params || {});
+						return;
+					}
+					if (typeof gtag === 'function') {
+						gtag('event', eventName, params || {});
+					}
+				}
+
+				function syncHistoryState(view, method) {
+					var state = { view: view };
+					var url = window.location.pathname + window.location.search + window.location.hash;
+
+					if (method === 'push') {
+						if (history.state && history.state.view === view) return;
+						history.pushState(state, '', url);
+						return;
+					}
+
+					history.replaceState(state, '', url);
+				}
+
+				// Record the initial boot outcome exactly once: landing or auto-opened app.
+				function trackInitialEntry(view, source) {
+					if (initialEntryTracked) return;
+					initialEntryTracked = true;
+
+					if (view === 'landing') {
+						trackPageView('landing_page_viewed', { entry_source: source || 'unknown' });
+						return;
+					}
+
+					trackPageView('app_auto_opened', { entry_source: source || 'unknown' });
+				}
+
+				function showEditor() {
+					appLaunched = true;
+					document.body.classList.remove('landing-mode');
+					document.body.classList.add('app-mode');
+					landingEl.style.display = 'none';
+					appEl.classList.remove('app-hidden');
+
+					if (document.getElementById('app-bundle-script')) return;
+
+					window.spEditorRequestedAt = Date.now(); // read by editor_ready as load_ms
+					var script = document.createElement('script');
+					script.id = 'app-bundle-script';
+					script.type = 'module';
+					window.spEditorPhase = 'startup';
+					script.src = 'bundle.js?v=' + window.spReleaseId;
+					script.onerror = function() {
+						window.spReportError('bundle_load', 'bundle.js failed to load', 'bundle.js', 0);
+					};
+					document.body.appendChild(script);
+				}
+
+				function launchApp(historyMode, source) {
+					if (!initialEntryTracked) {
+						trackInitialEntry('landing', 'cta_before_boot');
+					}
+					showEditor();
+					trackPageView('app_launched', { entry_source: source || 'unknown' });
+					if (historyMode) {
+						syncHistoryState('editor', historyMode);
+					}
+				}
+
+				function autoOpenApp(historyMode, source) {
+					showEditor();
+					trackInitialEntry('editor', source);
+					if (historyMode) {
+						syncHistoryState('editor', historyMode);
+					}
+				}
+
+				function showLanding(historyMode) {
+					appLaunched = false;
+					document.body.classList.add('landing-mode');
+					document.body.classList.remove('app-mode');
+					landingEl.style.display = '';
+					appEl.classList.add('app-hidden');
+					if (historyMode) {
+						syncHistoryState('landing', historyMode);
+					}
+				}
+
+				// Handle "Start Drawing" button clicks
+				document.getElementById('hero-start-btn').addEventListener('click', function(e) {
+					e.preventDefault();
+					launchApp('push', 'landing_cta');
+				});
+				document.getElementById('header-start-btn').addEventListener('click', function(e) {
+					e.preventDefault();
+					launchApp('push', 'landing_cta');
+				});
+				document.getElementById('final-start-btn').addEventListener('click', function(e) {
+					e.preventDefault();
+					launchApp('push', 'landing_cta');
+				});
+
+				syncHistoryState('landing', 'replace');
+
+				// Keep the visible view in sync for both back and forward navigation.
+				window.addEventListener('popstate', function(e) {
+					if (e.state && e.state.view === 'editor') {
+						launchApp(null, 'back_button');
+						return;
+					}
+
+					showLanding(null);
+				});
+
+				// Links from the topic landing pages (/pixel-art-maker/ etc.) use /#start
+				// to open the editor directly instead of showing this landing page again.
+				if (window.location.hash === '#start' || window.location.hash === '#retry') {
+					var entrySource = window.location.hash === '#retry' ? 'storage_retry' : 'topic_page_cta';
+					history.replaceState(history.state, '', window.location.pathname + window.location.search);
+					autoOpenApp('replace', entrySource);
+				}
+
+				// Check if returning user (has a saved SpritePaint project)
+				// Keep these keys aligned with app/project-storage.js.
+				Promise.resolve().then(function() {
+					if (typeof localforage === 'undefined') throw new Error('Browser storage library unavailable');
+					return localforage.getItem('pixel-art-app-v2');
+				}).then(function(current) {
+					return current == null ? localforage.getItem('pixel-art-app') : current;
+				}).then(function(savedProject) {
+					if (savedProject) {
+						// Returning user — skip landing, go straight to editor
+						if (!appLaunched) {
+							autoOpenApp('replace', 'returning_user');
+						}
+					} else {
+						// New user — they're actually seeing the landing page
+						trackInitialEntry('landing', 'no_saved_project');
+					}
+				}).catch(function() {
+					// If localforage fails, show landing page as default
+					trackInitialEntry('landing', 'storage_error');
+				});
+
+			})();
+		</script>
+	
+
+<script id="app-bundle-script" type="module" src="./SpritePaint — Free Online Pixel Art Maker &amp; Sprite Editor_files/bundle.js.download"></script></body></html>

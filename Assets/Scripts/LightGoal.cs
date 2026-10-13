@@ -36,6 +36,9 @@ public class LightGoal : MonoBehaviour
     [Tooltip("Fires once, the first time this goal is lit. Hook up sounds, hide a coloured seal, etc.")]
     public UnityEvent OnUnlocked;
 
+
+    public UnityEvent OnLocked;
+
     public bool IsUnlocked { get; private set; }
 
     [Header("Visuals")]
@@ -127,6 +130,11 @@ public class LightGoal : MonoBehaviour
         {
             IsUnlocked = true;
             OnUnlocked?.Invoke();
+        }
+
+        if (!lit && IsUnlocked) {
+           IsUnlocked = false;
+           OnLocked?.Invoke();
         }
 
         SetActivated(lit);
