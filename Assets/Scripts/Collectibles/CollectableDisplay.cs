@@ -18,8 +18,8 @@ public class CollectableDisplay : MonoBehaviour
     private EventTrigger EventListener;
     private Dictionary<string, int> RequisiteCounters = new();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Awake runs before OnEnable, so the references are ready when OnEnable checks the unlock state
+    void Awake()
     {
         ImageRender = gameObject.GetComponent<Image>();
 
@@ -32,10 +32,23 @@ public class CollectableDisplay : MonoBehaviour
         EventListener.enabled = false;
     }
 
+    // On scene load OnEnable can run before CollectableManager has registered itself, so check again here
+    void Start()
+    {
+        TryUnlock();
+    }
 
     void OnEnable()
     {
-        Debug.Assert(CollectableManager.Instance != null);
+        TryUnlock();
+    }
+
+    private void TryUnlock()
+    {
+        if (CollectableManager.Instance == null)
+        {
+            return;
+        }
 
         if (RequisiteFlags.Any(flag => !CollectableManager.Instance.GetFlag(flag)))
         {

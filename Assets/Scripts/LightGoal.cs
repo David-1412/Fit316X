@@ -7,7 +7,7 @@ using UnityEngine.Events;
 /// Place on any GameObject with a Collider2D (isTrigger = false).
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class LightGoal : MonoBehaviour
+public class LightGoal : MonoBehaviour, ISaveableState
 {
     [Header("Puzzle Settings")]
     [Tooltip("The beam colour required to activate this goal.")]
@@ -35,6 +35,9 @@ public class LightGoal : MonoBehaviour
 
     [Tooltip("Fires once, the first time this goal is lit. Hook up sounds, hide a coloured seal, etc.")]
     public UnityEvent OnUnlocked;
+
+
+    public UnityEvent OnLocked;
 
     public bool IsUnlocked { get; private set; }
 
@@ -129,6 +132,11 @@ public class LightGoal : MonoBehaviour
             OnUnlocked?.Invoke();
         }
 
+        if (!lit && IsUnlocked) {
+           IsUnlocked = false;
+           OnLocked?.Invoke();
+        }
+
         SetActivated(lit);
         incomingBeams.Clear();
     }
@@ -152,6 +160,22 @@ public class LightGoal : MonoBehaviour
         float r = 0, g = 0, b = 0;
         foreach (var c in colors) { r += c.r; g += c.g; b += c.b; }
         return new Color(r / colors.Count, g / colors.Count, b / colors.Count, 1f);
+    }
+
+    // ── ISaveableState ────────────────────────────────────────────────────
+    public string CaptureState() => IsUnlocked ? "unlocked" : "locked";
+
+    /// <summary>
+    /// Re-unlocks the goal and re-fires OnUnlocked so whatever it opens (e.g. a grate
+    /// door) is open again. Goals that aren't "stay lit" relight from the beams.
+    /// </summary>
+    public void RestoreState(string state)
+    {
+        if (state != "unlocked" || IsUnlocked) return;
+
+        IsUnlocked = true;
+        if (stayLitOnceUnlocked) SetActivated(true);
+        OnUnlocked?.Invoke();
     }
 
     // ── Internal ──────────────────────────────────────────────────────────
@@ -184,6 +208,10 @@ public class LightGoal : MonoBehaviour
     /// <summary>Loose colour comparison with tolerance per channel.</summary>
     private static bool ColorsMatch(Color a, Color b, float tol)
     {
+        if (tol == 1)
+        {
+            return true;
+        }
         return Mathf.Abs(a.r - b.r) < tol &&
                Mathf.Abs(a.g - b.g) < tol &&
                Mathf.Abs(a.b - b.b) < tol;

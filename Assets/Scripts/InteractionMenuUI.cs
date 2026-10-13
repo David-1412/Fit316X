@@ -44,9 +44,33 @@ public class InteractionMenuUI : MonoBehaviour
         ShowMenu(options);
     }
 
+    // Each floor scene wires this to its own UICanvas, but only the first UICanvas survives
+    // (PersistentObject destroys the duplicates), so re-find the live one when ours is gone.
+    private void ResolveReferences()
+    {
+        if (menuPanel != null && contentContainer != null && buttonPrefab != null) return;
+
+        foreach (Transform t in FindObjectsByType<Transform>(FindObjectsInactive.Include))
+        {
+            if (t == null || !t.gameObject.scene.IsValid()) continue; // skip prefab assets
+            if (menuPanel == null && t.name == "InteractionMenuPanel") menuPanel = t.gameObject;
+            else if (buttonPrefab == null && t.name == "InteractionButtonTemplate") buttonPrefab = t.gameObject;
+        }
+
+        if (menuPanel != null && contentContainer == null)
+            contentContainer = menuPanel.transform.Find("ContentContainer");
+    }
+
     public void ShowMenu(List<InteractionOption> options)
     {
         if (options == null || options.Count == 0) return;
+
+        ResolveReferences();
+        if (menuPanel == null || contentContainer == null || buttonPrefab == null)
+        {
+            Debug.LogError("InteractionMenuUI: could not find InteractionMenuPanel / ContentContainer / InteractionButtonTemplate in the loaded UICanvas.");
+            return;
+        }
 
         currentOptions = new List<InteractionOption>(options);
         selectedIndex = 0;

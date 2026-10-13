@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : MonoBehaviour, IInteractable
+public class Chest : MonoBehaviour, IInteractable, ISaveableState
 {
     public bool IsOpened { get; private set; }
     public string ChestID { get; private set; }
@@ -36,6 +36,10 @@ public class Chest : MonoBehaviour, IInteractable
             droppedItem.GetComponent<BounceEffect>().StartBounce();
         }
     }
+
+    public string CaptureState() => IsOpened ? "1" : "0";
+
+    public void RestoreState(string state) => SetOpened(state == "1");
 
     public void SetOpened(bool opened)
     {

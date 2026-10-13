@@ -12,7 +12,7 @@ using System.Collections.Generic;
 ///   • Optionally assign an arrowRenderer (SpriteRenderer child) to show current direction.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class BeamRedirector : MonoBehaviour, IInteractable
+public class BeamRedirector : MonoBehaviour, IInteractable, ISaveableState
 {
     [Header("Visuals")]
     [Tooltip("Optional child SpriteRenderer that rotates to show output direction (e.g. an arrow sprite).")]
@@ -52,6 +52,18 @@ public class BeamRedirector : MonoBehaviour, IInteractable
         rotationState = (rotationState + 1) % 4;
         ApplyRotationVisual();
         SoundEffectManager.Play("PickUp");
+    }
+
+    // ── ISaveableState ────────────────────────────────────────────────────
+    public string CaptureState() => rotationState.ToString();
+
+    public void RestoreState(string state)
+    {
+        if (int.TryParse(state, out int saved))
+        {
+            rotationState = ((saved % 4) + 4) % 4;
+            ApplyRotationVisual();
+        }
     }
 
     // ── Helpers ───────────────────────────────────────────────────────────

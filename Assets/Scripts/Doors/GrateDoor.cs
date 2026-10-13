@@ -3,35 +3,62 @@ using UnityEngine;
 public class GrateDoor : MonoBehaviour
 {
 
-    public float height = 4;
+    public float distance = 4;
+    public Vector2 direction = Vector2.up;
+    public float speed = 1;
+    
 
     private Transform transformComp;
     public GameObject wall;
-    private bool open = false;
+    private bool opening = false;
+    private bool closeing = false;
+    private float movement = 0;
  
 
     private void Start()
     {
         transformComp = gameObject.GetComponent<Transform>();
-        height += transformComp.position.y;
     }
 
 
 
     private void Update()
     {
-        if (open)
+        if (opening)
         {
             
-            transformComp.Translate(Vector2.up * Time.deltaTime);
+            transformComp.Translate(direction * Time.deltaTime * speed);
+            movement += speed * Time.deltaTime;
 
-            if(transformComp.position.y >= height) { gameObject.SetActive(false); }
+            if(movement >= distance) { 
+                wall.SetActive(false);
+                opening = false;
+            }
         } 
+        if (closeing)
+        {
+            transformComp.Translate(-1 * direction * Time.deltaTime * speed);
+            movement -= speed * Time.deltaTime;
+
+            if (movement <= 0)
+            {
+                wall.SetActive(true);
+                closeing = false;
+            }
+        }
     }
 
     public void OpenGrateDoor()
     {
-        open = true;
-        Destroy(wall);
+        opening = true;
+        closeing = false;
+        
+    }
+
+
+    public void CloseGrateDoor()
+    {
+        opening = false;
+        closeing = true;
     }
 }

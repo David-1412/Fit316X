@@ -16,8 +16,9 @@ public class BasicCollectible : MonoBehaviour, IMultiInteractable, ICollectible
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        CollectableManager.Instance.SetFlag(collectableID, false);
-        Debug.Log(CollectableManager.Instance);
+        // Register the flag as "not found yet" without wiping a saved pickup
+        if (!CollectableManager.Instance.HasFlag(collectableID))
+            CollectableManager.Instance.SetFlag(collectableID, false);
     }
 
     
