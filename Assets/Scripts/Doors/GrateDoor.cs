@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GrateDoor : MonoBehaviour
+public class GrateDoor : MonoBehaviour, ISaveableState
 {
 
     public float distance = 4;
@@ -41,5 +41,16 @@ public class GrateDoor : MonoBehaviour
     {
         open = true;
         
+    }
+
+    // Saved as open even mid-slide; on load it's opened instantly
+    public string CaptureState() => open || !gameObject.activeSelf ? "open" : "closed";
+
+    public void RestoreState(string state)
+    {
+        if (state != "open") return;
+        open = true;
+        if (wall != null) Destroy(wall);
+        gameObject.SetActive(false);
     }
 }

@@ -31,6 +31,58 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
         if (s_FloorOrder.Contains(sceneName)) s_VisitedFloors.Add(sceneName);
     }
 
+    // ── Save support ───────────────────────────────────────────────────────
+    public static List<string> GetVisitedFloors() => s_VisitedFloors.ToList();
+
+    /// <summary>Replaces the visited floors (null clears them, e.g. for New Game).</summary>
+    public static void SetVisitedFloors(IEnumerable<string> floors)
+    {
+        s_VisitedFloors.Clear();
+        if (floors != null)
+        {
+            foreach (string floor in floors) RecordVisit(floor);
+        }
+        RecordVisit(SceneManager.GetActiveScene().name);
+    }
+
+    private static readonly (string name, Color colour)[] s_CoreColours =
+    {
+        ("Red", Color.red), ("Green", Color.green), ("Blue", Color.blue),
+        ("White", Color.white), ("Black", Color.black)
+    };
+
+    /// <summary>Cores in the elevator, as colour names ("Red", "Blue"...).</summary>
+    public List<string> GetPlacedCoreNames()
+    {
+        var names = new List<string>();
+        foreach (var colour in currentColours)
+        {
+            foreach (var core in s_CoreColours)
+            {
+                if (core.colour == colour) { names.Add(core.name); break; }
+            }
+        }
+        return names;
+    }
+
+    /// <summary>Puts cores back into the elevator from saved colour names.</summary>
+    public void SetPlacedCores(IEnumerable<string> coreNames)
+    {
+        currentColours.Clear();
+        if (coreNames == null) return;
+        foreach (string coreName in coreNames)
+        {
+            foreach (var core in s_CoreColours)
+            {
+                if (core.name == coreName && !currentColours.Contains(core.colour))
+                {
+                    currentColours.Add(core.colour);
+                    break;
+                }
+            }
+        }
+    }
+
     // Floor details
     private struct FloorDetails
     {
@@ -275,6 +327,9 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
 
         // Update gem locations
         
+
+        // Remember this floor's puzzle progress before leaving it
+        SaveController.CaptureCurrentFloor();
 
         // Ensure pause state is cleared before switching scenes
         PauseController.SetPause(false);

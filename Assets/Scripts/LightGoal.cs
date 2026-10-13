@@ -7,7 +7,7 @@ using UnityEngine.Events;
 /// Place on any GameObject with a Collider2D (isTrigger = false).
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class LightGoal : MonoBehaviour
+public class LightGoal : MonoBehaviour, ISaveableState
 {
     [Header("Puzzle Settings")]
     [Tooltip("The beam colour required to activate this goal.")]
@@ -152,6 +152,22 @@ public class LightGoal : MonoBehaviour
         float r = 0, g = 0, b = 0;
         foreach (var c in colors) { r += c.r; g += c.g; b += c.b; }
         return new Color(r / colors.Count, g / colors.Count, b / colors.Count, 1f);
+    }
+
+    // ── ISaveableState ────────────────────────────────────────────────────
+    public string CaptureState() => IsUnlocked ? "unlocked" : "locked";
+
+    /// <summary>
+    /// Re-unlocks the goal and re-fires OnUnlocked so whatever it opens (e.g. a grate
+    /// door) is open again. Goals that aren't "stay lit" relight from the beams.
+    /// </summary>
+    public void RestoreState(string state)
+    {
+        if (state != "unlocked" || IsUnlocked) return;
+
+        IsUnlocked = true;
+        if (stayLitOnceUnlocked) SetActivated(true);
+        OnUnlocked?.Invoke();
     }
 
     // ── Internal ──────────────────────────────────────────────────────────
