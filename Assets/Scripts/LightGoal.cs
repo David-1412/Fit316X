@@ -184,6 +184,10 @@ public class LightGoal : MonoBehaviour
     /// <summary>Loose colour comparison with tolerance per channel.</summary>
     private static bool ColorsMatch(Color a, Color b, float tol)
     {
+        if (tol == 1)
+        {
+            return true;
+        }
         return Mathf.Abs(a.r - b.r) < tol &&
                Mathf.Abs(a.g - b.g) < tol &&
                Mathf.Abs(a.b - b.b) < tol;

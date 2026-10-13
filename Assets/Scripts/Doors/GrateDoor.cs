@@ -3,17 +3,21 @@ using UnityEngine;
 public class GrateDoor : MonoBehaviour
 {
 
-    public float height = 4;
+    public float distance = 4;
+    public Vector2 direction = Vector2.up;
+    public float speed = 1;
+    
 
     private Transform transformComp;
     public GameObject wall;
     private bool open = false;
+    private float movement = 0;
  
 
     private void Start()
     {
         transformComp = gameObject.GetComponent<Transform>();
-        height += transformComp.position.y;
+        distance += transformComp.position.y;
     }
 
 
@@ -23,15 +27,19 @@ public class GrateDoor : MonoBehaviour
         if (open)
         {
             
-            transformComp.Translate(Vector2.up * Time.deltaTime);
+            transformComp.Translate(direction * Time.deltaTime * speed);
+            movement += speed * Time.deltaTime;
 
-            if(transformComp.position.y >= height) { gameObject.SetActive(false); }
+            if(movement >= distance) { 
+                gameObject.SetActive(false);
+                Destroy(wall);
+            }
         } 
     }
 
     public void OpenGrateDoor()
     {
         open = true;
-        Destroy(wall);
+        
     }
 }
