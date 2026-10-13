@@ -18,7 +18,7 @@ using System.Collections.Generic;
 ///     Splitters without signs keep their original colour feedback.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class BeamSplitter : MonoBehaviour, IInteractable
+public class BeamSplitter : MonoBehaviour, IInteractable, ISaveableState
 {
     public enum SplitterType
     {
@@ -105,6 +105,18 @@ public class BeamSplitter : MonoBehaviour, IInteractable
         RefreshVisual();
         SoundEffectManager.Play("PickUp");
         Debug.Log($"[BeamSplitter] {name} switched to {splitterType}");
+    }
+
+    // ── ISaveableState ────────────────────────────────────────────────────
+    public string CaptureState() => splitterType.ToString();
+
+    public void RestoreState(string state)
+    {
+        if (System.Enum.TryParse(state, out SplitterType saved))
+        {
+            splitterType = saved;
+            RefreshVisual();
+        }
     }
 
     // ── Visuals ───────────────────────────────────────────────────────────

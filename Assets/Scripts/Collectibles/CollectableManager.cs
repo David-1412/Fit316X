@@ -1,7 +1,6 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 
 public class CollectableManager : MonoBehaviour
@@ -12,70 +11,47 @@ public class CollectableManager : MonoBehaviour
 
     public static CollectableManager Instance { get; private set; }
 
-    private string collectablesFlagsFile;
-    private string collectablesStacksFile;
-
-    // Awake (not Start) so Instance exists before other objects' OnEnable runs
+    // Register in Awake so other scripts can use Instance from their OnEnable/Start
     void Awake()
     {
-        if (Instance == null) {
-            Instance = this;
-        }
-
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        Debug.Assert(Instance != null);
-
-
-        collectablesFlagsFile = Application.persistentDataPath + "/collectablesFlags.json";
-
-
-        if (!File.Exists(collectablesFlagsFile)){
-            File.Create(collectablesFlagsFile);
-            Debug.Log("Collectable Flag Save file created");
-        } else
-        {
-            JsonUtility.FromJsonOverwrite(File.ReadAllText(collectablesFlagsFile), CollectableFlags);
-            Debug.Log("Saved Flags Recovered");
-        }
-
-        collectablesStacksFile = Application.persistentDataPath + "/collectablesStacks.json";
-        if (!File.Exists(collectablesStacksFile))
-        {
-            File.Create(collectablesStacksFile);
-            Debug.Log("Collectable Stack Save file created");
-        }
-        else
-        {
-            JsonUtility.FromJsonOverwrite(File.ReadAllText(collectablesStacksFile), CollectableStacks);
-            Debug.Log("Saved Stacks Recovered");
-        }
-
+        Instance = this;
     }
 
+    // ── Save support (stored inside the main save by SaveController) ──────
+    public List<StringBoolPair> ExportFlags()
+    {
+        var list = new List<StringBoolPair>();
+        foreach (KeyValuePair<string, bool> pair in CollectableFlags)
+            list.Add(new StringBoolPair { key = pair.Key, value = pair.Value });
+        return list;
+    }
 
+    public List<StringIntPair> ExportStacks()
+    {
+        var list = new List<StringIntPair>();
+        foreach (KeyValuePair<string, int> pair in CollectableStacks)
+            list.Add(new StringIntPair { key = pair.Key, value = pair.Value });
+        return list;
+    }
 
+    public void Import(List<StringBoolPair> flags, List<StringIntPair> stacks)
+    {
+        CollectableFlags.Clear();
+        CollectableStacks.Clear();
+        if (flags != null) foreach (StringBoolPair pair in flags) CollectableFlags[pair.key] = pair.value;
+        if (stacks != null) foreach (StringIntPair pair in stacks) CollectableStacks[pair.key] = pair.value;
+    }
+
+    /// <summary>Kept for existing callers; collectables are now written by SaveController.</summary>
     public void save()
     {
-        if (!File.Exists(collectablesFlagsFile))
-        {
-            File.Create(collectablesFlagsFile);
-            Debug.Log("Collectable Flag Save file created");
-        }
-
-        if (!File.Exists(collectablesStacksFile))
-        {
-            File.Create(collectablesStacksFile);
-            Debug.Log("Collectable Stack Save file created");
-        }
-
-
-        File.WriteAllText(collectablesFlagsFile, JsonUtility.ToJson(CollectableFlags));
-        File.WriteAllText(collectablesStacksFile, JsonUtility.ToJson(CollectableStacks));
+        SaveController.Instance?.SaveGame();
     }
 
 
@@ -88,6 +64,8 @@ public class CollectableManager : MonoBehaviour
 
 
     // Basic Flags
+    public bool HasFlag(string flag) => CollectableFlags.ContainsKey(flag);
+
     public void SetFlag(string flag, bool value)
     {
         CollectableFlags[flag] = value;

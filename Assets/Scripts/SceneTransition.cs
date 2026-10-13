@@ -36,6 +36,9 @@ public class SceneTransition : MonoBehaviour
         s_HasPendingPosition = true;
         s_UseSpawnMarker     = useSpawnMarker;
 
+        // Remember this floor's puzzle progress before leaving it
+        SaveController.CaptureCurrentFloor();
+
         // Ensure pause state is cleared before switching scenes
         PauseController.SetPause(false);
 

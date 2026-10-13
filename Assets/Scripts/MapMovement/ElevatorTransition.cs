@@ -31,6 +31,58 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
         if (s_FloorOrder.Contains(sceneName)) s_VisitedFloors.Add(sceneName);
     }
 
+    // ── Save support ───────────────────────────────────────────────────────
+    public static List<string> GetVisitedFloors() => s_VisitedFloors.ToList();
+
+    /// <summary>Replaces the visited floors (null clears them, e.g. for New Game).</summary>
+    public static void SetVisitedFloors(IEnumerable<string> floors)
+    {
+        s_VisitedFloors.Clear();
+        if (floors != null)
+        {
+            foreach (string floor in floors) RecordVisit(floor);
+        }
+        RecordVisit(SceneManager.GetActiveScene().name);
+    }
+
+    private static readonly (string name, Color colour)[] s_CoreColours =
+    {
+        ("Red", Color.red), ("Green", Color.green), ("Blue", Color.blue),
+        ("White", Color.white), ("Black", Color.black)
+    };
+
+    /// <summary>Cores in the elevator, as colour names ("Red", "Blue"...).</summary>
+    public List<string> GetPlacedCoreNames()
+    {
+        var names = new List<string>();
+        foreach (var colour in currentColours)
+        {
+            foreach (var core in s_CoreColours)
+            {
+                if (core.colour == colour) { names.Add(core.name); break; }
+            }
+        }
+        return names;
+    }
+
+    /// <summary>Puts cores back into the elevator from saved colour names.</summary>
+    public void SetPlacedCores(IEnumerable<string> coreNames)
+    {
+        currentColours.Clear();
+        if (coreNames == null) return;
+        foreach (string coreName in coreNames)
+        {
+            foreach (var core in s_CoreColours)
+            {
+                if (core.name == coreName && !currentColours.Contains(core.colour))
+                {
+                    currentColours.Add(core.colour);
+                    break;
+                }
+            }
+        }
+    }
+
     // Floor details
     private struct FloorDetails
     {
@@ -45,9 +97,9 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     private List<FloorDetails> floorDetails = new List<FloorDetails> { 
         new FloorDetails("F4", Color.red),
         new FloorDetails("F2", Color.green),
-        new FloorDetails("F3", Color.blue),
+        new FloorDetails("F3", Color.white),
         new FloorDetails("F0", Color.black),
-        new FloorDetails("F5", Color.white)
+        new FloorDetails("F5", Color.blue)
     };
 
 
@@ -198,10 +250,6 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
         {
             if (currentColours.Any((c) => c == floor.colour)) destinations.Add(floor.name);
         }
-        if (currentColours.Any((c) => c == Color.blue) && currentColours.Any((c) => c == Color.green) && currentColours.Any((c) => c == Color.red))
-        {
-            destinations.Add("F5");
-        }
         destinations.Remove(SceneManager.GetActiveScene().name);
 
         // Known floors in order first, then anything else (e.g. F0)
@@ -236,11 +284,11 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     {
         if (currentColours.Any((c) => c == colour)){ShowPopup("Gem already in machine"); return; }
 
-        InventoryController.Instance?.RemoveItemByName("CoreGem" + colourName(colour), 1);;
+        InventoryController.Instance?.RemoveItemByName(colourName(colour) + " Core", 1);
         currentColours.Add(colour);
 
         SoundEffectManager.Play("PickUp");
-        Debug.Log($"[Elevator] Placed '{"CoreGem" + colourName(colour)}'");
+        Debug.Log($"[Elevator] Placed {colourName(colour)} Core");
     }
 
 
@@ -280,6 +328,9 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
         // Update gem locations
         
 
+        // Remember this floor's puzzle progress before leaving it
+        SaveController.CaptureCurrentFloor();
+
         // Ensure pause state is cleared before switching scenes
         PauseController.SetPause(false);
         SceneManager.LoadScene(floorName);
@@ -318,8 +369,8 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     {
         if (c == Color.red) { return 4; }
         if (c == Color.green) { return 2; }
-        if (c == Color.blue) { return 3; }
-        if (c == Color.white) { return 5; }
+        if (c == Color.blue) { return 5; }
+        if (c == Color.white) { return 3; }
         if (c == Color.black) { return 0; }
         else { return 10; }
     }
