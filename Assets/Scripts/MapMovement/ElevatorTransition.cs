@@ -225,11 +225,11 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     {
         if (currentColours.Any((c) => c == colour)){ShowPopup("Gem already in machine"); return; }
 
-        InventoryController.Instance?.RemoveItemByName("CoreGem" + colourName(colour), 1);;
+        InventoryController.Instance?.RemoveItemByName(colourName(colour) + " Core", 1);
         currentColours.Add(colour);
 
         SoundEffectManager.Play("PickUp");
-        Debug.Log($"[Elevator] Placed '{"CoreGem" + colourName(colour)}'");
+        Debug.Log($"[Elevator] Placed {colourName(colour)} Core");
     }
 
 
