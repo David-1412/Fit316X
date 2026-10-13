@@ -723,7 +723,7 @@ public class FinalRooftopSceneManager : MonoBehaviour
         SetRect(bodyText.rectTransform, new Vector2(0.18f, 0.22f), new Vector2(0.82f, 0.64f), Vector2.zero, Vector2.zero);
         bodyText.text = body;
 
-        bool canReturn = Application.CanStreamedLevelBeLoaded(menuSceneName);
+        bool canReturn = CanLoadMenu();
         TMP_Text hint = CreateText("Hint", canvasObject.transform, 26f, new Color(1f, 1f, 1f, 0.6f), TextAlignmentOptions.Center);
         SetRect(hint.rectTransform, new Vector2(0.1f, 0.06f), new Vector2(0.9f, 0.14f), Vector2.zero, Vector2.zero);
         hint.text = canReturn ? "Press any key to return to the menu" : "Thank you for playing";
@@ -736,20 +736,100 @@ public class FinalRooftopSceneManager : MonoBehaviour
         }
         group.alpha = 1f;
 
-        if (!canReturn) yield break;
+        if (!canReturn)
+        {
+            Debug.LogWarning($"[FinalRooftop] Menu scene '{menuSceneName}' can't be loaded. Add it to File > Build Profiles > Scene List.");
+            yield break;
+        }
 
-        yield return new WaitForSeconds(1f); // stop an accidental skip
+        yield return new WaitForSecondsRealtime(1f); // stop an accidental skip
         yield return new WaitUntil(AnyInputPressed);
-        LeaveFloor(menuSceneName);
+        ReturnToMenu();
     }
 
     private static bool AnyInputPressed()
     {
-        return (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
-               (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame);
+        if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) return true;
+
+        Mouse mouse = Mouse.current;
+        if (mouse != null && (mouse.leftButton.wasPressedThisFrame || mouse.rightButton.wasPressedThisFrame))
+            return true;
+
+        Gamepad pad = Gamepad.current;
+        return pad != null && (pad.buttonSouth.wasPressedThisFrame || pad.startButton.wasPressedThisFrame);
     }
 
+    // ------------------------------------------------------------------
+    // Returning to the menu
+    // ------------------------------------------------------------------
+
+    /// <summary>True if the menu can be opened by name, as build scene 0, or (in the editor) from its asset.</summary>
+    private bool CanLoadMenu()
+    {
+        if (Application.CanStreamedLevelBeLoaded(menuSceneName)) return true;
+        if (FirstBuildSceneIsMenu()) return true;
+#if UNITY_EDITOR
+        return !string.IsNullOrEmpty(FindMenuScenePathInEditor());
+#else
+        return false;
+#endif
+    }
+
+    private void ReturnToMenu()
+    {
+        if (Application.CanStreamedLevelBeLoaded(menuSceneName))
+        {
+            LeaveFloor(menuSceneName);
+            return;
+        }
+
+        if (FirstBuildSceneIsMenu())
+        {
+            LeaveFloor(SceneUtility.GetScenePathByBuildIndex(0));
+            return;
+        }
+
+#if UNITY_EDITOR
+        // The menu isn't in this Build Profile's scene list; open it straight from the
+        // project so testing in the editor still works
+        string path = FindMenuScenePathInEditor();
+        if (!string.IsNullOrEmpty(path))
+        {
+            Debug.LogWarning($"[FinalRooftop] '{menuSceneName}' isn't in the Build Profile scene list, so it won't load in a build. Opening it from {path} for now.");
+            PrepareToLeaveFloor();
+            UnityEditor.SceneManagement.EditorSceneManager.LoadSceneInPlayMode(path, new LoadSceneParameters(LoadSceneMode.Single));
+        }
+#endif
+    }
+
+    /// <summary>Build scene 0 is the start menu when its file name matches menuSceneName.</summary>
+    private bool FirstBuildSceneIsMenu()
+    {
+        if (SceneManager.sceneCountInBuildSettings == 0) return false;
+        string path = SceneUtility.GetScenePathByBuildIndex(0);
+        return System.IO.Path.GetFileNameWithoutExtension(path) == menuSceneName &&
+               path != gameObject.scene.path;
+    }
+
+#if UNITY_EDITOR
+    private string FindMenuScenePathInEditor()
+    {
+        foreach (string guid in UnityEditor.AssetDatabase.FindAssets($"{menuSceneName} t:Scene"))
+        {
+            string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+            if (System.IO.Path.GetFileNameWithoutExtension(path) == menuSceneName) return path;
+        }
+        return null;
+    }
+#endif
+
     private void LeaveFloor(string sceneName)
+    {
+        PrepareToLeaveFloor();
+        SceneManager.LoadScene(sceneName);
+    }
+
+    private void PrepareToLeaveFloor()
     {
         // AudioListener.volume is global, so restore it once the next scene is up
         SceneManager.sceneLoaded -= RestoreVolumeOnLoad;
@@ -757,8 +837,6 @@ public class FinalRooftopSceneManager : MonoBehaviour
 
         PauseController.SetPause(false);
         if (destroyPersistentObjectsOnEnding) DestroyPersistentObjects();
-
-        SceneManager.LoadScene(sceneName);
     }
 
     private static void RestoreVolumeOnLoad(Scene scene, LoadSceneMode mode)
