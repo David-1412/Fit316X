@@ -48,6 +48,9 @@ public class SoundEffectManager : MonoBehaviour
         }
     }
 
+    /// <summary>True when a SoundEffectManager with a voice AudioSource is loaded.</summary>
+    public static bool CanPlayVoice => voiceAudioSource != null;
+
     public static void PlayVoice(AudioClip audioClip, float pitch = 1f)
     {
         voiceAudioSource.pitch = pitch;

@@ -86,16 +86,6 @@ public class FinalRooftopSceneManager : MonoBehaviour
     [Tooltip("Leave empty to use Camera.main.")]
     [SerializeField] private Camera targetCamera;
 
-    [Header("Dialogue UI (built at runtime if empty)")]
-    [SerializeField] private GameObject dialoguePanel;
-    [SerializeField] private TMP_Text speakerNameText;
-    [SerializeField] private TMP_Text dialogueText;
-    [Tooltip("Optional. Shown when a line has finished typing.")]
-    [SerializeField] private GameObject continuePrompt;
-    [Tooltip("Optional. Portrait image in the dialogue panel.")]
-    [SerializeField] private Image portraitImage;
-    [SerializeField] private Sprite oldManPortrait;
-
     [Header("Dialogue Content")]
     [SerializeField] private string speakerName = "Old Man";
     [SerializeField, TextArea(2, 5)] private string[] oldManLines =
@@ -104,11 +94,13 @@ public class FinalRooftopSceneManager : MonoBehaviour
         "One hundred and twenty-three years ago, this valley was choked with smoke and corpses. A people living in a cave will worship whoever holds the match.",
         "I was you once—full of faith and doubt. But someone must tend the machine. Someone must guard the truth. Now, it is your turn. Take my place and maintain order... or destroy the shutters and shatter this world."
     };
-    [Tooltip("Characters typed per second.")]
-    [SerializeField] private float typingSpeed = 40f;
-    [Tooltip("Optional blip played every few characters while typing.")]
-    [SerializeField] private AudioSource typingAudioSource;
-    [SerializeField] private int charactersPerBlip = 3;
+    [Tooltip("Optional. Leave empty to use the Old Man's portrait from his NPC Dialogue asset.")]
+    [SerializeField] private Sprite oldManPortrait;
+    [Tooltip("Seconds between letters (same as NPCDialogue.typingSpeed).")]
+    [SerializeField] private float typingSpeed = 0.05f;
+    [Tooltip("Voice blip played on every letter. Leave empty to use the Old Man's voice from his NPC Dialogue asset.")]
+    [SerializeField] private AudioClip voiceSound;
+    [SerializeField] private float voicePitch = 0.5f;
 
     [Header("Choice UI (built at runtime if empty)")]
     [SerializeField] private GameObject choicePanel;
@@ -190,9 +182,7 @@ public class FinalRooftopSceneManager : MonoBehaviour
     private void Awake()
     {
         // Hide assigned UI until each phase needs it
-        if (dialoguePanel != null) dialoguePanel.SetActive(false);
         if (choicePanel != null) choicePanel.SetActive(false);
-        if (continuePrompt != null) continuePrompt.SetActive(false);
     }
 
     // Start runs after SceneManager.sceneLoaded, so PauseController has already
@@ -205,7 +195,6 @@ public class FinalRooftopSceneManager : MonoBehaviour
         EnsureEventSystem();
         EnsureOverlookPoint();
         EnsureOldMan();
-        EnsureDialogueUI();
         EnsureChoiceUI();
 
         StartCoroutine(RunSequence());
@@ -283,7 +272,16 @@ public class FinalRooftopSceneManager : MonoBehaviour
     {
         if (oldMan == null) oldMan = GameObject.Find("OldMan");
         if (oldMan == null) oldMan = GameObject.Find("NPC_OldMan");
-        if (oldMan != null) return;
+        if (oldMan != null)
+        {
+            NPC sceneNpc = oldMan.GetComponentInChildren<NPC>(true);
+            if (sceneNpc != null)
+            {
+                TakeVoiceFrom(sceneNpc.dialogueData);
+                sceneNpc.enabled = false; // the cutscene drives this conversation
+            }
+            return;
+        }
 
         GameObject prefab = Resources.Load<GameObject>(oldManResourcePath);
         if (prefab == null)
@@ -300,7 +298,11 @@ public class FinalRooftopSceneManager : MonoBehaviour
         oldMan = Instantiate(prefab, holder.transform);
         oldMan.name = "OldMan";
 
-        foreach (NPC npc in oldMan.GetComponentsInChildren<NPC>(true)) DestroyImmediate(npc);
+        foreach (NPC npc in oldMan.GetComponentsInChildren<NPC>(true))
+        {
+            TakeVoiceFrom(npc.dialogueData);
+            DestroyImmediate(npc);
+        }
         foreach (WaypointMover mover in oldMan.GetComponentsInChildren<WaypointMover>(true)) DestroyImmediate(mover);
 
         Vector3 position = overlookPoint.position + (Vector3)oldManOffset;
@@ -310,6 +312,21 @@ public class FinalRooftopSceneManager : MonoBehaviour
 
         // The prefab's sprite sits on a child "NPC" object; place that child at the target
         NPC_Visual(oldMan).position = position;
+    }
+
+    /// <summary>
+    /// Reuses the Old Man's Floor 1 voice blip and portrait (OldManDialogue.asset)
+    /// for anything not set in the Inspector, so he sounds the same on both floors.
+    /// </summary>
+    private void TakeVoiceFrom(NPCDialogue data)
+    {
+        if (data == null) return;
+        if (voiceSound == null)
+        {
+            voiceSound = data.voiceSound;
+            voicePitch = data.voicePitch;
+        }
+        if (oldManPortrait == null) oldManPortrait = data.npcPortrait;
     }
 
     /// <summary>The Transform that actually holds the Old Man's sprite.</summary>
@@ -326,41 +343,6 @@ public class FinalRooftopSceneManager : MonoBehaviour
         GameObject es = new GameObject("EventSystem (auto)");
         es.AddComponent<EventSystem>();
         es.AddComponent<InputSystemUIInputModule>();
-    }
-
-    private void EnsureDialogueUI()
-    {
-        if (dialoguePanel != null && dialogueText != null) return;
-
-        Canvas canvas = GetRuntimeCanvas();
-
-        // Bottom-of-screen dialogue box
-        RectTransform panel = CreateUIObject("DialoguePanel", canvas.transform);
-        panel.anchorMin = new Vector2(0f, 0f);
-        panel.anchorMax = new Vector2(1f, 0f);
-        panel.pivot = new Vector2(0.5f, 0f);
-        panel.offsetMin = new Vector2(80f, 40f);
-        panel.offsetMax = new Vector2(-80f, 340f);
-        panel.gameObject.AddComponent<Image>().color = PanelColour;
-
-        speakerNameText = CreateText("SpeakerName", panel, 40f, AccentColour, TextAlignmentOptions.TopLeft);
-        SetRect(speakerNameText.rectTransform, new Vector2(0f, 1f), new Vector2(1f, 1f),
-                new Vector2(40f, -80f), new Vector2(-40f, -20f));
-        speakerNameText.fontStyle = FontStyles.Bold;
-
-        dialogueText = CreateText("DialogueText", panel, 34f, Color.white, TextAlignmentOptions.TopLeft);
-        SetRect(dialogueText.rectTransform, Vector2.zero, Vector2.one,
-                new Vector2(40f, 50f), new Vector2(-40f, -95f));
-
-        TMP_Text prompt = CreateText("ContinuePrompt", panel, 26f, AccentColour, TextAlignmentOptions.BottomRight);
-        SetRect(prompt.rectTransform, new Vector2(1f, 0f), new Vector2(1f, 0f),
-                new Vector2(-500f, 12f), new Vector2(-30f, 52f));
-        prompt.text = "Space / E / Click to continue";
-        continuePrompt = prompt.gameObject;
-
-        dialoguePanel = panel.gameObject;
-        dialoguePanel.SetActive(false);
-        continuePrompt.SetActive(false);
     }
 
     private void EnsureChoiceUI()
@@ -518,68 +500,17 @@ public class FinalRooftopSceneManager : MonoBehaviour
     {
         if (lines == null || lines.Length == 0) yield break;
 
-        dialoguePanel.SetActive(true);
-        if (speakerNameText != null) speakerNameText.text = speakerName;
-        if (portraitImage != null && oldManPortrait != null) portraitImage.sprite = oldManPortrait;
+        // Same dialogue box, typewriter and voice blip as the Floor 1 NPCs
+        DialogueBox box = DialogueBox.Instance;
+        box.Open(speakerName, oldManPortrait);
 
         foreach (string line in lines)
         {
-            yield return TypeLine(line);
-
-            // Wait for the player to read and press continue
-            if (continuePrompt != null) continuePrompt.SetActive(true);
-            yield return null; // don't reuse the press that finished typing
-            yield return new WaitUntil(AdvancePressed);
-            if (continuePrompt != null) continuePrompt.SetActive(false);
-            yield return null;
+            yield return box.TypeLine(line, typingSpeed, voiceSound, voicePitch);
+            yield return box.WaitForContinue();
         }
 
-        dialoguePanel.SetActive(false);
-    }
-
-    private IEnumerator TypeLine(string line)
-    {
-        // TMP reveal keeps word wrapping stable while typing
-        dialogueText.text = line;
-        dialogueText.maxVisibleCharacters = 0;
-        dialogueText.ForceMeshUpdate();
-        int total = dialogueText.textInfo.characterCount;
-
-        float delay = typingSpeed > 0f ? 1f / typingSpeed : 0f;
-        yield return null; // ignore any key held from the previous step
-
-        for (int i = 1; i <= total; i++)
-        {
-            // Pressing continue mid-line shows the full line straight away
-            if (AdvancePressed()) break;
-
-            dialogueText.maxVisibleCharacters = i;
-
-            if (typingAudioSource != null && charactersPerBlip > 0 && i % charactersPerBlip == 0)
-            {
-                typingAudioSource.Play();
-            }
-
-            yield return new WaitForSeconds(delay);
-        }
-
-        dialogueText.maxVisibleCharacters = int.MaxValue;
-    }
-
-    /// <summary>Space, Enter, E or left click advances dialogue.</summary>
-    private static bool AdvancePressed()
-    {
-        Keyboard keyboard = Keyboard.current;
-        if (keyboard != null &&
-            (keyboard.spaceKey.wasPressedThisFrame ||
-             keyboard.enterKey.wasPressedThisFrame ||
-             keyboard.eKey.wasPressedThisFrame))
-        {
-            return true;
-        }
-
-        Mouse mouse = Mouse.current;
-        return mouse != null && mouse.leftButton.wasPressedThisFrame;
+        box.Close();
     }
 
     // ------------------------------------------------------------------
