@@ -182,12 +182,17 @@ public class DialogueBox : MonoBehaviour
         ClearChoices();
         continuePrompt.SetActive(false);
 
+        // Both the EventSystem and ChoiceInput can report the same pick; only the first counts
+        bool picked = false;
+
         for (int i = 0; i < labels.Count; i++)
         {
             int index = i;
             Button button = CreateChoiceButton(labels[i]);
             button.onClick.AddListener(() =>
             {
+                if (picked) return;
+                picked = true;
                 ClearChoices();
                 onPick?.Invoke(index);
             });
@@ -206,14 +211,15 @@ public class DialogueBox : MonoBehaviour
             choiceButtons[i].navigation = nav;
         }
 
-        if (choiceButtons.Count > 0 && EventSystem.current != null)
-        {
-            EventSystem.current.SetSelectedGameObject(choiceButtons[0].gameObject);
-        }
+        // Keyboard and mouse keep working even if the EventSystem isn't receiving input
+        ChoiceInput.Attach(choiceContainer.gameObject, choiceButtons, ButtonHighlight);
     }
 
     public void ClearChoices()
     {
+        ChoiceInput input = choiceContainer != null ? choiceContainer.GetComponent<ChoiceInput>() : null;
+        if (input != null) input.Clear();
+
         foreach (Button button in choiceButtons)
         {
             if (button != null) Destroy(button.gameObject);

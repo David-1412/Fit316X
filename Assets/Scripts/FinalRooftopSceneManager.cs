@@ -557,8 +557,9 @@ public class FinalRooftopSceneManager : MonoBehaviour
         controlButton.interactable = true;
         choicePanel.SetActive(true);
 
-        // Select a button so keyboard / gamepad navigation works immediately
-        if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(truthButton.gameObject);
+        // Keyboard (Up/Down + Enter/Space/E) and mouse work even if the EventSystem
+        // carried over from an earlier floor isn't receiving input
+        ChoiceInput.Attach(choicePanel, new[] { truthButton, controlButton }, new Color(0.35f, 0.3f, 0.18f, 1f));
     }
 
     private static void SetButtonLabel(Button button, string label)
@@ -579,6 +580,8 @@ public class FinalRooftopSceneManager : MonoBehaviour
 
         truthButton.interactable = false;
         controlButton.interactable = false;
+        ChoiceInput choiceInput = choicePanel.GetComponent<ChoiceInput>();
+        if (choiceInput != null) choiceInput.Clear();
         choicePanel.SetActive(false);
 
         StartCoroutine(truth ? TruthEndingSequence() : ControlEndingSequence());

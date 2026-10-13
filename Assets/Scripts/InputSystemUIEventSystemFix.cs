@@ -16,7 +16,10 @@ public static class InputSystemUIEventSystemFix
     {
         foreach (var eventSystem in Object.FindObjectsByType<EventSystem>(FindObjectsInactive.Include))
         {
-            if (eventSystem == null)
+            // Skip duplicates being removed (PersistentObject deactivates them first).
+            // Giving them an Input System module would disable the shared UI actions
+            // when they are destroyed, leaving every button unclickable.
+            if (eventSystem == null || !eventSystem.gameObject.activeInHierarchy)
                 continue;
 
             var standaloneModule = eventSystem.GetComponent<StandaloneInputModule>();
