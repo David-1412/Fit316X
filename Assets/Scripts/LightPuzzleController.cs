@@ -13,7 +13,7 @@ using TMPro;
 ///   • Wire OnPuzzleSolved to open a door, play a cutscene, etc.
 /// </summary>
 [DefaultExecutionOrder(100)]
-public class LightPuzzleController : MonoBehaviour
+public class LightPuzzleController : MonoBehaviour, ISaveableState
 {
     public static LightPuzzleController Instance { get; private set; }
 
@@ -64,6 +64,18 @@ public class LightPuzzleController : MonoBehaviour
             OnPuzzleSolved?.Invoke();
             ShowSolvedFeedback();
         }
+    }
+
+    // ── ISaveableState ────────────────────────────────────────────────────
+    public string CaptureState() => solved ? "solved" : "unsolved";
+
+    /// <summary>Marks the puzzle solved and re-applies its result, without the banner.</summary>
+    public void RestoreState(string state)
+    {
+        if (state != "solved" || solved) return;
+
+        solved = true;
+        OnPuzzleSolved?.Invoke();
     }
 
     // ── Win Feedback ──────────────────────────────────────────────────────

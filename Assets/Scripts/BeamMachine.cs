@@ -7,7 +7,7 @@ using System.Collections.Generic;
 /// No hardcoded gem names — just attach GemItem to any prefab with a colour.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class BeamMachine : MonoBehaviour, IMultiInteractable
+public class BeamMachine : MonoBehaviour, IMultiInteractable, ISaveableState
 {
     [Header("Visuals")]
     public SpriteRenderer placedItemSprite;
@@ -342,6 +342,51 @@ public class BeamMachine : MonoBehaviour, IMultiInteractable
         }
 
         return options;
+    }
+
+    // ── ISaveableState ────────────────────────────────────────────────────
+    [System.Serializable]
+    private class MachineState
+    {
+        public string gemName;
+        public Color color;
+        public int rotation;
+        public bool on;
+    }
+
+    public string CaptureState()
+    {
+        return JsonUtility.ToJson(new MachineState
+        {
+            gemName = currentGemName,
+            color = currentColor,
+            rotation = rotationState,
+            on = isMachineOn
+        });
+    }
+
+    public void RestoreState(string state)
+    {
+        MachineState saved = JsonUtility.FromJson<MachineState>(state);
+        if (saved == null) return;
+
+        currentGemName = saved.gemName ?? "";
+        currentColor = saved.color;
+        rotationState = ((saved.rotation % 4) + 4) % 4;
+        isMachineOn = saved.on && !string.IsNullOrEmpty(currentGemName);
+
+        if (nozzleTransform != null)
+            nozzleTransform.rotation = Quaternion.Euler(0, 0, -rotationState * 90f);
+
+        // Show the gem that is sitting in the machine
+        if (placedItemSprite != null)
+        {
+            Sprite gemSprite = null;
+            var dict = FindAnyObjectByType<ItemDictionary>();
+            var prefab = dict != null && !string.IsNullOrEmpty(currentGemName) ? dict.GetItemPrefabByName(currentGemName) : null;
+            if (prefab != null) gemSprite = prefab.GetComponent<SpriteRenderer>()?.sprite;
+            placedItemSprite.sprite = gemSprite;
+        }
     }
 
     // ── Machine Actions ───────────────────────────────────────────────────

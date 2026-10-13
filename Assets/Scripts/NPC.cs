@@ -1,14 +1,16 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
 public class NPC : MonoBehaviour, IInteractable
 {
     public NPCDialogue dialogueData;
-    private DialogueController dialogueUI;
+    private DialogueBox dialogueUI;
     private int dialogueIndex;
-    private bool isTyping, isDialogueActive;
+    private bool isTyping, isDialogueActive, isChoosing;
+
+    // Frame of the last start/choice, so the same key press or click doesn't also skip a line
+    private int inputBlockedFrame = -1;
 
     private enum QuestState { NotStarted, InProgress, Completed }
     private QuestState questState = QuestState.NotStarted;
@@ -16,16 +18,12 @@ public class NPC : MonoBehaviour, IInteractable
     [Header("Events")]
     public UnityEvent onDialogueEnd;
 
-    private void Start()
-    {
-        dialogueUI = DialogueController.Instance;
-    }
-
     private void Update()
     {
-        // Allow the Enter or Space key to progress dialogue while it's active
-        if (isDialogueActive && Keyboard.current != null && 
-           (Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame))
+        // Space, Enter, E or click progresses dialogue while it's active
+        if (!isDialogueActive || isChoosing || Time.frameCount <= inputBlockedFrame) return;
+
+        if (DialogueBox.AdvancePressed())
         {
             NextLine();
         }
@@ -54,20 +52,7 @@ public class NPC : MonoBehaviour, IInteractable
 
     void StartDialogue()
     {
-        // Fallback fetch if it was null in Start
-        if (dialogueUI == null) dialogueUI = DialogueController.Instance;
-        
-        // FindObjectsInactive.Include allows it to find the UI even if it is completely unchecked in the inspector!
-        if (dialogueUI == null) dialogueUI = FindAnyObjectByType<DialogueController>(FindObjectsInactive.Include);
-        
-        if (dialogueUI == null)
-        {
-            Debug.LogError("CRITICAL: Unity cannot find any DialogueController script in your entire scene! Please ensure the DialogueController (Script) is actually attached to your DialogueUI object.");
-            return;
-        }
-
-        // Force the root UI GameObject to turn on!
-        dialogueUI.gameObject.SetActive(true);
+        dialogueUI = DialogueBox.Instance;
 
         //Sync with quest data
         SyncQuestState();
@@ -87,9 +72,10 @@ public class NPC : MonoBehaviour, IInteractable
         }
 
         isDialogueActive = true;
+        isChoosing = false;
+        inputBlockedFrame = Time.frameCount;
 
-        dialogueUI.SetNPCInfo(dialogueData.npcName, dialogueData.npcPortrait);
-        dialogueUI.ShowDialogueUI(true);
+        dialogueUI.Open(dialogueData.npcName, dialogueData.npcPortrait);
         PauseController.SetPause(true);
 
         DisplayCurrentLine();
@@ -122,13 +108,13 @@ public class NPC : MonoBehaviour, IInteractable
         {
             // Skip typing animation and show the full line
             StopAllCoroutines();
-            dialogueUI.SetDialogueText(dialogueData.dialogueLines[dialogueIndex]);
+            dialogueUI.ShowFullLine();
             isTyping = false;
             return;
         }
 
         //Clear Choices
-        if (dialogueUI != null) dialogueUI.ClearChoices();
+        dialogueUI.ClearChoices();
 
         //Check endDialogueLines
         if(dialogueData.endDialogueLines != null && dialogueData.endDialogueLines.Length > dialogueIndex && dialogueData.endDialogueLines[dialogueIndex])
@@ -164,18 +150,17 @@ public class NPC : MonoBehaviour, IInteractable
     IEnumerator TypeLine()
     {
         isTyping = true;
-        dialogueUI.SetDialogueText("");
 
-        foreach(char letter in dialogueData.dialogueLines[dialogueIndex])
-        {
-            dialogueUI.SetDialogueText(dialogueUI.dialogueText.text += letter);
-            SoundEffectManager.PlayVoice(dialogueData.voiceSound, dialogueData.voicePitch);
-            yield return new WaitForSeconds(dialogueData.typingSpeed);
-        }
+        // Same typewriter and per-letter voice sound as the Floor 5 cutscene
+        yield return dialogueUI.TypeLine(dialogueData.dialogueLines[dialogueIndex],
+                                         dialogueData.typingSpeed,
+                                         dialogueData.voiceSound,
+                                         dialogueData.voicePitch);
 
         isTyping = false;
+        inputBlockedFrame = Time.frameCount; // a press that skipped typing shouldn't also advance
 
-        if(dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
+        if(dialogueData.autoProgressLines != null && dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
         {
             yield return new WaitForSeconds(dialogueData.autoProgressDelay);
             NextLine();
@@ -184,12 +169,13 @@ public class NPC : MonoBehaviour, IInteractable
 
     void DisplayChoices(DialogueChoice choice)
     {
-        for(int i = 0; i < choice.choices.Length; i++)
+        isChoosing = true;
+        dialogueUI.ShowChoices(choice.choices, i =>
         {
             int nextIndex = choice.nextDialogueIndexes[i];
-            bool givesQuest = choice.givesQuest.Length > 0 ? choice.givesQuest[i] : false;
-            dialogueUI.CreateChoiceButton(choice.choices[i], () => ChooseOption(nextIndex, givesQuest));
-        }
+            bool givesQuest = choice.givesQuest.Length > i && choice.givesQuest[i];
+            ChooseOption(nextIndex, givesQuest);
+        });
     }
 
     void ChooseOption(int nextIndex, bool givesQuest)
@@ -200,6 +186,8 @@ public class NPC : MonoBehaviour, IInteractable
             questState = QuestState.InProgress;
         }
 
+        isChoosing = false;
+        inputBlockedFrame = Time.frameCount; // the click/Enter that picked the choice
         dialogueIndex = nextIndex;
         dialogueUI.ClearChoices();
         DisplayCurrentLine();
@@ -220,12 +208,10 @@ public class NPC : MonoBehaviour, IInteractable
 
         StopAllCoroutines();
         isDialogueActive = false;
-        dialogueUI.SetDialogueText("");
-        dialogueUI.ShowDialogueUI(false);
-        
-        // Force the root UI GameObject to turn back off when dialogue is done!
-        dialogueUI.gameObject.SetActive(false);
-        
+        isTyping = false;
+        isChoosing = false;
+        if (dialogueUI != null) dialogueUI.Close();
+
         PauseController.SetPause(false);
 
         // Trigger any cutscenes or events hooked up in the inspector!
