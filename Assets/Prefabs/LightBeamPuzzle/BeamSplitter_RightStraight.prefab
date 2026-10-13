@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7739383803416377283}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.000000031023493, w: 1}
   m_LocalPosition: {x: 9.309999, y: 29.599998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -83,8 +83,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: e5ead296da8e488e9f460d6da5532eaf, type: 3}
-  m_Color: {r: 0.2, g: 0.9, b: 0.4, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4e6353af6dd34eeba49ad797b3da43cc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeamSplitter
   splitterType: 2
   bodyRenderer: {fileID: 4364420170749330491}
-  leftRightSign: {fileID: 0}
-  leftStraightSign: {fileID: 0}
-  rightStraightSign: {fileID: 0}
+  leftRightSign: {fileID: 21300000, guid: 20bb76d72da1486baaeba7f60996919d, type: 3}
+  leftStraightSign: {fileID: 21300000, guid: cd4f2e112011455c87dc0e99b6ea6a3f, type: 3}
+  rightStraightSign: {fileID: 21300000, guid: 4e6353af6dd34eeba49ad797b3da43cc, type: 3}
   previewIncomingDirection: {x: 0, y: 1}
