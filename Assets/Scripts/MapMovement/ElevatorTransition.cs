@@ -22,6 +22,15 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     private static bool s_UseSpawnMarker;
     public static ElevatorTransition Instance { get; private set; }
 
+    // Floors the player has reached; once reached, the elevator can always return there
+    private static readonly string[] s_FloorOrder = { "F1", "F2", "F3", "F4", "F5" };
+    private static readonly HashSet<string> s_VisitedFloors = new HashSet<string>();
+
+    private static void RecordVisit(string sceneName)
+    {
+        if (s_FloorOrder.Contains(sceneName)) s_VisitedFloors.Add(sceneName);
+    }
+
     // Floor details
     private struct FloorDetails
     {
@@ -50,6 +59,7 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         GetComponent<Collider2D>().isTrigger = true;
+        RecordVisit(SceneManager.GetActiveScene().name);
 
         if (Instance != null && Instance != this)
         {
@@ -66,7 +76,7 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
 
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
+        RecordVisit(scene.name);
 
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
@@ -182,24 +192,25 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
             }
         }
 
-        // Travel
+        // Travel: floors unlocked by placed cores, plus any floor already visited (so travel is two-way)
+        var destinations = new HashSet<string>(s_VisitedFloors);
         foreach (var floor in floorDetails)
         {
-            if (currentColours.Any((c) => c == floor.colour))
-            {
-                options.Add(new InteractionOption
-                {
-                    Name = $"Travel to {floor.name}",
-                    OnSelect = () => TravelTo(floor.name)
-                });
-            }
+            if (currentColours.Any((c) => c == floor.colour)) destinations.Add(floor.name);
         }
         if (currentColours.Any((c) => c == Color.blue) && currentColours.Any((c) => c == Color.green) && currentColours.Any((c) => c == Color.red))
         {
+            destinations.Add("F5");
+        }
+        destinations.Remove(SceneManager.GetActiveScene().name);
+
+        // Known floors in order first, then anything else (e.g. F0)
+        foreach (var floorName in s_FloorOrder.Where(destinations.Contains).Concat(destinations.Except(s_FloorOrder)))
+        {
             options.Add(new InteractionOption
             {
-                Name = $"Travel to F5",
-                OnSelect = () => TravelTo("F5")
+                Name = $"Travel to {floorName}",
+                OnSelect = () => TravelTo(floorName)
             });
         }
 

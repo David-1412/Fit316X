@@ -92,13 +92,13 @@ public class CollectionDetailsManager : MonoBehaviour
             }
         }
 
-        Debug.LogAssertion(panel.NameTextBox != null);
-        Debug.LogAssertion(panel.DescriptionTextBox != null);
-        Debug.LogAssertion(panel.ImageBox != null);
+        Debug.Assert(panel.NameTextBox != null);
+        Debug.Assert(panel.DescriptionTextBox != null);
+        Debug.Assert(panel.ImageBox != null);
 
         if (advanced)
         {
-            Debug.LogAssertion(panel.LoreBox != null);
+            Debug.Assert(panel.LoreBox != null);
         }
 
         return panel;
