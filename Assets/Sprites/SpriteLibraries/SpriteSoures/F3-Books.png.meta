@@ -109,12 +109,12 @@ TextureImporter:
       name: F3-Books_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 983
-        width: 66
-        height: 23
+        x: 16
+        y: 1000
+        width: 14
+        height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -131,12 +131,12 @@ TextureImporter:
       name: F3-Books_1
       rect:
         serializedVersion: 2
-        x: 15
-        y: 959
-        width: 66
-        height: 23
+        x: 41
+        y: 976
+        width: 14
+        height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -153,12 +153,12 @@ TextureImporter:
       name: F3-Books_2
       rect:
         serializedVersion: 2
-        x: 15
-        y: 935
-        width: 66
-        height: 23
+        x: 31
+        y: 952
+        width: 15
+        height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -175,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e927d3ab7258dfd4fa300bbd4c8aec8d
     internalID: 0
     vertices: []
     indices: 
