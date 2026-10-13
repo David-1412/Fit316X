@@ -280,6 +280,7 @@ public class FinalRooftopSceneManager : MonoBehaviour
                 TakeVoiceFrom(sceneNpc.dialogueData);
                 sceneNpc.enabled = false; // the cutscene drives this conversation
             }
+            MatchPlayerSorting(oldMan);
             return;
         }
 
@@ -312,6 +313,31 @@ public class FinalRooftopSceneManager : MonoBehaviour
 
         // The prefab's sprite sits on a child "NPC" object; place that child at the target
         NPC_Visual(oldMan).position = position;
+        MatchPlayerSorting(oldMan);
+    }
+
+    /// <summary>
+    /// Draws the Old Man on the same sorting layer and order as the player,
+    /// so ground tilemaps on lower layers don't cover him.
+    /// </summary>
+    private void MatchPlayerSorting(GameObject target)
+    {
+        SpriteRenderer playerSprite = player != null ? player.GetComponentInChildren<SpriteRenderer>() : null;
+        int layerId = playerSprite != null ? playerSprite.sortingLayerID : SortingLayer.NameToID("Player");
+        int order = playerSprite != null ? playerSprite.sortingOrder : 0;
+
+        foreach (SpriteRenderer sprite in target.GetComponentsInChildren<SpriteRenderer>(true))
+        {
+            sprite.sortingLayerID = layerId;
+            sprite.sortingOrder = order;
+        }
+
+        // A SortingGroup overrides its children's settings, so match that too
+        foreach (UnityEngine.Rendering.SortingGroup group in target.GetComponentsInChildren<UnityEngine.Rendering.SortingGroup>(true))
+        {
+            group.sortingLayerID = layerId;
+            group.sortingOrder = order;
+        }
     }
 
     /// <summary>
