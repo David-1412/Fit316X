@@ -4,6 +4,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -13,18 +14,49 @@ using UnityEngine.UI;
 ///   2. Old Man dialogue - built-in typewriter driver, no dialogue plugin needed.
 ///   3. Final choice - Truth ending (open the shutters) or Control ending (take the seat).
 ///
-/// Setup (F5 scene):
-///   - Add this component to an empty GameObject, e.g. "RooftopSequence".
-///   - Assign Overlook Point (an empty Transform where the player stops).
-///   - Assign the dialogue panel and its TMP texts (the existing DialogueUI panel works).
-///   - Assign the choice panel and its two Buttons.
-///   - Everything else (animators, particles, audio, fade) is optional and null-checked.
-///   - Add "Ending_Truth" and "Ending_Control" to File > Build Profiles > Scene List.
+/// ZERO SETUP: when the scene named "F5" loads, this component is created automatically
+/// if the scene doesn't already contain one. Anything not assigned in the Inspector is
+/// built at runtime:
+///   - Overlook point: a GameObject named "OverlookPoint" in the scene, otherwise a point
+///     a few units in front of where the player arrives.
+///   - Old Man: a GameObject named "OldMan" / "NPC_OldMan" in the scene, otherwise
+///     spawned from Resources/NPC_OldMan next to the overlook point.
+///   - Dialogue box, choice buttons and fade overlay: created in code.
+///   - Ending scenes: if "Ending_Truth" / "Ending_Control" are not in the Build Profile
+///     scene list, a built-in ending screen is shown instead.
+///
+/// To customise, add this component to a GameObject in F5 and fill in any of the fields.
 /// </summary>
 public class FinalRooftopSceneManager : MonoBehaviour
 {
     // ------------------------------------------------------------------
-    // Inspector references
+    // Auto bootstrap
+    // ------------------------------------------------------------------
+
+    /// <summary>Scene in which the rooftop sequence starts automatically.</summary>
+    private const string RooftopSceneName = "F5";
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void RegisterBootstrap()
+    {
+        SceneManager.sceneLoaded -= OnAnySceneLoaded;
+        SceneManager.sceneLoaded += OnAnySceneLoaded;
+    }
+
+    private static void OnAnySceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != RooftopSceneName) return;
+
+        // A manually placed (customised) manager takes priority
+        if (FindAnyObjectByType<FinalRooftopSceneManager>() != null) return;
+
+        GameObject host = new GameObject("RooftopSequence (auto)");
+        SceneManager.MoveGameObjectToScene(host, scene);
+        host.AddComponent<FinalRooftopSceneManager>();
+    }
+
+    // ------------------------------------------------------------------
+    // Inspector references (all optional)
     // ------------------------------------------------------------------
 
     [Header("Player")]
@@ -32,23 +64,33 @@ public class FinalRooftopSceneManager : MonoBehaviour
     [SerializeField] private Transform player;
     [Tooltip("Optional. If set, the player is snapped here before the walk starts.")]
     [SerializeField] private Transform playerStartPoint;
-    [Tooltip("Where the player walks to before the Old Man speaks.")]
+    [Tooltip("Where the player walks to. Leave empty to use a scene object named 'OverlookPoint', " +
+             "or a point offset from the player's arrival position.")]
     [SerializeField] private Transform overlookPoint;
+    [Tooltip("Used only when no overlook point exists: offset from the player's arrival position.")]
+    [SerializeField] private Vector2 defaultOverlookOffset = new Vector2(0f, 3f);
     [SerializeField] private float walkSpeed = 2.5f;
     [Tooltip("Pause between stopping at the overlook and the first line of dialogue.")]
     [SerializeField] private float pauseBeforeDialogue = 0.8f;
     [Tooltip("Bool parameter on the player's Animator. The project's Player.controller uses 'isWalking'.")]
     [SerializeField] private string walkingBoolName = "isWalking";
 
+    [Header("Old Man")]
+    [Tooltip("Leave empty to use a scene object named 'OldMan' or 'NPC_OldMan', or spawn one from Resources.")]
+    [SerializeField] private GameObject oldMan;
+    [SerializeField] private string oldManResourcePath = "NPC_OldMan";
+    [Tooltip("Where a spawned Old Man stands, relative to the overlook point.")]
+    [SerializeField] private Vector2 oldManOffset = new Vector2(1.5f, 0.5f);
+
     [Header("Camera")]
     [Tooltip("Leave empty to use Camera.main.")]
     [SerializeField] private Camera targetCamera;
 
-    [Header("Dialogue UI")]
+    [Header("Dialogue UI (built at runtime if empty)")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
-    [Tooltip("Optional. Shown when a line has finished typing (e.g. a small arrow).")]
+    [Tooltip("Optional. Shown when a line has finished typing.")]
     [SerializeField] private GameObject continuePrompt;
     [Tooltip("Optional. Portrait image in the dialogue panel.")]
     [SerializeField] private Image portraitImage;
@@ -68,7 +110,7 @@ public class FinalRooftopSceneManager : MonoBehaviour
     [SerializeField] private AudioSource typingAudioSource;
     [SerializeField] private int charactersPerBlip = 3;
 
-    [Header("Choice UI")]
+    [Header("Choice UI (built at runtime if empty)")]
     [SerializeField] private GameObject choicePanel;
     [SerializeField] private Button truthButton;
     [SerializeField] private Button controlButton;
@@ -85,23 +127,36 @@ public class FinalRooftopSceneManager : MonoBehaviour
     [Tooltip("Extra time after the shake before the fade starts.")]
     [SerializeField] private float truthHoldTime = 1f;
     [SerializeField] private string truthSceneName = "Ending_Truth";
+    [SerializeField] private string truthEndingTitle = "THE TRUTH";
+    [SerializeField, TextArea(3, 8)] private string truthEndingText =
+        "The shutters groan open, and sunlight pours into the city below for the first time in a century. " +
+        "By nightfall, the Cult's hold is broken.\n\n" +
+        "The tower does not survive the morning. Neither do you.\n\n" +
+        "Far below, beneath the rubble, the people look up—and see the sky.";
 
     [Header("Control Ending")]
     [SerializeField] private AudioSource consoleSealAudio;
     [Tooltip("Time to let the door/seal sound play before fading.")]
     [SerializeField] private float controlHoldTime = 1.2f;
     [SerializeField] private string controlSceneName = "Ending_Control";
+    [SerializeField] private string controlEndingTitle = "ORDER";
+    [SerializeField, TextArea(3, 8)] private string controlEndingText =
+        "The console seals with a heavy click. The Old Man's chair is still warm.\n\n" +
+        "Below, the city waits in the dark for its ration of light.\n\n" +
+        "Today, you decide who receives it.";
 
     [Header("Fade")]
-    [Tooltip("Full-screen black Image with a CanvasGroup. If empty, one is created at runtime.")]
+    [Tooltip("Full-screen black CanvasGroup. If empty, one is created at runtime.")]
     [SerializeField] private CanvasGroup fadeCanvasGroup;
     [SerializeField] private float fadeDuration = 2f;
     [Tooltip("Also fade all game audio to silence during the final fade.")]
     [SerializeField] private bool fadeAudio = true;
 
-    [Header("Scene Cleanup")]
-    [Tooltip("Destroy DontDestroyOnLoad objects (Player, UICanvas, Elevator...) before loading an ending, " +
-             "so they don't appear in the ending scene. The ending scene then needs its own Camera.")]
+    [Header("After The Ending")]
+    [Tooltip("Scene loaded from the built-in ending screen. Ignored if it isn't in the Build Profile scene list.")]
+    [SerializeField] private string menuSceneName = "StartMenu";
+    [Tooltip("Destroy DontDestroyOnLoad objects (Player, UICanvas, Elevator...) before leaving F5, " +
+             "so they don't appear in the next scene. That scene then needs its own Camera.")]
     [SerializeField] private bool destroyPersistentObjectsOnEnding = true;
 
     // ------------------------------------------------------------------
@@ -112,7 +167,10 @@ public class FinalRooftopSceneManager : MonoBehaviour
     private Animator playerAnimator;
     private PlayerInput playerInput;
     private InteractionDetector[] interactionDetectors;
+    private Canvas runtimeCanvas;
     private bool choiceMade;
+
+    private static float s_VolumeToRestore = 1f;
 
     // Cached animator parameter hashes so we only set parameters that exist
     private static readonly int InputXHash = Animator.StringToHash("InputX");
@@ -120,13 +178,18 @@ public class FinalRooftopSceneManager : MonoBehaviour
     private static readonly int LastInputXHash = Animator.StringToHash("LastInputX");
     private static readonly int LastInputYHash = Animator.StringToHash("LastInputY");
 
+    // UI colours for the runtime-built interface
+    private static readonly Color PanelColour = new Color(0.05f, 0.05f, 0.08f, 0.9f);
+    private static readonly Color ButtonColour = new Color(0.16f, 0.16f, 0.2f, 1f);
+    private static readonly Color AccentColour = new Color(1f, 0.85f, 0.45f, 1f);
+
     // ------------------------------------------------------------------
     // Unity lifecycle
     // ------------------------------------------------------------------
 
     private void Awake()
     {
-        // Hide UI until each phase needs it
+        // Hide assigned UI until each phase needs it
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
         if (choicePanel != null) choicePanel.SetActive(false);
         if (continuePrompt != null) continuePrompt.SetActive(false);
@@ -138,6 +201,13 @@ public class FinalRooftopSceneManager : MonoBehaviour
     {
         ResolvePlayer();
         LockPlayer(true);
+
+        EnsureEventSystem();
+        EnsureOverlookPoint();
+        EnsureOldMan();
+        EnsureDialogueUI();
+        EnsureChoiceUI();
+
         StartCoroutine(RunSequence());
     }
 
@@ -165,7 +235,7 @@ public class FinalRooftopSceneManager : MonoBehaviour
     }
 
     // ------------------------------------------------------------------
-    // A. Opening cutscene
+    // Scene setup (fills in anything not assigned in the Inspector)
     // ------------------------------------------------------------------
 
     private void ResolvePlayer()
@@ -187,6 +257,191 @@ public class FinalRooftopSceneManager : MonoBehaviour
         playerInput = player.GetComponent<PlayerInput>();
         interactionDetectors = player.GetComponentsInChildren<InteractionDetector>(true);
     }
+
+    private void EnsureOverlookPoint()
+    {
+        if (overlookPoint != null) return;
+
+        GameObject named = GameObject.Find("OverlookPoint");
+        if (named != null)
+        {
+            overlookPoint = named.transform;
+            return;
+        }
+
+        Vector2 origin = playerStartPoint != null ? (Vector2)playerStartPoint.position
+                       : player != null ? (Vector2)player.position
+                       : Vector2.zero;
+
+        GameObject point = new GameObject("OverlookPoint (auto)");
+        point.transform.SetParent(transform, false);
+        point.transform.position = origin + defaultOverlookOffset;
+        overlookPoint = point.transform;
+    }
+
+    private void EnsureOldMan()
+    {
+        if (oldMan == null) oldMan = GameObject.Find("OldMan");
+        if (oldMan == null) oldMan = GameObject.Find("NPC_OldMan");
+        if (oldMan != null) return;
+
+        GameObject prefab = Resources.Load<GameObject>(oldManResourcePath);
+        if (prefab == null)
+        {
+            Debug.LogWarning($"[FinalRooftop] No Old Man in the scene and Resources/{oldManResourcePath} not found.");
+            return;
+        }
+
+        // Instantiate under an inactive holder so no Awake/Start runs before we strip
+        // the wandering and talk-to behaviour - this Old Man is driven by the cutscene.
+        // DestroyImmediate is needed: a deferred Destroy would let them wake up first.
+        GameObject holder = new GameObject("OldManHolder");
+        holder.SetActive(false);
+        oldMan = Instantiate(prefab, holder.transform);
+        oldMan.name = "OldMan";
+
+        foreach (NPC npc in oldMan.GetComponentsInChildren<NPC>(true)) DestroyImmediate(npc);
+        foreach (WaypointMover mover in oldMan.GetComponentsInChildren<WaypointMover>(true)) DestroyImmediate(mover);
+
+        Vector3 position = overlookPoint.position + (Vector3)oldManOffset;
+        oldMan.transform.SetParent(null, false);
+        SceneManager.MoveGameObjectToScene(oldMan, gameObject.scene);
+        Destroy(holder);
+
+        // The prefab's sprite sits on a child "NPC" object; place that child at the target
+        NPC_Visual(oldMan).position = position;
+    }
+
+    /// <summary>The Transform that actually holds the Old Man's sprite.</summary>
+    private static Transform NPC_Visual(GameObject root)
+    {
+        SpriteRenderer sprite = root.GetComponentInChildren<SpriteRenderer>(true);
+        return sprite != null ? sprite.transform : root.transform;
+    }
+
+    private void EnsureEventSystem()
+    {
+        if (EventSystem.current != null || FindAnyObjectByType<EventSystem>() != null) return;
+
+        GameObject es = new GameObject("EventSystem (auto)");
+        es.AddComponent<EventSystem>();
+        es.AddComponent<InputSystemUIInputModule>();
+    }
+
+    private void EnsureDialogueUI()
+    {
+        if (dialoguePanel != null && dialogueText != null) return;
+
+        Canvas canvas = GetRuntimeCanvas();
+
+        // Bottom-of-screen dialogue box
+        RectTransform panel = CreateUIObject("DialoguePanel", canvas.transform);
+        panel.anchorMin = new Vector2(0f, 0f);
+        panel.anchorMax = new Vector2(1f, 0f);
+        panel.pivot = new Vector2(0.5f, 0f);
+        panel.offsetMin = new Vector2(80f, 40f);
+        panel.offsetMax = new Vector2(-80f, 340f);
+        panel.gameObject.AddComponent<Image>().color = PanelColour;
+
+        speakerNameText = CreateText("SpeakerName", panel, 40f, AccentColour, TextAlignmentOptions.TopLeft);
+        SetRect(speakerNameText.rectTransform, new Vector2(0f, 1f), new Vector2(1f, 1f),
+                new Vector2(40f, -80f), new Vector2(-40f, -20f));
+        speakerNameText.fontStyle = FontStyles.Bold;
+
+        dialogueText = CreateText("DialogueText", panel, 34f, Color.white, TextAlignmentOptions.TopLeft);
+        SetRect(dialogueText.rectTransform, Vector2.zero, Vector2.one,
+                new Vector2(40f, 50f), new Vector2(-40f, -95f));
+
+        TMP_Text prompt = CreateText("ContinuePrompt", panel, 26f, AccentColour, TextAlignmentOptions.BottomRight);
+        SetRect(prompt.rectTransform, new Vector2(1f, 0f), new Vector2(1f, 0f),
+                new Vector2(-500f, 12f), new Vector2(-30f, 52f));
+        prompt.text = "Space / E / Click to continue";
+        continuePrompt = prompt.gameObject;
+
+        dialoguePanel = panel.gameObject;
+        dialoguePanel.SetActive(false);
+        continuePrompt.SetActive(false);
+    }
+
+    private void EnsureChoiceUI()
+    {
+        if (choicePanel != null && truthButton != null && controlButton != null) return;
+
+        Canvas canvas = GetRuntimeCanvas();
+
+        // Centred panel with a title and two stacked buttons
+        RectTransform panel = CreateUIObject("ChoicePanel", canvas.transform);
+        panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(0.5f, 0.5f);
+        panel.sizeDelta = new Vector2(1000f, 420f);
+        panel.gameObject.AddComponent<Image>().color = PanelColour;
+
+        TMP_Text title = CreateText("Title", panel, 40f, AccentColour, TextAlignmentOptions.Center);
+        SetRect(title.rectTransform, new Vector2(0f, 1f), new Vector2(1f, 1f),
+                new Vector2(30f, -100f), new Vector2(-30f, -25f));
+        title.text = "What will you do?";
+        title.fontStyle = FontStyles.Bold;
+
+        truthButton = CreateButton("TruthButton", panel, new Vector2(0f, 0f));
+        controlButton = CreateButton("ControlButton", panel, new Vector2(0f, -140f));
+
+        // Up/down keys move between the two buttons
+        Navigation truthNav = new Navigation { mode = Navigation.Mode.Explicit, selectOnDown = controlButton, selectOnUp = controlButton };
+        Navigation controlNav = new Navigation { mode = Navigation.Mode.Explicit, selectOnUp = truthButton, selectOnDown = truthButton };
+        truthButton.navigation = truthNav;
+        controlButton.navigation = controlNav;
+
+        choicePanel = panel.gameObject;
+        choicePanel.SetActive(false);
+    }
+
+    private Button CreateButton(string name, Transform parent, Vector2 anchoredPosition)
+    {
+        RectTransform rect = CreateUIObject(name, parent);
+        rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0.5f, 0.5f);
+        rect.sizeDelta = new Vector2(860f, 110f);
+        rect.anchoredPosition = anchoredPosition + new Vector2(0f, 10f);
+
+        Image image = rect.gameObject.AddComponent<Image>();
+        image.color = Color.white; // tinted by the Button's ColorBlock
+
+        Button button = rect.gameObject.AddComponent<Button>();
+        button.targetGraphic = image;
+        ColorBlock colours = button.colors;
+        colours.normalColor = ButtonColour;
+        colours.highlightedColor = new Color(0.35f, 0.3f, 0.18f, 1f);
+        colours.selectedColor = new Color(0.35f, 0.3f, 0.18f, 1f);
+        colours.pressedColor = AccentColour;
+        colours.disabledColor = new Color(0.1f, 0.1f, 0.1f, 0.6f);
+        button.colors = colours;
+
+        TMP_Text label = CreateText("Label", rect, 36f, Color.white, TextAlignmentOptions.Center);
+        SetRect(label.rectTransform, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        return button;
+    }
+
+    private Canvas GetRuntimeCanvas()
+    {
+        if (runtimeCanvas != null) return runtimeCanvas;
+
+        GameObject canvasObject = new GameObject("RooftopUI (auto)");
+        canvasObject.transform.SetParent(transform, false);
+
+        runtimeCanvas = canvasObject.AddComponent<Canvas>();
+        runtimeCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        runtimeCanvas.sortingOrder = 500; // above the game HUD
+
+        CanvasScaler scaler = canvasObject.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1920f, 1080f);
+        scaler.matchWidthOrHeight = 0.5f;
+
+        canvasObject.AddComponent<GraphicRaycaster>();
+        return runtimeCanvas;
+    }
+
+    // ------------------------------------------------------------------
+    // A. Opening cutscene
+    // ------------------------------------------------------------------
 
     /// <summary>Stops player-driven movement, interaction and menus.</summary>
     private void LockPlayer(bool locked)
@@ -214,12 +469,7 @@ public class FinalRooftopSceneManager : MonoBehaviour
         if (player == null) yield break;
 
         if (playerStartPoint != null) TeleportPlayer(playerStartPoint.position);
-
-        if (overlookPoint == null)
-        {
-            Debug.LogWarning("[FinalRooftop] Overlook Point is not assigned. Skipping the walk.");
-            yield break;
-        }
+        if (overlookPoint == null) yield break;
 
         Vector2 target = overlookPoint.position;
         Vector2 direction = (target - (Vector2)player.position).normalized;
@@ -267,14 +517,6 @@ public class FinalRooftopSceneManager : MonoBehaviour
     private IEnumerator PlayDialogue(string[] lines)
     {
         if (lines == null || lines.Length == 0) yield break;
-
-        if (dialoguePanel == null || dialogueText == null)
-        {
-            // Still playable without UI: log the lines so testing isn't blocked
-            Debug.LogWarning("[FinalRooftop] Dialogue UI not assigned. Logging lines instead.");
-            foreach (string line in lines) Debug.Log($"{speakerName}: {line}");
-            yield break;
-        }
 
         dialoguePanel.SetActive(true);
         if (speakerNameText != null) speakerNameText.text = speakerName;
@@ -346,12 +588,6 @@ public class FinalRooftopSceneManager : MonoBehaviour
 
     private void ShowChoices()
     {
-        if (choicePanel == null || truthButton == null || controlButton == null)
-        {
-            Debug.LogError("[FinalRooftop] Choice panel or buttons are not assigned. The ending cannot be chosen.");
-            return;
-        }
-
         SetButtonLabel(truthButton, truthButtonLabel);
         SetButtonLabel(controlButton, controlButtonLabel);
 
@@ -404,7 +640,8 @@ public class FinalRooftopSceneManager : MonoBehaviour
         yield return CameraShake(shakeDuration, shakeMagnitude);
         yield return new WaitForSeconds(truthHoldTime);
 
-        yield return FadeOutAndLoad(truthSceneName);
+        yield return FadeOut();
+        yield return LoadEnding(truthSceneName, truthEndingTitle, truthEndingText);
     }
 
     // ------------------------------------------------------------------
@@ -417,7 +654,8 @@ public class FinalRooftopSceneManager : MonoBehaviour
 
         yield return new WaitForSeconds(controlHoldTime);
 
-        yield return FadeOutAndLoad(controlSceneName);
+        yield return FadeOut();
+        yield return LoadEnding(controlSceneName, controlEndingTitle, controlEndingText);
     }
 
     // ------------------------------------------------------------------
@@ -461,11 +699,12 @@ public class FinalRooftopSceneManager : MonoBehaviour
     // Fade and scene loading
     // ------------------------------------------------------------------
 
-    private IEnumerator FadeOutAndLoad(string sceneName)
+    private IEnumerator FadeOut()
     {
         CanvasGroup fade = GetOrCreateFadeGroup();
         float startAlpha = fade.alpha;
         float startVolume = AudioListener.volume;
+        s_VolumeToRestore = startVolume;
         float t = 0f;
 
         while (t < fadeDuration)
@@ -477,21 +716,82 @@ public class FinalRooftopSceneManager : MonoBehaviour
             yield return null;
         }
         fade.alpha = 1f;
-
-        LoadEnding(sceneName, startVolume);
     }
 
-    private void LoadEnding(string sceneName, float volumeToRestore)
+    /// <summary>
+    /// Loads the ending scene if it's in the build, otherwise shows the built-in ending screen.
+    /// </summary>
+    private IEnumerator LoadEnding(string sceneName, string title, string body)
     {
-        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        if (Application.CanStreamedLevelBeLoaded(sceneName))
         {
-            Debug.LogError($"[FinalRooftop] Scene '{sceneName}' is not in the Build Profile scene list. Add it to load the ending.");
-            AudioListener.volume = volumeToRestore;
-            return;
+            LeaveFloor(sceneName);
+            yield break;
         }
 
-        // AudioListener.volume is global, so restore it once the ending scene is up
-        s_VolumeToRestore = volumeToRestore;
+        Debug.Log($"[FinalRooftop] Scene '{sceneName}' is not in the Build Profile scene list. Showing the built-in ending screen.");
+        AudioListener.volume = s_VolumeToRestore;
+        yield return ShowEndingScreen(title, body);
+    }
+
+    private IEnumerator ShowEndingScreen(string title, string body)
+    {
+        // Own top-most canvas so it sits above whatever fade overlay is in use
+        GameObject canvasObject = new GameObject("EndingScreen (auto)");
+        canvasObject.transform.SetParent(transform, false);
+        Canvas canvas = canvasObject.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.sortingOrder = short.MaxValue;
+        CanvasScaler scaler = canvasObject.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1920f, 1080f);
+        scaler.matchWidthOrHeight = 0.5f;
+        CanvasGroup group = canvasObject.AddComponent<CanvasGroup>();
+        group.alpha = 0f;
+
+        RectTransform background = CreateUIObject("Background", canvasObject.transform);
+        SetRect(background, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        background.gameObject.AddComponent<Image>().color = Color.black;
+
+        TMP_Text titleText = CreateText("Title", canvasObject.transform, 72f, AccentColour, TextAlignmentOptions.Center);
+        SetRect(titleText.rectTransform, new Vector2(0.1f, 0.68f), new Vector2(0.9f, 0.85f), Vector2.zero, Vector2.zero);
+        titleText.text = title;
+        titleText.fontStyle = FontStyles.Bold;
+        titleText.characterSpacing = 12f;
+
+        TMP_Text bodyText = CreateText("Body", canvasObject.transform, 36f, Color.white, TextAlignmentOptions.Top);
+        SetRect(bodyText.rectTransform, new Vector2(0.18f, 0.22f), new Vector2(0.82f, 0.64f), Vector2.zero, Vector2.zero);
+        bodyText.text = body;
+
+        bool canReturn = Application.CanStreamedLevelBeLoaded(menuSceneName);
+        TMP_Text hint = CreateText("Hint", canvasObject.transform, 26f, new Color(1f, 1f, 1f, 0.6f), TextAlignmentOptions.Center);
+        SetRect(hint.rectTransform, new Vector2(0.1f, 0.06f), new Vector2(0.9f, 0.14f), Vector2.zero, Vector2.zero);
+        hint.text = canReturn ? "Press any key to return to the menu" : "Thank you for playing";
+
+        // Fade the card in
+        for (float t = 0f; t < 1.5f; t += Time.unscaledDeltaTime)
+        {
+            group.alpha = t / 1.5f;
+            yield return null;
+        }
+        group.alpha = 1f;
+
+        if (!canReturn) yield break;
+
+        yield return new WaitForSeconds(1f); // stop an accidental skip
+        yield return new WaitUntil(AnyInputPressed);
+        LeaveFloor(menuSceneName);
+    }
+
+    private static bool AnyInputPressed()
+    {
+        return (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
+               (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame);
+    }
+
+    private void LeaveFloor(string sceneName)
+    {
+        // AudioListener.volume is global, so restore it once the next scene is up
         SceneManager.sceneLoaded -= RestoreVolumeOnLoad;
         SceneManager.sceneLoaded += RestoreVolumeOnLoad;
 
@@ -500,8 +800,6 @@ public class FinalRooftopSceneManager : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
     }
-
-    private static float s_VolumeToRestore = 1f;
 
     private static void RestoreVolumeOnLoad(Scene scene, LoadSceneMode mode)
     {
@@ -515,7 +813,6 @@ public class FinalRooftopSceneManager : MonoBehaviour
         PersistentObject[] persistent = FindObjectsByType<PersistentObject>(FindObjectsInactive.Include);
         foreach (PersistentObject obj in persistent)
         {
-            // Never destroy the object running this coroutine's fade canvas
             if (obj != null && !transform.IsChildOf(obj.transform)) Destroy(obj.gameObject);
         }
     }
@@ -530,28 +827,52 @@ public class FinalRooftopSceneManager : MonoBehaviour
             return fadeCanvasGroup;
         }
 
-        GameObject canvasObject = new GameObject("RooftopFadeCanvas");
+        GameObject canvasObject = new GameObject("RooftopFade (auto)");
         canvasObject.transform.SetParent(transform, false);
 
         Canvas canvas = canvasObject.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.sortingOrder = short.MaxValue; // above every other UI
+        canvas.sortingOrder = short.MaxValue - 1; // above all UI except the ending screen
 
-        GameObject imageObject = new GameObject("Black");
-        imageObject.transform.SetParent(canvasObject.transform, false);
-        Image image = imageObject.AddComponent<Image>();
-        image.color = Color.black;
-
-        RectTransform rect = image.rectTransform;
-        rect.anchorMin = Vector2.zero;
-        rect.anchorMax = Vector2.one;
-        rect.offsetMin = Vector2.zero;
-        rect.offsetMax = Vector2.zero;
+        RectTransform black = CreateUIObject("Black", canvasObject.transform);
+        SetRect(black, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        black.gameObject.AddComponent<Image>().color = Color.black;
 
         fadeCanvasGroup = canvasObject.AddComponent<CanvasGroup>();
         fadeCanvasGroup.alpha = 0f;
         fadeCanvasGroup.blocksRaycasts = true;
         return fadeCanvasGroup;
+    }
+
+    // ------------------------------------------------------------------
+    // UI building helpers
+    // ------------------------------------------------------------------
+
+    private static RectTransform CreateUIObject(string name, Transform parent)
+    {
+        GameObject go = new GameObject(name, typeof(RectTransform));
+        go.transform.SetParent(parent, false);
+        return (RectTransform)go.transform;
+    }
+
+    private static TMP_Text CreateText(string name, Transform parent, float size, Color colour, TextAlignmentOptions alignment)
+    {
+        RectTransform rect = CreateUIObject(name, parent);
+        TextMeshProUGUI text = rect.gameObject.AddComponent<TextMeshProUGUI>();
+        text.fontSize = size;
+        text.color = colour;
+        text.alignment = alignment;
+        text.textWrappingMode = TextWrappingModes.Normal;
+        text.raycastTarget = false;
+        return text;
+    }
+
+    private static void SetRect(RectTransform rect, Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax)
+    {
+        rect.anchorMin = anchorMin;
+        rect.anchorMax = anchorMax;
+        rect.offsetMin = offsetMin;
+        rect.offsetMax = offsetMax;
     }
 
     // ------------------------------------------------------------------
