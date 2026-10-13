@@ -129,24 +129,35 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         RecordVisit(scene.name);
-
+        if (!s_HasPendingPosition) return;
+        s_HasPendingPosition = false;
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
 
-
-        // Try to find an elevator to land on
-        var marker = GameObject.Find("ElevatorController");
-        if (marker != null)
+        // Search the destination scene, not DontDestroyOnLoad: that contains
+        // the carried-over elevator at the previous floor's coordinates.
+        var transforms = scene.GetRootGameObjects()
+            .SelectMany(root => root.GetComponentsInChildren<Transform>(true));
+        var marker = transforms.FirstOrDefault(t => t.name == "ElevatorArrival");
+        if (marker == null && s_UseSpawnMarker)
+            marker = transforms.FirstOrDefault(t => t.name == "PlayerSpawn");
+        var destinationElevator = scene.GetRootGameObjects()
+            .SelectMany(root => root.GetComponentsInChildren<ElevatorTransition>(true))
+            .FirstOrDefault();
+        Vector3 arrival = marker != null ? marker.position
+            : destinationElevator != null ? destinationElevator.transform.position
+            : (Vector3)s_PendingPosition;
+        if (Instance != null && (marker != null || destinationElevator != null))
         {
-            player.transform.position = marker.transform.position;
-            return;
+            Instance.transform.position = arrival;
         }
-
-
-        if (!s_HasPendingPosition) return;
-        s_HasPendingPosition = false;
-
-        player.transform.position = s_PendingPosition;
+        player.transform.position = arrival;
+        var body = player.GetComponent<Rigidbody2D>();
+        if (body != null)
+        {
+            body.position = arrival;
+            body.linearVelocity = Vector2.zero;
+        }
     }
 
 

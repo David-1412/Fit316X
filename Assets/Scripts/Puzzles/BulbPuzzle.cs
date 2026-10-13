@@ -9,6 +9,11 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
 {
 
     public bool removeable = false;
+    [Tooltip("Only accept non-core gems with all three RGB channels (111).")]
+    public bool requirePrismaticGem = false;
+    [Tooltip("Optional inventory item name required by this socket.")]
+    public string requiredGemName = "";
+    public string interactionLabel = "";
 
 
     public Light2D lightSource;
@@ -84,6 +89,8 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
             // ?? Option A: GemItem component (explicit, preferred) ?????????
             var gemComp = slot.currentItem.GetComponent<GemItem>();
             if (gemComp != null) { 
+                if (requirePrismaticGem && (gemComp.isCore || gemComp.rgb != 111)) continue;
+                if (!string.IsNullOrEmpty(requiredGemName) && item.Name != requiredGemName) continue;
             
                 result.Add(new GemEntry {
                     name = gemComp.gameObject.GetComponent<Item>().Name, 
@@ -134,7 +141,7 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
             {
                 options.Add(new InteractionOption
                 {
-                    Name = $"Place {gem.name}",
+                    Name = $"{interactionLabel}Place {gem.name}",
                     OnSelect = () => PlaceGem(gem)
                 });
             }
@@ -147,7 +154,7 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
 
                 options.Add(new InteractionOption
                 {
-                    Name = $"Take Back {currentGem?.name}",
+                    Name = $"{interactionLabel}Take Back {currentGem?.name}",
                     OnSelect = () => TakeGem()
                 });
             }
@@ -175,6 +182,25 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
             return;
         }
 
+        ApplyGemVisuals();
+    }
+
+    public string CaptureGemState() => currentGem.HasValue ? JsonUtility.ToJson(currentGem.Value) : "";
+
+    // Restore the socket without consuming another inventory item.
+    public void RestoreGemState(string state)
+    {
+        currentGem = string.IsNullOrEmpty(state) ? null : JsonUtility.FromJson<GemEntry>(state);
+        if (currentGem.HasValue) ApplyGemVisuals();
+        else
+        {
+            if (background != null) background.color = Color.darkGray;
+            if (lightSource != null) lightSource.gameObject.SetActive(false);
+        }
+    }
+
+    private void ApplyGemVisuals()
+    {
         OnLightOn.Invoke();
         lightSource.gameObject.SetActive(true);
         switch (colourName(((GemEntry) currentGem).color))
@@ -224,6 +250,7 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
                     prefab.GetComponent<Item>().Name,
                     prefab.GetComponent<SpriteRenderer>()?.sprite);
             }
+            else return; // Keep the socket occupied when the inventory is full.
             currentGem = null;
             OnLightOff.Invoke();
             background.color = Color.darkGray;
