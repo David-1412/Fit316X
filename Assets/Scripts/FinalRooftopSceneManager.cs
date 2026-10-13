@@ -724,9 +724,33 @@ public class FinalRooftopSceneManager : MonoBehaviour
         bodyText.text = body;
 
         bool canReturn = CanLoadMenu();
-        TMP_Text hint = CreateText("Hint", canvasObject.transform, 26f, new Color(1f, 1f, 1f, 0.6f), TextAlignmentOptions.Center);
-        SetRect(hint.rectTransform, new Vector2(0.1f, 0.06f), new Vector2(0.9f, 0.14f), Vector2.zero, Vector2.zero);
-        hint.text = canReturn ? "Press any key to return to the menu" : "Thank you for playing";
+        TMP_Text hint = CreateText("Hint", canvasObject.transform, 24f, new Color(1f, 1f, 1f, 0.6f), TextAlignmentOptions.Center);
+        SetRect(hint.rectTransform, new Vector2(0.1f, 0.03f), new Vector2(0.9f, 0.08f), Vector2.zero, Vector2.zero);
+        hint.text = canReturn ? "Press any key or choose an option  \u2022  Esc to quit" : "Thank you for playing  \u2022  Esc to quit";
+
+        // Buttons work with the mouse, Up/Down + Enter/Space/E, and the EventSystem
+        RectTransform buttonRow = CreateUIObject("Buttons", canvasObject.transform);
+        SetRect(buttonRow, new Vector2(0.3f, 0.09f), new Vector2(0.7f, 0.2f), Vector2.zero, Vector2.zero);
+        canvasObject.AddComponent<GraphicRaycaster>();
+
+        var buttons = new System.Collections.Generic.List<Button>();
+        if (canReturn)
+        {
+            Button menuButton = CreateButton("MenuButton", buttonRow, new Vector2(-270f, -10f));
+            menuButton.onClick.AddListener(ReturnToMenu);
+            SetButtonLabel(menuButton, "Return to Menu");
+            buttons.Add(menuButton);
+        }
+        Button quitButton = CreateButton("QuitButton", buttonRow, new Vector2(canReturn ? 270f : 0f, -10f));
+        quitButton.onClick.AddListener(QuitGame);
+        SetButtonLabel(quitButton, "Quit Game");
+        buttons.Add(quitButton);
+
+        foreach (Button button in buttons)
+        {
+            RectTransform rect = (RectTransform)button.transform;
+            rect.sizeDelta = new Vector2(480f, 90f);
+        }
 
         // Fade the card in
         for (float t = 0f; t < 1.5f; t += Time.unscaledDeltaTime)
@@ -736,15 +760,55 @@ public class FinalRooftopSceneManager : MonoBehaviour
         }
         group.alpha = 1f;
 
-        if (!canReturn)
-        {
-            Debug.LogWarning($"[FinalRooftop] Menu scene '{menuSceneName}' can't be loaded. Add it to File > Build Profiles > Scene List.");
-            yield break;
-        }
+        if (!canReturn) Debug.LogWarning($"[FinalRooftop] Menu scene '{menuSceneName}' can't be loaded. Add it to File > Build Profiles > Scene List.");
 
         yield return new WaitForSecondsRealtime(1f); // stop an accidental skip
-        yield return new WaitUntil(AnyInputPressed);
-        ReturnToMenu();
+        ChoiceInput.Attach(buttonRow.gameObject, buttons, new Color(0.35f, 0.3f, 0.18f, 1f));
+
+        while (!leavingEnding)
+        {
+            Keyboard keyboard = Keyboard.current;
+            if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame)
+            {
+                QuitGame();
+            }
+            else if (canReturn && AnyInputPressed() && !IsChoiceNavigationKey())
+            {
+                ReturnToMenu();
+            }
+            yield return null;
+        }
+    }
+
+    private bool leavingEnding;
+
+    /// <summary>Keys and clicks the buttons handle themselves (move highlight / pick a button).</summary>
+    private static bool IsChoiceNavigationKey()
+    {
+        Keyboard k = Keyboard.current;
+        if (k != null && (k.upArrowKey.wasPressedThisFrame || k.downArrowKey.wasPressedThisFrame ||
+                          k.leftArrowKey.wasPressedThisFrame || k.rightArrowKey.wasPressedThisFrame ||
+                          k.wKey.wasPressedThisFrame || k.sKey.wasPressedThisFrame ||
+                          k.aKey.wasPressedThisFrame || k.dKey.wasPressedThisFrame ||
+                          k.enterKey.wasPressedThisFrame || k.numpadEnterKey.wasPressedThisFrame ||
+                          k.spaceKey.wasPressedThisFrame || k.eKey.wasPressedThisFrame ||
+                          k.escapeKey.wasPressedThisFrame))
+            return true;
+
+        Mouse m = Mouse.current;
+        return m != null && m.leftButton.wasPressedThisFrame;
+    }
+
+    private void QuitGame()
+    {
+        if (leavingEnding) return;
+        leavingEnding = true;
+        AudioListener.volume = s_VolumeToRestore;
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     private static bool AnyInputPressed()
@@ -777,6 +841,10 @@ public class FinalRooftopSceneManager : MonoBehaviour
 
     private void ReturnToMenu()
     {
+        if (leavingEnding) return;
+        leavingEnding = true;
+        Debug.Log("[FinalRooftop] Returning to the start menu.");
+
         if (Application.CanStreamedLevelBeLoaded(menuSceneName))
         {
             LeaveFloor(menuSceneName);
@@ -836,7 +904,19 @@ public class FinalRooftopSceneManager : MonoBehaviour
         SceneManager.sceneLoaded += RestoreVolumeOnLoad;
 
         PauseController.SetPause(false);
-        if (destroyPersistentObjectsOnEnding) DestroyPersistentObjects();
+
+        // A failure while cleaning up must never stop the next scene from loading
+        if (destroyPersistentObjectsOnEnding)
+        {
+            try
+            {
+                DestroyPersistentObjects();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogException(e);
+            }
+        }
     }
 
     private static void RestoreVolumeOnLoad(Scene scene, LoadSceneMode mode)
@@ -851,7 +931,10 @@ public class FinalRooftopSceneManager : MonoBehaviour
         PersistentObject[] persistent = FindObjectsByType<PersistentObject>(FindObjectsInactive.Include);
         foreach (PersistentObject obj in persistent)
         {
-            if (obj != null && !transform.IsChildOf(obj.transform)) Destroy(obj.gameObject);
+            if (obj == null || transform.IsChildOf(obj.transform)) continue;
+            // Switch off first so their Update/coroutines can't run against a half-torn-down scene
+            obj.gameObject.SetActive(false);
+            Destroy(obj.gameObject);
         }
     }
 
