@@ -36,6 +36,7 @@ public class ItemPickupUIController : MonoBehaviour
         if (itemImage)
         {
             itemImage.sprite = itemIcon;
+            itemImage.enabled = itemIcon != null; // text-only messages have no icon
         }
 
         activePopups.Enqueue(newPopup);

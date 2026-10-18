@@ -111,7 +111,16 @@ public class InteractionDetector : MonoBehaviour
 
         Debug.Log($"<color=cyan>InteractionDetector: {interactablesInRange.Count} interactables, {allOptions.Count} options, hasMulti={hasMultiInteractable}</color>");
 
-        if (allOptions.Count == 0) return;
+        if (allOptions.Count == 0)
+        {
+            // Something is in reach but needs an item the player doesn't have
+            if (interactablesInRange.Any(i => i != null && i.CanInteract()))
+            {
+                ShowMissingItemPopup();
+                interactCooldown = INTERACT_COOLDOWN_DURATION;
+            }
+            return;
+        }
 
         // Always show the menu if ANY interactable is an IMultiInteractable (e.g. BeamMachine)
         // Only auto-fire for simple single legacy interactables (e.g. single-option NPC, switch)
@@ -139,6 +148,11 @@ public class InteractionDetector : MonoBehaviour
             allOptions[0].OnSelect?.Invoke();
         }
     }
+
+    public const string MissingItemMessage = "Missing required item";
+
+    /// <summary>Shows "Missing required item" on screen for the player.</summary>
+    public static void ShowMissingItemPopup() => PopupText.Show(MissingItemMessage);
 
     private void ScanForInteractables()
     {

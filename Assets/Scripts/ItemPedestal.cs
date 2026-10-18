@@ -70,7 +70,7 @@ public class ItemPedestal : MonoBehaviour, IInteractable
         else
         {
             Debug.Log($"You need a {item1Name} or {item2Name} to place here!");
-            // Optional: you can trigger a floating text or dialogue here if you have one
+            InteractionDetector.ShowMissingItemPopup();
         }
     }
 

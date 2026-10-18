@@ -8,7 +8,6 @@ using UnityEngine.Rendering.Universal;
 public class BulbPuzzle : MonoBehaviour, IMultiInteractable
 {
 
-    public bool removeable = false;
     [Tooltip("Only accept non-core gems with all three RGB channels (111).")]
     public bool requirePrismaticGem = false;
     [Tooltip("Optional inventory item name required by this socket.")]
@@ -48,7 +47,8 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
         
     }
 
-    public void lockGem() { removeable = false; }
+    // Placed gems and cores can always be taken back. Kept so existing event hooks still resolve.
+    public void lockGem() { }
 
 
     // ?? Gem Discovery ?????????????????????????????????????????????????????
@@ -116,7 +116,7 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
     }
 
     // ?? IMultiInteractable ????????????????????????????????????????????????
-    public bool CanInteract() => removeable || currentGem == null ? true : ((GemEntry) currentGem).core;
+    public bool CanInteract() => true;
      
 
     public void Interact()
@@ -148,16 +148,11 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
         }
         else
         {
-            if (removeable || currentGem?.core == true)
+            options.Add(new InteractionOption
             {
-
-
-                options.Add(new InteractionOption
-                {
-                    Name = $"{interactionLabel}Take Back {currentGem?.name}",
-                    OnSelect = () => TakeGem()
-                });
-            }
+                Name = $"{interactionLabel}Take Back {currentGem?.name}",
+                OnSelect = () => TakeGem()
+            });
 
         }
         
@@ -233,11 +228,6 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
 
     private void TakeGem()
     {
-        if (currentGem?.core == false && removeable == false)
-        {
-            return; 
-        }
-
         var dict = FindAnyObjectByType<ItemDictionary>();
         if (dict == null) return;
 
