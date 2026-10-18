@@ -723,10 +723,34 @@ public class FinalRooftopSceneManager : MonoBehaviour
         SetRect(bodyText.rectTransform, new Vector2(0.18f, 0.22f), new Vector2(0.82f, 0.64f), Vector2.zero, Vector2.zero);
         bodyText.text = body;
 
-        bool canReturn = Application.CanStreamedLevelBeLoaded(menuSceneName);
-        TMP_Text hint = CreateText("Hint", canvasObject.transform, 26f, new Color(1f, 1f, 1f, 0.6f), TextAlignmentOptions.Center);
-        SetRect(hint.rectTransform, new Vector2(0.1f, 0.06f), new Vector2(0.9f, 0.14f), Vector2.zero, Vector2.zero);
-        hint.text = canReturn ? "Press any key to return to the menu" : "Thank you for playing";
+        bool canReturn = CanLoadMenu();
+        TMP_Text hint = CreateText("Hint", canvasObject.transform, 24f, new Color(1f, 1f, 1f, 0.6f), TextAlignmentOptions.Center);
+        SetRect(hint.rectTransform, new Vector2(0.1f, 0.03f), new Vector2(0.9f, 0.08f), Vector2.zero, Vector2.zero);
+        hint.text = canReturn ? "Press any key or choose an option  \u2022  Esc to quit" : "Thank you for playing  \u2022  Esc to quit";
+
+        // Buttons work with the mouse, Up/Down + Enter/Space/E, and the EventSystem
+        RectTransform buttonRow = CreateUIObject("Buttons", canvasObject.transform);
+        SetRect(buttonRow, new Vector2(0.3f, 0.09f), new Vector2(0.7f, 0.2f), Vector2.zero, Vector2.zero);
+        canvasObject.AddComponent<GraphicRaycaster>();
+
+        var buttons = new System.Collections.Generic.List<Button>();
+        if (canReturn)
+        {
+            Button menuButton = CreateButton("MenuButton", buttonRow, new Vector2(-270f, -10f));
+            menuButton.onClick.AddListener(ReturnToMenu);
+            SetButtonLabel(menuButton, "Return to Menu");
+            buttons.Add(menuButton);
+        }
+        Button quitButton = CreateButton("QuitButton", buttonRow, new Vector2(canReturn ? 270f : 0f, -10f));
+        quitButton.onClick.AddListener(QuitGame);
+        SetButtonLabel(quitButton, "Quit Game");
+        buttons.Add(quitButton);
+
+        foreach (Button button in buttons)
+        {
+            RectTransform rect = (RectTransform)button.transform;
+            rect.sizeDelta = new Vector2(480f, 90f);
+        }
 
         // Fade the card in
         for (float t = 0f; t < 1.5f; t += Time.unscaledDeltaTime)
@@ -736,44 +760,187 @@ public class FinalRooftopSceneManager : MonoBehaviour
         }
         group.alpha = 1f;
 
-        if (!canReturn) yield break;
+        if (!canReturn) Debug.LogWarning($"[FinalRooftop] Menu scene '{menuSceneName}' can't be loaded. Add it to File > Build Profiles > Scene List.");
 
-        yield return new WaitForSeconds(1f); // stop an accidental skip
-        yield return new WaitUntil(AnyInputPressed);
-        LeaveFloor(menuSceneName);
+        yield return new WaitForSecondsRealtime(1f); // stop an accidental skip
+        ChoiceInput.Attach(buttonRow.gameObject, buttons, new Color(0.35f, 0.3f, 0.18f, 1f));
+
+        while (!leavingEnding)
+        {
+            Keyboard keyboard = Keyboard.current;
+            if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame)
+            {
+                QuitGame();
+            }
+            else if (canReturn && AnyInputPressed() && !IsChoiceNavigationKey())
+            {
+                ReturnToMenu();
+            }
+            yield return null;
+        }
+    }
+
+    private bool leavingEnding;
+
+    /// <summary>Keys and clicks the buttons handle themselves (move highlight / pick a button).</summary>
+    private static bool IsChoiceNavigationKey()
+    {
+        Keyboard k = Keyboard.current;
+        if (k != null && (k.upArrowKey.wasPressedThisFrame || k.downArrowKey.wasPressedThisFrame ||
+                          k.leftArrowKey.wasPressedThisFrame || k.rightArrowKey.wasPressedThisFrame ||
+                          k.wKey.wasPressedThisFrame || k.sKey.wasPressedThisFrame ||
+                          k.aKey.wasPressedThisFrame || k.dKey.wasPressedThisFrame ||
+                          k.enterKey.wasPressedThisFrame || k.numpadEnterKey.wasPressedThisFrame ||
+                          k.spaceKey.wasPressedThisFrame || k.eKey.wasPressedThisFrame ||
+                          k.escapeKey.wasPressedThisFrame))
+            return true;
+
+        Mouse m = Mouse.current;
+        return m != null && m.leftButton.wasPressedThisFrame;
+    }
+
+    private void QuitGame()
+    {
+        if (leavingEnding) return;
+        leavingEnding = true;
+        AudioListener.volume = s_VolumeToRestore;
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     private static bool AnyInputPressed()
     {
-        return (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) ||
-               (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame);
+        if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame) return true;
+
+        Mouse mouse = Mouse.current;
+        if (mouse != null && (mouse.leftButton.wasPressedThisFrame || mouse.rightButton.wasPressedThisFrame))
+            return true;
+
+        Gamepad pad = Gamepad.current;
+        return pad != null && (pad.buttonSouth.wasPressedThisFrame || pad.startButton.wasPressedThisFrame);
     }
+
+    // ------------------------------------------------------------------
+    // Returning to the menu
+    // ------------------------------------------------------------------
+
+    /// <summary>True if the menu can be opened by name, as build scene 0, or (in the editor) from its asset.</summary>
+    private bool CanLoadMenu()
+    {
+        if (Application.CanStreamedLevelBeLoaded(menuSceneName)) return true;
+        if (FirstBuildSceneIsMenu()) return true;
+#if UNITY_EDITOR
+        return !string.IsNullOrEmpty(FindMenuScenePathInEditor());
+#else
+        return false;
+#endif
+    }
+
+    private void ReturnToMenu()
+    {
+        if (leavingEnding) return;
+        leavingEnding = true;
+        Debug.Log("[FinalRooftop] Returning to the start menu.");
+
+        if (Application.CanStreamedLevelBeLoaded(menuSceneName))
+        {
+            LeaveFloor(menuSceneName);
+            return;
+        }
+
+        if (FirstBuildSceneIsMenu())
+        {
+            LeaveFloor(SceneUtility.GetScenePathByBuildIndex(0));
+            return;
+        }
+
+#if UNITY_EDITOR
+        // The menu isn't in this Build Profile's scene list; open it straight from the
+        // project so testing in the editor still works
+        string path = FindMenuScenePathInEditor();
+        if (!string.IsNullOrEmpty(path))
+        {
+            Debug.LogWarning($"[FinalRooftop] '{menuSceneName}' isn't in the Build Profile scene list, so it won't load in a build. Opening it from {path} for now.");
+            PrepareToLeaveFloor();
+            UnityEditor.SceneManagement.EditorSceneManager.LoadSceneInPlayMode(path, new LoadSceneParameters(LoadSceneMode.Single));
+        }
+#endif
+    }
+
+    /// <summary>Build scene 0 is the start menu when its file name matches menuSceneName.</summary>
+    private bool FirstBuildSceneIsMenu()
+    {
+        if (SceneManager.sceneCountInBuildSettings == 0) return false;
+        string path = SceneUtility.GetScenePathByBuildIndex(0);
+        return System.IO.Path.GetFileNameWithoutExtension(path) == menuSceneName &&
+               path != gameObject.scene.path;
+    }
+
+#if UNITY_EDITOR
+    private string FindMenuScenePathInEditor()
+    {
+        foreach (string guid in UnityEditor.AssetDatabase.FindAssets($"{menuSceneName} t:Scene"))
+        {
+            string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+            if (System.IO.Path.GetFileNameWithoutExtension(path) == menuSceneName) return path;
+        }
+        return null;
+    }
+#endif
 
     private void LeaveFloor(string sceneName)
     {
-        // AudioListener.volume is global, so restore it once the next scene is up
-        SceneManager.sceneLoaded -= RestoreVolumeOnLoad;
-        SceneManager.sceneLoaded += RestoreVolumeOnLoad;
-
-        PauseController.SetPause(false);
-        if (destroyPersistentObjectsOnEnding) DestroyPersistentObjects();
-
+        PrepareToLeaveFloor();
         SceneManager.LoadScene(sceneName);
     }
 
-    private static void RestoreVolumeOnLoad(Scene scene, LoadSceneMode mode)
+    private void PrepareToLeaveFloor()
     {
-        SceneManager.sceneLoaded -= RestoreVolumeOnLoad;
-        AudioListener.volume = s_VolumeToRestore;
+        // Nothing is torn down here: the next scene loads first, then the carried-over
+        // objects (Player, HUD, camera...) are removed once it is up (OnLeftFloor)
+        s_CleanUpPersistentOnLoad = destroyPersistentObjectsOnEnding;
+        SceneManager.sceneLoaded -= OnLeftFloor;
+        SceneManager.sceneLoaded += OnLeftFloor;
+
+        PauseController.SetPause(false);
+        Debug.Log("[FinalRooftop] Leaving the floor.");
     }
 
-    /// <summary>Removes the carried-over gameplay objects (Player, HUD, Elevator...).</summary>
-    private void DestroyPersistentObjects()
+    private static bool s_CleanUpPersistentOnLoad;
+
+    /// <summary>Runs once the menu / ending scene has loaded.</summary>
+    private static void OnLeftFloor(Scene scene, LoadSceneMode mode)
     {
-        PersistentObject[] persistent = FindObjectsByType<PersistentObject>(FindObjectsInactive.Include);
-        foreach (PersistentObject obj in persistent)
+        SceneManager.sceneLoaded -= OnLeftFloor;
+
+        // AudioListener.volume is global, so restore it for the new scene
+        AudioListener.volume = s_VolumeToRestore;
+
+        if (s_CleanUpPersistentOnLoad) DestroyCarriedOverObjects();
+        s_CleanUpPersistentOnLoad = false;
+    }
+
+    /// <summary>
+    /// Removes the gameplay objects carried between floors (Player, HUD, camera, Elevator...).
+    /// Only objects in DontDestroyOnLoad are touched, never the newly loaded scene.
+    /// </summary>
+    public static void DestroyCarriedOverObjects()
+    {
+        foreach (PersistentObject obj in FindObjectsByType<PersistentObject>(FindObjectsInactive.Include))
         {
-            if (obj != null && !transform.IsChildOf(obj.transform)) Destroy(obj.gameObject);
+            if (obj == null || obj.gameObject.scene.name != "DontDestroyOnLoad") continue;
+            try
+            {
+                obj.gameObject.SetActive(false);
+                Destroy(obj.gameObject);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogException(e);
+            }
         }
     }
 

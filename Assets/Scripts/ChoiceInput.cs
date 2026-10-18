@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Keyboard and mouse control for a set of choice buttons that works even when the
-/// UI EventSystem isn't receiving input (e.g. after a floor change). Up/Down or W/S
-/// move the highlight, Enter/Space/E confirm, and clicking a button picks it.
+/// UI EventSystem isn't receiving input (e.g. after a floor change). Arrow keys or
+/// WASD move the highlight, Enter/Space/E confirm, and clicking a button picks it.
 /// Buttons still work through the EventSystem as normal; callers should ignore a
 /// second pick of the same choice.
 /// </summary>
@@ -64,11 +64,13 @@ public class ChoiceInput : MonoBehaviour
         Keyboard keyboard = Keyboard.current;
         if (keyboard != null)
         {
-            if (keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame)
+            if (keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame ||
+                keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame)
             {
                 Select((selected - 1 + buttons.Count) % buttons.Count);
             }
-            else if (keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame)
+            else if (keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame ||
+                     keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame)
             {
                 Select((selected + 1) % buttons.Count);
             }
