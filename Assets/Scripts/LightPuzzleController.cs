@@ -63,6 +63,7 @@ public class LightPuzzleController : MonoBehaviour, ISaveableState
             Debug.Log("[LightPuzzleController] All goals satisfied — PUZZLE SOLVED!");
             OnPuzzleSolved?.Invoke();
             ShowSolvedFeedback();
+            MusicManager.PlayPuzzleSolved();
         }
     }
 

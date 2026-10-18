@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        // The Animator now swaps the sprites directly; the Sprite Resolver from the
+        // old art would fight it, so switch it off
+        UnityEngine.U2D.Animation.SpriteResolver resolver = GetComponent<UnityEngine.U2D.Animation.SpriteResolver>();
+        if (resolver != null) resolver.enabled = false;
     }
 
     void Update()
@@ -30,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = moveInput * moveSpeed;
         animator.SetBool("isWalking", rb.linearVelocity.magnitude > 0);
-        UpdateDirectionalSprite();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -51,29 +55,5 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isWalking", false);
         animator.SetFloat("LastInputX", moveInput.x);
         animator.SetFloat("LastInputY", moveInput.y);
-    }
-
-    void UpdateDirectionalSprite()
-    {
-        UnityEngine.U2D.Animation.SpriteResolver resolver = GetComponent<UnityEngine.U2D.Animation.SpriteResolver>();
-        if (resolver == null) return;
-
-        // Determine direction based on moveInput or LastInput
-        Vector2 dir = rb.linearVelocity.magnitude > 0 ? moveInput : new Vector2(animator.GetFloat("LastInputX"), animator.GetFloat("LastInputY"));
-
-        string label = "Idle (3)_0"; // Down default
-
-        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
-        {
-            if (dir.x > 0) label = "Idle (3)_3"; // Right (was 2)
-            else label = "Idle (3)_2"; // Left (was 3)
-        }
-        else if (Mathf.Abs(dir.y) > 0)
-        {
-            if (dir.y > 0) label = "Idle (3)_1"; // Up
-            else label = "Idle (3)_0"; // Down
-        }
-
-        resolver.SetCategoryAndLabel("Idle", label);
     }
 }

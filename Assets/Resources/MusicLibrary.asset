@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5814b42821431e8867ee0309975c7e, type: 3}
+  m_Name: MusicLibrary
+  m_EditorClassIdentifier: 
+  background: {fileID: 8300000, guid: faa75ffb23b366647a698973c1712f15, type: 3}
+  cutscene: {fileID: 8300000, guid: 54933063e7723cc47a79f1dbf0a92391, type: 3}
+  shortCutscene: {fileID: 8300000, guid: 308613a5828ddf644883a0770a45739b, type: 3}
+  puzzleSolved: {fileID: 8300000, guid: 93101eb462da4e04c83fdcb13e41b19d, type: 3}
+  puzzleSolvedSeconds: 8
+  finalChoice: {fileID: 8300000, guid: 152dbefd5d782534183dda5ca7a75693, type: 3}
+  truthEnding: {fileID: 8300000, guid: 1014c07b29fc29248a20d29b50473ed7, type: 3}
+  controlEnding: {fileID: 8300000, guid: c4ef0c7b0c441bb4f8f74f8ce4071a75, type: 3}

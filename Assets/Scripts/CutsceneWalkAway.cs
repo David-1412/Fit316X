@@ -26,6 +26,7 @@ public class CutsceneWalkAway : MonoBehaviour
     {
         // 1. Lock the player by pausing input
         PauseController.SetPause(true);
+        MusicManager.PlayCutscene(shortVersion: true);
         
         // 2. Disable NPC interaction and physical collision so player can't block them
         Collider2D[] colliders = GetComponents<Collider2D>();
@@ -56,6 +57,7 @@ public class CutsceneWalkAway : MonoBehaviour
 
         // 5. Unlock the player
         PauseController.SetPause(false);
+        MusicManager.StopMoment();
 
         // 6. Disappear!
         Destroy(gameObject);

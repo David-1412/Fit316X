@@ -52,6 +52,7 @@ public class PuzzleRoomManager : MonoBehaviour
         Debug.Log("[PuzzleRoomManager] PUZZLE SOLVED!");
 
         OnPuzzleSolved?.Invoke();
+        MusicManager.PlayPuzzleSolved();
 
         // Find UICanvas and show feedback text using TextMeshPro if available, fallback to legacy UI.Text
         var canvas = FindAnyObjectByType<Canvas>();

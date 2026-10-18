@@ -10,6 +10,7 @@ public class F2RoomReveal : MonoBehaviour, ISaveableState
 
     public void Reveal()
     {
+        if (!revealed) MusicManager.PlayPuzzleSolved();
         revealed = true;
         if (darkness != null) darkness.SetActive(false);
     }

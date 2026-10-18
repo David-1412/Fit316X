@@ -213,6 +213,7 @@ public class FinalRooftopSceneManager : MonoBehaviour
     private IEnumerator RunSequence()
     {
         // A. Opening cutscene
+        MusicManager.PlayCutscene();
         yield return WalkPlayerToOverlook();
         yield return new WaitForSeconds(pauseBeforeDialogue);
 
@@ -556,6 +557,7 @@ public class FinalRooftopSceneManager : MonoBehaviour
         truthButton.interactable = true;
         controlButton.interactable = true;
         choicePanel.SetActive(true);
+        MusicManager.PlayFinalChoice();
 
         // Keyboard (Up/Down + Enter/Space/E) and mouse work even if the EventSystem
         // carried over from an earlier floor isn't receiving input
@@ -591,16 +593,21 @@ public class FinalRooftopSceneManager : MonoBehaviour
     // Truth ending: open the shutters, collapse, fade, load
     // ------------------------------------------------------------------
 
+    /// <summary>Ending music fades in as the ending screen / scene appears.</summary>
+    private const float EndingMusicFade = 2f;
+
     private IEnumerator TruthEndingSequence()
     {
         if (shutterAnimator != null) shutterAnimator.SetTrigger(openShuttersTrigger);
         if (rubbleParticles != null) rubbleParticles.Play();
         if (collapseAudio != null) collapseAudio.Play();
+        MusicManager.FadeOut(); // let the collapse be heard
 
         yield return CameraShake(shakeDuration, shakeMagnitude);
         yield return new WaitForSeconds(truthHoldTime);
 
         yield return FadeOut();
+        MusicManager.PlayEnding(true, EndingMusicFade);
         yield return LoadEnding(truthSceneName, truthEndingTitle, truthEndingText);
     }
 
@@ -611,10 +618,12 @@ public class FinalRooftopSceneManager : MonoBehaviour
     private IEnumerator ControlEndingSequence()
     {
         if (consoleSealAudio != null) consoleSealAudio.Play();
+        MusicManager.FadeOut();
 
         yield return new WaitForSeconds(controlHoldTime);
 
         yield return FadeOut();
+        MusicManager.PlayEnding(false, EndingMusicFade);
         yield return LoadEnding(controlSceneName, controlEndingTitle, controlEndingText);
     }
 
