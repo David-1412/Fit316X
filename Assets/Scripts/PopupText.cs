@@ -18,9 +18,14 @@ public class PopupText : MonoBehaviour
     private CanvasGroup group;
     private Coroutine routine;
 
-    public static void Show(string message)
+    private static readonly Color WarningColour = new Color(1f, 0.4f, 0.35f, 1f);
+
+    public static void Show(string message) => Show(message, WarningColour);
+
+    public static void Show(string message, Color colour)
     {
         if (s_Instance == null) s_Instance = Create();
+        s_Instance.label.color = colour;
         s_Instance.Display(message);
     }
 
@@ -66,7 +71,7 @@ public class PopupText : MonoBehaviour
         popup.label.fontSize = 44;
         popup.label.fontStyle = FontStyles.Bold;
         popup.label.alignment = TextAlignmentOptions.Center;
-        popup.label.color = new Color(1f, 0.4f, 0.35f, 1f);
+        popup.label.color = WarningColour;
         popup.label.enableAutoSizing = true;
         popup.label.fontSizeMin = 24;
         popup.label.fontSizeMax = 44;

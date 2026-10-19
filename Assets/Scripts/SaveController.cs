@@ -59,6 +59,9 @@ public class SaveController : MonoBehaviour
 
     public static bool HasSave() => File.Exists(SaveFilePath);
 
+    /// <summary>True while a floor's saved puzzle progress is being re-applied.</summary>
+    public static bool IsRestoring { get; private set; }
+
     /// <summary>Reads the save file, or returns null if there is none or it's unreadable.</summary>
     public static SaveData ReadSave()
     {
@@ -640,17 +643,25 @@ public class SaveController : MonoBehaviour
             .OrderBy(b => b is LightGoal || b is LightPuzzleController ? 1 : 0)
             .ToList();
 
-        foreach (MonoBehaviour behaviour in saveables)
+        IsRestoring = true;
+        try
         {
-            if (!states.TryGetValue(ObjectId(behaviour), out string state)) continue;
-            try
+            foreach (MonoBehaviour behaviour in saveables)
             {
-                ((ISaveableState)behaviour).RestoreState(state);
+                if (!states.TryGetValue(ObjectId(behaviour), out string state)) continue;
+                try
+                {
+                    ((ISaveableState)behaviour).RestoreState(state);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning($"[Save] Could not restore {behaviour.name}: {e.Message}");
+                }
             }
-            catch (Exception e)
-            {
-                Debug.LogWarning($"[Save] Could not restore {behaviour.name}: {e.Message}");
-            }
+        }
+        finally
+        {
+            IsRestoring = false;
         }
     }
 }

@@ -13,6 +13,7 @@ public class GrateDoor : MonoBehaviour
     private bool opening = false;
     private bool closeing = false;
     private float movement = 0;
+    private bool announced = false;
  
 
     private void Start()
@@ -52,7 +53,14 @@ public class GrateDoor : MonoBehaviour
     {
         opening = true;
         closeing = false;
-        
+
+        // The room's puzzle opens this door: announce it the first time only
+        // (Trigger calls this every frame, and beams can re-open it later)
+        if (!announced)
+        {
+            announced = true;
+            PuzzleSolved.Announce();
+        }
     }
 
 

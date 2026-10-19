@@ -6,7 +6,21 @@ using UnityEngine.UI;
 
 public class ItemPickupUIController : MonoBehaviour
 {
-    public static ItemPickupUIController Instance { get; private set; }
+    private static ItemPickupUIController s_Instance;
+
+    /// <summary>
+    /// The live popup controller, or null. A destroyed one (e.g. from a canvas removed
+    /// on a scene change) is never returned, so "Instance?.ShowItemPickup" stays safe.
+    /// </summary>
+    public static ItemPickupUIController Instance
+    {
+        get
+        {
+            if (s_Instance == null) // Unity's null check: also true once destroyed
+                s_Instance = FindAnyObjectByType<ItemPickupUIController>();
+            return s_Instance;
+        }
+    }
 
     public GameObject popupPrefab;
     public int maxPopups = 5;
@@ -16,15 +30,20 @@ public class ItemPickupUIController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (s_Instance == null || s_Instance == this)
         {
-            Instance = this;
+            s_Instance = this;
         }
         else
         {
             // A persistent instance already exists from a previous scene load — silently destroy this duplicate.
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (s_Instance == this) s_Instance = null;
     }
 
     public void ShowItemPickup(string itemName, Sprite itemIcon)

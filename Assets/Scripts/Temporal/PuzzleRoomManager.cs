@@ -52,32 +52,6 @@ public class PuzzleRoomManager : MonoBehaviour
         Debug.Log("[PuzzleRoomManager] PUZZLE SOLVED!");
 
         OnPuzzleSolved?.Invoke();
-        MusicManager.PlayPuzzleSolved();
-
-        // Find UICanvas and show feedback text using TextMeshPro if available, fallback to legacy UI.Text
-        var canvas = FindAnyObjectByType<Canvas>();
-        if (canvas != null)
-        {
-            var textObj = new GameObject("SolvedText");
-            textObj.transform.SetParent(canvas.transform, false);
-
-            // Try TextMeshPro first
-            var tmp = textObj.AddComponent<TMPro.TextMeshProUGUI>();
-            if (tmp != null)
-            {
-                tmp.text = "✦  ROOM SOLVED  ✦";
-                tmp.fontSize = 60;
-                tmp.color = new Color(1f, 0.9f, 0.2f, 1f);
-                tmp.alignment = TMPro.TextAlignmentOptions.Center;
-                tmp.fontStyle = TMPro.FontStyles.Bold;
-                var rect = textObj.GetComponent<RectTransform>();
-                rect.anchorMin = new Vector2(0.1f, 0.4f);
-                rect.anchorMax = new Vector2(0.9f, 0.6f);
-                rect.anchoredPosition = Vector2.zero;
-                rect.sizeDelta = Vector2.zero;
-            }
-
-            Destroy(textObj, 3f);
-        }
+        PuzzleSolved.Announce();
     }
 }

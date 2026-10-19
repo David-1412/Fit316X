@@ -234,17 +234,16 @@ public class BulbPuzzle : MonoBehaviour, IMultiInteractable
         var prefab = dict.GetItemPrefabByName(currentGem?.name);
         if (prefab != null && InventoryController.Instance != null)
         {
-            if (InventoryController.Instance.AddItem(prefab))
-            {
-                ItemPickupUIController.Instance?.ShowItemPickup(
-                    prefab.GetComponent<Item>().Name,
-                    prefab.GetComponent<SpriteRenderer>()?.sprite);
-            }
-            else return; // Keep the socket occupied when the inventory is full.
+            if (!InventoryController.Instance.AddItem(prefab))
+                return; // Keep the socket occupied when the inventory is full.
+
             currentGem = null;
             OnLightOff.Invoke();
             background.color = Color.darkGray;
             lightSource.gameObject.SetActive(false);
+            ItemPickupUIController.Instance?.ShowItemPickup(
+                prefab.GetComponent<Item>().Name,
+                prefab.GetComponent<SpriteRenderer>()?.sprite);
         }
         Debug.Log($"[BULB] Returned gem");
     }

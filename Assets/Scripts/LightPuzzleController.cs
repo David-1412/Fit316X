@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
-using TMPro;
 
 /// <summary>
 /// LightPuzzleController — tracks all LightGoals and fires OnPuzzleSolved
@@ -62,8 +61,7 @@ public class LightPuzzleController : MonoBehaviour, ISaveableState
             solved = true;
             Debug.Log("[LightPuzzleController] All goals satisfied — PUZZLE SOLVED!");
             OnPuzzleSolved?.Invoke();
-            ShowSolvedFeedback();
-            MusicManager.PlayPuzzleSolved();
+            PuzzleSolved.Announce();
         }
     }
 
@@ -77,30 +75,5 @@ public class LightPuzzleController : MonoBehaviour, ISaveableState
 
         solved = true;
         OnPuzzleSolved?.Invoke();
-    }
-
-    // ── Win Feedback ──────────────────────────────────────────────────────
-    private void ShowSolvedFeedback()
-    {
-        var canvas = FindAnyObjectByType<Canvas>();
-        if (canvas == null) return;
-
-        var textObj = new GameObject("LightPuzzleSolvedText");
-        textObj.transform.SetParent(canvas.transform, false);
-
-        var tmp = textObj.AddComponent<TextMeshProUGUI>();
-        tmp.text      = "✦  PUZZLE SOLVED  ✦";
-        tmp.fontSize  = 60;
-        tmp.color     = new Color(1f, 0.85f, 0.2f, 1f);
-        tmp.alignment = TextAlignmentOptions.Center;
-        tmp.fontStyle = FontStyles.Bold;
-
-        var rect = textObj.GetComponent<RectTransform>();
-        rect.anchorMin       = new Vector2(0.1f, 0.4f);
-        rect.anchorMax       = new Vector2(0.9f, 0.6f);
-        rect.anchoredPosition = Vector2.zero;
-        rect.sizeDelta        = Vector2.zero;
-
-        Destroy(textObj, 3f);
     }
 }

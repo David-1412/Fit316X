@@ -34,7 +34,7 @@ public class PuzzleManager : MonoBehaviour
             portalObject.GetComponent<SpriteRenderer>().enabled = true;
             portalObject.GetComponent<BoxCollider2D>().enabled = true;
             Debug.Log("Puzzle Solved! Portal Opened!");
-            MusicManager.PlayPuzzleSolved();
+            PuzzleSolved.Announce();
         }
     }
 

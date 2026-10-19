@@ -313,11 +313,11 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
         {
             if (InventoryController.Instance.AddItem(prefab))
             {
+                currentColours.Remove(colour);
                 ItemPickupUIController.Instance?.ShowItemPickup(
                     prefab.GetComponent<Item>().Name,
                     prefab.GetComponent<SpriteRenderer>()?.sprite);
             }
-            currentColours.Remove(colour);
         }
         Debug.Log($"[Elevator] Took '{colourName(colour)} Core'");
     }

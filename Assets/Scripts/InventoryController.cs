@@ -87,7 +87,7 @@ public class InventoryController : MonoBehaviour
         {
             rt.anchoredPosition = Vector2.zero;
             rt.localScale = Vector3.one;
-            rt.sizeDelta = new Vector2(100, 100); // Give it a visible, clickable size
+            MenuStyle.FitItemToSlot(rt); // Fill most of the slot, keeping the icon's shape
         }
         
         UnityEngine.UI.Image img = itemObj.GetComponent<UnityEngine.UI.Image>();
