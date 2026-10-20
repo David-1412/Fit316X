@@ -43,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -57,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,10 +109,10 @@ TextureImporter:
       name: F2-ShelvedBooks_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 983
-        width: 66
-        height: 23
+        x: 16
+        y: 1000
+        width: 1
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,10 +131,10 @@ TextureImporter:
       name: F2-ShelvedBooks_1
       rect:
         serializedVersion: 2
-        x: 15
-        y: 959
-        width: 66
-        height: 23
+        x: 17
+        y: 1000
+        width: 1
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +153,10 @@ TextureImporter:
       name: F2-ShelvedBooks_2
       rect:
         serializedVersion: 2
-        x: 15
-        y: 935
-        width: 66
-        height: 23
+        x: 19
+        y: 1000
+        width: 1
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,11 +171,869 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_3
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b117defdd18760a43a4a8f9005ecf1a7
+      internalID: 863625133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_4
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fef851f318d26ee4c956d125a5284db5
+      internalID: -2023649533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_5
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5df53e42324f187459bd9ee8c7fee4b2
+      internalID: 505448814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_6
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1000
+        width: 1
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5290af64682ccb346952181a19e66142
+      internalID: 914079035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_7
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d849390fcbc71384a801ec2c19b41f95
+      internalID: -664690210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdb2786860dec6b41b56c6612d43b833
+      internalID: -924369818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_9
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c0d47c95b1cb5843af1107da0fe8a21
+      internalID: 672247873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_10
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2ab40bc39cc474886233cff2539f68
+      internalID: -1326539951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_11
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21395d99a405d9943a323a5888045883
+      internalID: 1019838783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_12
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cce767be13806c4ea9dec318ffdf17d
+      internalID: 1117409563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_13
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c3143698b42bb94886a72f49044e5b5
+      internalID: -2055556090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_14
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1000
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e607b18b9c28b5046823e4c53ced8329
+      internalID: 671603389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_15
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0c9a16db8a62d94097c34c3dd7ef761
+      internalID: -1402159410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_16
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4118c8f0fd4ed3042975f39af05699c0
+      internalID: 1944372286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_17
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42a6f33c6e99f3c49b720a46317ce7d0
+      internalID: 843904009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_18
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df8da51318a2b2c4797fce5bc461c979
+      internalID: -1930775720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_19
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c6d5e8b466772d4e9f5bb3618f9216d
+      internalID: -23229414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_20
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e323c571f160fa24c986da37851fb3c5
+      internalID: -1750174608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_21
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57def17a638470c42ba60862874f84f2
+      internalID: 2121929389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_22
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0b6f12f8fee5304aa739d3e04e5d8c7
+      internalID: -2055124102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_23
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e4c67f6f7184f7409bb31cdb1415a53
+      internalID: -1121027695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_24
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35228c115486c8742b6708c04ead8ce8
+      internalID: -294374582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_25
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22ebcf542575a7f47919cdeaa228a9c4
+      internalID: -1235803824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_26
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b95aeec0a77ef4449729b7729a02b02
+      internalID: -1028013426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_27
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2d3b8d2dedad174691ca7b152c5646b
+      internalID: -1019213811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_28
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60d77897d7b8ca042b0eceb3e38c7c26
+      internalID: 1695999382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_29
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 976
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19995a3df32f73a4cac57235ae9166fe
+      internalID: 741743154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_30
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e626ede93d32ecf43b4f620125c9d3ca
+      internalID: 1605029750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_31
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7725c5752d441459b74567170e7e98
+      internalID: -954571646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_32
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa0396fe286cadb4e9e2626993495796
+      internalID: 1860274678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_33
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2385086aabfb83d4b82307d225a7161c
+      internalID: -281927531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_34
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae29d2c720be8a64182f431826a6185c
+      internalID: 1840054124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_35
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb8556f46c4706644bdeebeb375a998c
+      internalID: -76187937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_36
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed3d648146186f24b8f7cb3d82890161
+      internalID: 711087224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_37
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee48ccbdc666038449c1b222acc86421
+      internalID: -671771075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_38
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22eb8e97506e7ab4f8d8581cecc7eb17
+      internalID: -1375216633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_39
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85aa4266be48d864893b8dc2525ffe74
+      internalID: 284582206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_40
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 952
+        width: 1
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c3bf37616cbbf14b8a602a7836d50ff
+      internalID: -2069620811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: F2-ShelvedBooks_41
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 952
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0030f85582bf6d4386829bd19d02163
+      internalID: 403733001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c32c0af62c326a24b9ff9691f78845e1
     internalID: 0
     vertices: []
     indices: 
@@ -183,11 +1041,52 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":1.0,"y":6.0},"gridSpriteOffset":{"x":0.0,"y":6.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       F2-ShelvedBooks_0: -3090995696640229148
       F2-ShelvedBooks_1: -3947220815570969652
+      F2-ShelvedBooks_10: -1326539951
+      F2-ShelvedBooks_11: 1019838783
+      F2-ShelvedBooks_12: 1117409563
+      F2-ShelvedBooks_13: -2055556090
+      F2-ShelvedBooks_14: 671603389
+      F2-ShelvedBooks_15: -1402159410
+      F2-ShelvedBooks_16: 1944372286
+      F2-ShelvedBooks_17: 843904009
+      F2-ShelvedBooks_18: -1930775720
+      F2-ShelvedBooks_19: -23229414
       F2-ShelvedBooks_2: 7385906379169307793
+      F2-ShelvedBooks_20: -1750174608
+      F2-ShelvedBooks_21: 2121929389
+      F2-ShelvedBooks_22: -2055124102
+      F2-ShelvedBooks_23: -1121027695
+      F2-ShelvedBooks_24: -294374582
+      F2-ShelvedBooks_25: -1235803824
+      F2-ShelvedBooks_26: -1028013426
+      F2-ShelvedBooks_27: -1019213811
+      F2-ShelvedBooks_28: 1695999382
+      F2-ShelvedBooks_29: 741743154
+      F2-ShelvedBooks_3: 863625133
+      F2-ShelvedBooks_30: 1605029750
+      F2-ShelvedBooks_31: -954571646
+      F2-ShelvedBooks_32: 1860274678
+      F2-ShelvedBooks_33: -281927531
+      F2-ShelvedBooks_34: 1840054124
+      F2-ShelvedBooks_35: -76187937
+      F2-ShelvedBooks_36: 711087224
+      F2-ShelvedBooks_37: -671771075
+      F2-ShelvedBooks_38: -1375216633
+      F2-ShelvedBooks_39: 284582206
+      F2-ShelvedBooks_4: -2023649533
+      F2-ShelvedBooks_40: -2069620811
+      F2-ShelvedBooks_41: 403733001
+      F2-ShelvedBooks_5: 505448814
+      F2-ShelvedBooks_6: 914079035
+      F2-ShelvedBooks_7: -664690210
+      F2-ShelvedBooks_8: -924369818
+      F2-ShelvedBooks_9: 672247873
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
