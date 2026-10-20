@@ -19,9 +19,10 @@ public class Trigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (goals.TrueForAll((goal) => goal.IsActivated))
+        foreach (LightGoal goal in goals)
         {
-            GoalsTriggered.Invoke();
+            if (!goal.IsActivated) { Debug.Log($"{goal.name}"); return; }
         }
+         GoalsTriggered.Invoke();
     }
 }

@@ -13,6 +13,8 @@ public class GrateDoor : MonoBehaviour
     private bool opening = false;
     private bool closeing = false;
     private float movement = 0;
+
+    private bool open = false;
  
 
     private void Start()
@@ -50,15 +52,22 @@ public class GrateDoor : MonoBehaviour
 
     public void OpenGrateDoor()
     {
-        opening = true;
-        closeing = false;
-        
+        if (!open)
+        {
+            opening = true;
+            closeing = false;
+            open = true;
+        }
     }
 
 
     public void CloseGrateDoor()
     {
-        opening = false;
-        closeing = true;
+        if (open)
+        {
+            opening = false;
+            closeing = true;
+            open = false;
+        }
     }
 }
