@@ -41,6 +41,7 @@ public class MainMenuManager : MonoBehaviour
         Time.timeScale = 1f;
 
         RefreshButtons();
+        MainMenuStyle.Apply(this); // after RefreshButtons so greyed-out buttons get dimmed labels
 
         if (loadGamePanel != null)
             loadGamePanel.SetActive(false);

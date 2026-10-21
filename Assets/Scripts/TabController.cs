@@ -54,16 +54,19 @@ public class TabController : MonoBehaviour
         }
     }
 
-    /// <summary>The next tab in <paramref name="step"/> direction, wrapping round and skipping hidden ones.</summary>
+    /// <summary>
+    /// The next tab in <paramref name="step"/> direction in on-screen order (an added Lore
+    /// tab sits second on screen but last in the arrays), wrapping round and skipping hidden ones.
+    /// </summary>
     private int NextVisibleTab(int step)
     {
-        int count = pages.Length;
-        int tab = ActiveTab;
-        for (int i = 0; i < count; i++)
-        {
-            tab = (tab + step + count) % count;
-            if (!hiddenTabs.Contains(tab)) return tab;
-        }
-        return ActiveTab;
+        List<int> order = new List<int>();
+        for (int i = 0; i < pages.Length; i++)
+            if (!hiddenTabs.Contains(i) && tabImages[i] != null) order.Add(i);
+        if (order.Count == 0) return ActiveTab;
+        order.Sort((a, b) => tabImages[a].transform.GetSiblingIndex().CompareTo(tabImages[b].transform.GetSiblingIndex()));
+
+        int position = Mathf.Max(0, order.IndexOf(ActiveTab));
+        return order[(position + step + order.Count) % order.Count];
     }
 }
