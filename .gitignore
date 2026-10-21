@@ -120,8 +120,6 @@ Assets/_Graphics/Cryo's Mini GUI/Buttons/Sliced/buttons_2x_sliced.png.meta
 Assets/_Graphics/Cryo's Mini GUI/Buttons/Sliced/buttons_4x_sliced.png
 Assets/_Graphics/Cryo's Mini GUI/Buttons/Sliced/buttons_4x_sliced.png.meta
 Assets/_Graphics/Cryo's Mini GUI/GUI.meta
-Assets/_Graphics/Cryo's Mini GUI/GUI/GUI_1x.png
-Assets/_Graphics/Cryo's Mini GUI/GUI/GUI_1x.png.meta
 Assets/_Graphics/Cryo's Mini GUI/GUI/GUI_2x.png
 Assets/_Graphics/Cryo's Mini GUI/GUI/GUI_2x.png.meta
 Assets/_Graphics/Cryo's Mini GUI/GUI/GUI_4x.png
@@ -590,8 +588,6 @@ Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_121.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_121.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_122.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_122.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_123.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_123.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_124.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_124.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_125.asset
@@ -630,12 +626,8 @@ Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_14.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_14.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_140.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_140.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_141.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_141.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_142.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_142.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_143.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_143.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_144.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_144.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_145.asset
@@ -678,8 +670,6 @@ Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_161.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_161.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_162.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_162.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_163.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_163.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_164.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_164.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_165.asset
@@ -774,10 +764,6 @@ Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_204.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_204.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_205.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_205.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_206.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_206.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_207.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_207.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_208.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_208.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_209.asset
@@ -808,16 +794,6 @@ Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_22.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_22.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_220.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_220.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_221.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_221.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_222.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_222.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_223.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_223.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_224.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_224.asset.meta
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_225.asset
-Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_225.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_226.asset
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_226.asset.meta
 Assets/_Graphics/Ninja Adventure/_Tiles/Tiles/Terrain/TilesetFloor_227.asset
@@ -2626,8 +2602,6 @@ Assets/_Graphics/Ninja Adventure/Backgrounds/Tilesets/TilesetDungeon.png
 Assets/_Graphics/Ninja Adventure/Backgrounds/Tilesets/TilesetDungeon.png.meta
 Assets/_Graphics/Ninja Adventure/Backgrounds/Tilesets/TilesetElement.png
 Assets/_Graphics/Ninja Adventure/Backgrounds/Tilesets/TilesetElement.png.meta
-Assets/_Graphics/Ninja Adventure/Backgrounds/Tilesets/TilesetFloor.png
-Assets/_Graphics/Ninja Adventure/Backgrounds/Tilesets/TilesetFloor.png.meta
 Assets/_Graphics/Ninja Adventure/Backgrounds/Tilesets/TilesetFloorB.png
 Assets/_Graphics/Ninja Adventure/Backgrounds/Tilesets/TilesetFloorB.png.meta
 Assets/_Graphics/Ninja Adventure/Backgrounds/Tilesets/TilesetFloorDetail.png
