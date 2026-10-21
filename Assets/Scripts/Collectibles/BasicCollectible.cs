@@ -41,11 +41,10 @@ public class BasicCollectible : MonoBehaviour, IMultiInteractable, ICollectible
         {
             CollectableManager.Instance.IncrementStack(collectableID, quantity);
         }
-        else
-        {
-            CollectableManager.Instance.SetFlag(collectableID, true);
-            Debug.Log(CollectableManager.Instance.GetFlag(collectableID));
-        }
+        
+        CollectableManager.Instance.SetFlag(collectableID, true);
+        Debug.Log(CollectableManager.Instance.GetFlag(collectableID));
+        
 
         Destroy(gameObject);
     }

@@ -97,9 +97,9 @@ public class ElevatorTransition : MonoBehaviour, IMultiInteractable
     private List<FloorDetails> floorDetails = new List<FloorDetails> { 
         new FloorDetails("F4", Color.red),
         new FloorDetails("F2", Color.green),
-        new FloorDetails("F3", Color.white),
-        new FloorDetails("F0", Color.black),
-        new FloorDetails("F5", Color.blue)
+        new FloorDetails("F5", Color.white),
+        new FloorDetails("F1", Color.black),
+        new FloorDetails("F3", Color.blue)
     };
 
 
